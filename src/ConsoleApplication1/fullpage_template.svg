@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="fullpage_template.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient6066"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop6068" />
+    </linearGradient>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter4868">
+      <feFlood
+         flood-opacity="0.905882"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood4870" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite4872" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="1"
+         result="blur"
+         id="feGaussianBlur4874" />
+      <feOffset
+         dx="1"
+         dy="1"
+         result="offset"
+         id="feOffset4876" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite4878" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter4880">
+      <feFlood
+         flood-opacity="0.905882"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood4882" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite4884" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="1"
+         result="blur"
+         id="feGaussianBlur4886" />
+      <feOffset
+         dx="1"
+         dy="1"
+         result="offset"
+         id="feOffset4888" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite4890" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter4892">
+      <feFlood
+         flood-opacity="0.905882"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood4894" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite4896" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="1"
+         result="blur"
+         id="feGaussianBlur4898" />
+      <feOffset
+         dx="1"
+         dy="1"
+         result="offset"
+         id="feOffset4900" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite4902" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-89.889311"
+     inkscape:cy="254.03693"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="940"
+     inkscape:window-height="435"
+     inkscape:window-x="334"
+     inkscape:window-y="487"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="fill:none;fill-rule:evenodd;stroke:white;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+    <rect style="fill:#000;stroke:none" x="0" y="0" width="744" height="680"/>
+    <path transform="translate(25,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
+    <path transform="translate(260,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
+    <path transform="translate(495,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
+    <path transform="translate(25,350)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
+    <path transform="translate(260,350)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
+    <path transform="translate(495,350)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
+  </g>
+  <g transform="translate(25,25)">
+    <!-- ##CARD1## -->
+  </g>
+  <g transform="translate(260,25)">
+    <!-- ##CARD2## -->
+  </g>
+  <g transform="translate(495,25)">
+    <!-- ##CARD3## -->
+  </g>
+  <g transform="translate(25,350)">
+    <!-- ##CARDBACKX## -->
+  </g>
+  <g transform="translate(260,350)">
+    <!-- ##CARDBACKX## -->
+  </g>
+  <g transform="translate(495,350)">
+    <!-- ##CARDBACKX## -->
+  </g>
+</svg>
