@@ -1,19 +1,22 @@
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
 
 namespace ConsoleApplication1
 {
-    class Cards
+    class CardPrinter
     {
         private readonly string[] _cards;
 
-        public Cards(string[] cards)
+        public CardPrinter(string[] cards)
         {
             this._cards = cards;
         }
 
-        public void Generate()
+        public void Print()
         {
             string directoryPath = "Cards";
             if (!Directory.Exists(directoryPath))
@@ -81,23 +84,56 @@ namespace ConsoleApplication1
             int sheets = cardno / cardsPrSheet;
             if (cardno % cardsPrSheet != 0)
                 sheets++;
-            // one sheet of backsides
+            // one sheet of backsides for each sheet of frontsheet
             sheets++;
             for (int i = 0; i < sheets; i++)
             {
                 string newSvg = fullpage_template;
                 bool lastSheet = i == sheets - 1;
+                string outputfilename = $"Cards\\9fullpage_{i * cardsPrSheet,0:D3}_{i * cardsPrSheet + cardsPrSheet - 1,0:D3}.svg";
                 for (int j = 0; j < cardsPrSheet; j++)
                 {
                     string cardfile = $"Cards\\card{i * cardsPrSheet + j,0:D3}.svg";
-                    if (lastSheet)
-                        cardfile = "cardback_template.svg";
+                    if (lastSheet) cardfile = "cardback_template.svg";
+
                     string cardText = File.Exists(cardfile) ? GetCardGroup(cardfile) : "";
                     newSvg = newSvg.Replace($"<!-- ##CARD{j}## -->", cardText);
                 }
-                File.WriteAllText($"Cards\\9fullpage_{i * cardsPrSheet,0:D3}_{i * cardsPrSheet + cardsPrSheet - 1,0:D3}.svg", newSvg);
-            }
+                if (lastSheet) outputfilename = "cards\\cardback_template.svg";
 
+                File.WriteAllText(outputfilename, newSvg);
+            }
+            // convert to pdf
+            Process p = new Process();
+            p.StartInfo = new ProcessStartInfo("cmd.exe", @"/C ""for /r %i in (9*.svg;cardback*.svg) do C:\p\simon\tools\Inkscape-0.91-1-win64\inkscape\inkscape.exe %i -A %i.pdf""");
+            p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Cards");
+            p.Start();
+            p.WaitForExit();
+            // make one big pdf with all backsides and frontsides
+            var all = Directory.GetFiles("Cards", "9*.pdf").SelectMany(x => new string[]
+            {
+                x,"cards\\cardback_template.svg.pdf"
+                          
+            }).ToArray();
+            MergePDFs("Cards\\9all.pdf", all);
+        }
+
+        public static void MergePDFs(string targetPath, params string[] pdfs)
+        {
+            using (PdfDocument targetDoc = new PdfDocument())
+            {
+                foreach (string pdf in pdfs)
+                {
+                    using (PdfDocument pdfDoc = PdfReader.Open(pdf, PdfDocumentOpenMode.Import))
+                    {
+                        for (int i = 0; i < pdfDoc.PageCount; i++)
+                        {
+                            targetDoc.AddPage(pdfDoc.Pages[i]);
+                        }
+                    }
+                }
+                targetDoc.Save(targetPath);
+            }
         }
 
         private string GetCardGroup(string cardfile1)

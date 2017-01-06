@@ -9,8 +9,8 @@ namespace ConsoleApplication1
         {
             OpeningBook book = new OpeningBook();
             string[] cards = book.GenerateCards();
-            Cards c = new Cards(cards);
-            c.Generate();
+            CardPrinter c = new CardPrinter(cards);
+            c.Print();
         }
     }
 }
