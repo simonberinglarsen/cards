@@ -159,13 +159,13 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="fill:none;fill-rule:evenodd;stroke:white;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
-    <rect style="fill:#000;stroke:none" x="0" y="0" width="744" height="680"/>
+    <rect style="fill:#000;stroke:none" x="15" y="15" width="714" height="695"/>
     <path transform="translate(25,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
     <path transform="translate(260,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
     <path transform="translate(495,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-    <path transform="translate(25,350)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-    <path transform="translate(260,350)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-    <path transform="translate(495,350)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
+    <path transform="translate(25,380)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
+    <path transform="translate(260,380)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
+    <path transform="translate(495,380)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
   </g>
   <g transform="translate(25,25)">
     <!-- ##CARD1## -->
@@ -176,13 +176,13 @@
   <g transform="translate(495,25)">
     <!-- ##CARD3## -->
   </g>
-  <g transform="translate(25,350)">
+  <g transform="translate(25,380)">
     <!-- ##CARDBACKX## -->
   </g>
-  <g transform="translate(260,350)">
+  <g transform="translate(260,380)">
     <!-- ##CARDBACKX## -->
   </g>
-  <g transform="translate(495,350)">
+  <g transform="translate(495,380)">
     <!-- ##CARDBACKX## -->
   </g>
 </svg>

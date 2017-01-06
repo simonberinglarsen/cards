@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using System.Threading;
 
 namespace ConsoleApplication1
@@ -14,19 +15,15 @@ namespace ConsoleApplication1
 
         public void Generate()
         {
-            if (Directory.Exists("Cards"))
+            string directoryPath = "Cards";
+            if (!Directory.Exists(directoryPath))
             {
-                Directory.Delete("Cards", true);
-                while (Directory.Exists("Cards"))
-                {
-                    Thread.Sleep(2000);
-                }
+                Directory.CreateDirectory(directoryPath);
             }
-            Directory.CreateDirectory("Cards");
-            while (!Directory.Exists("Cards"))
-            {
-                Thread.Sleep(2000);
-            }
+            var dir = new DirectoryInfo(directoryPath);
+            dir.EnumerateFiles("*.svg").ToList().ForEach(x => x.Delete());
+            dir.EnumerateFiles("*.pdf").ToList().ForEach(x => x.Delete());
+
             string template = File.ReadAllText("card_template.svg");
             int cardno = 0;
             string diagram =
@@ -58,8 +55,8 @@ namespace ConsoleApplication1
                 File.WriteAllText($"Cards\\card{cardno,0:D3}.svg", newSvg);
                 cardno++;
             }
-            // create fullpages
-            string fullpage_template = File.ReadAllText("fullpage_template.svg");
+            // create fullpages w. 3 cards
+            string fullpage_template = File.ReadAllText("3fullpage_template.svg");
             for (int i = 0; i < cardno; i += 3)
             {
                 string cardfile1 = $"Cards\\card{i,0:D3}.svg";
@@ -76,8 +73,31 @@ namespace ConsoleApplication1
                     .Replace("<!-- ##CARD2## -->", card2Text)
                     .Replace("<!-- ##CARD3## -->", card3Text)
                     .Replace("<!-- ##CARDBACKX## -->", cardbackText);
-                File.WriteAllText($"Cards\\fullpage_{i,0:D3}_{i + 2,0:D3}.svg", newSvg);
+                File.WriteAllText($"Cards\\3fullpage_{i,0:D3}_{i + 2,0:D3}.svg", newSvg);
             }
+            // create fullpages w. 9 cards
+            fullpage_template = File.ReadAllText("9fullpage_template.svg");
+            int cardsPrSheet = 9;
+            int sheets = cardno / cardsPrSheet;
+            if (cardno % cardsPrSheet != 0)
+                sheets++;
+            // one sheet of backsides
+            sheets++;
+            for (int i = 0; i < sheets; i++)
+            {
+                string newSvg = fullpage_template;
+                bool lastSheet = i == sheets - 1;
+                for (int j = 0; j < cardsPrSheet; j++)
+                {
+                    string cardfile = $"Cards\\card{i * cardsPrSheet + j,0:D3}.svg";
+                    if (lastSheet)
+                        cardfile = "cardback_template.svg";
+                    string cardText = File.Exists(cardfile) ? GetCardGroup(cardfile) : "";
+                    newSvg = newSvg.Replace($"<!-- ##CARD{j}## -->", cardText);
+                }
+                File.WriteAllText($"Cards\\9fullpage_{i * cardsPrSheet,0:D3}_{i * cardsPrSheet + cardsPrSheet - 1,0:D3}.svg", newSvg);
+            }
+
         }
 
         private string GetCardGroup(string cardfile1)
