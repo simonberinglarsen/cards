@@ -131,18 +131,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.087500001"
-     inkscape:cx="-339.35873"
-     inkscape:cy="115.83851"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="202.93308"
+     inkscape:cy="195.04664"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="in"
-     inkscape:window-width="656"
-     inkscape:window-height="435"
-     inkscape:window-x="587"
-     inkscape:window-y="671"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -161,66 +161,52 @@
      id="layer1"
      transform="translate(0,-737.36215)"
      style="display:inline">
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.75, 3.75000000000000000;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6358"
+       width="225"
+       height="315"
+       x="-225"
+       y="-1052.3621"
+       transform="scale(-1,-1)" />
+    <rect
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.75, 3.75000000000000000;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6358-8"
+       width="202.5"
+       height="292.5"
+       x="-213.75"
+       y="-1041.1121"
+       transform="scale(-1,-1)" />
     <g
-       id="g4179"
-       transform="matrix(-1,0,0,-1,225,1789.7242)">
-      <g
-         id="g6781">
-        <rect
-           style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.75, 3.75;stroke-dashoffset:0;stroke-opacity:1"
-           id="rect6358"
-           width="225"
-           height="315"
-           x="0"
-           y="737.36212" />
-        <rect
-           style="display:inline;opacity:1;fill:#888;fill-opacity:1;stroke:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.75, 3.75;stroke-dashoffset:0;stroke-opacity:1"
-           id="rect6358-8"
-           width="202.5"
-           height="292.5"
-           x="11.25"
-           y="748.61212" />
-      </g>
-      <path
-         sodipodi:nodetypes="ccccc"
-         inkscape:connector-curvature="0"
-         id="rect4944-4"
-         d="M 213.75,949.51126 C 205.12985,760.56516 61.554283,738.60298 11.25,789.51125 l 0,251.60095 202.5,0 z"
-         style="display:inline;opacity:1;fill:#808080;fill-opacity:1;stroke:none;stroke-width:1.79999995;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <g
-         transform="translate(-26.008303,3.70391)"
-         id="g4265">
-        <flowRoot
-           xml:space="preserve"
-           id="flowRoot3336"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Chess Cases';-inkscape-font-specification:'Chess Cases, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           transform="matrix(1.2189293,0,0,1.2192207,-3.0231968,660.3142)"><flowRegion
-             id="flowRegion3338"><rect
-               id="rect3340"
-               width="175.70836"
-               height="247.32649"
-               x="33.611065"
-               y="70.376274"
-               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Chess Cases';-inkscape-font-specification:'Chess Cases, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start" /></flowRegion>
-          <flowPara id="flowPara3346">***********</flowPara>
-          <flowPara id="flowPara3346">***+***+***</flowPara>
-          <flowPara id="flowPara3346">***********</flowPara>
-          <flowPara id="flowPara3346">*+***+***+*</flowPara>
-          <flowPara id="flowPara3346">***********</flowPara>
-          <flowPara id="flowPara3346">+*+*+*+*+*+</flowPara>
-          <flowPara id="flowPara3346">***********</flowPara>
-          <flowPara id="flowPara3346">*+***+***+*</flowPara>
-          <flowPara id="flowPara3346">+*+*+*+*+*+</flowPara>
-          <flowPara id="flowPara3346">*+*+*+*+*+*</flowPara>
-          <flowPara id="flowPara3346">+*+*+*+*+*+</flowPara>
-          <flowPara id="flowPara3346">*+*+*+*+*+*</flowPara>
-          <flowPara id="flowPara3346">+*+*+*+*+*+</flowPara>
-          <flowPara id="flowPara3346">*+*+*+*+*+*</flowPara>
-          <flowPara id="flowPara3346">+*+*+*+*+*+</flowPara>
-          <flowPara id="flowPara3346">*+*+*+*+*+*</flowPara>
-
-        </flowRoot>
-      </g>
-    </g>
+       id="g4265"
+       transform="matrix(-1,0,0,-1,251.0083,1786.0203)">
+      <flowRoot
+         transform="matrix(1.2189293,0,0,1.2192207,-3.0231968,658.3142)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Chess Cases';-inkscape-font-specification:'Chess Cases, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot3336"
+         xml:space="preserve"><flowRegion
+           id="flowRegion3338"><rect
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Chess Cases';-inkscape-font-specification:'Chess Cases, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+             y="70.376274"
+             x="33.611065"
+             height="240.88208"
+             width="172.7784"
+             id="rect3340" /></flowRegion><flowPara
+           id="flowPara3346">***********</flowPara><flowPara
+           id="flowPara4171">***+***+***</flowPara><flowPara
+           id="flowPara4173">***********</flowPara><flowPara
+           id="flowPara4175">*+***+***+*</flowPara><flowPara
+           id="flowPara4177">***********</flowPara><flowPara
+           id="flowPara4179">+*+*+*+*+*+</flowPara><flowPara
+           id="flowPara4181">***********</flowPara><flowPara
+           id="flowPara4183">*+***+***+*</flowPara><flowPara
+           id="flowPara4185">+*+*+*+*+*+</flowPara><flowPara
+           id="flowPara4187">*+*+*+*+*+*</flowPara><flowPara
+           id="flowPara4189">+*+*+*+*+*+</flowPara><flowPara
+           id="flowPara4191">*+*+*+*+*+*</flowPara><flowPara
+           id="flowPara4193">+*+*+*+*+*+</flowPara><flowPara
+           id="flowPara4195">*+*+*+*+*+*</flowPara><flowPara
+           id="flowPara4197">+*+*+*+*+*+</flowPara><flowPara
+           id="flowPara4199">*+*+*+*+*+*</flowPara></flowRoot>    </g>
   </g>
 </svg>

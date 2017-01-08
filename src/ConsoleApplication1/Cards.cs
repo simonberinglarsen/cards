@@ -15,6 +15,11 @@ namespace ConsoleApplication1
         {
             this._cards = cards;
         }
+        private string DisableId(string x, int id)
+        {
+            x = x.Replace($"id=\"g{id}\"", $"id=\"g{id}\" style=\"opacity: 0\"");
+            return x;
+        }
 
         public void Print()
         {
@@ -42,18 +47,26 @@ namespace ConsoleApplication1
             {
                 string[] e = card.Split(new char[] { ';' });
                 string newSvg = template
-                    .Replace("£", e[0])
-                    .Replace("§", e[1])
                     .Replace("##MAINVARIANT##", e[2])
                     .Replace("##NEXTMOVES##", e[3])
-                    .Replace("##DIAGRAMLINE1##", e[4].Substring(0, 8))
-                    .Replace("##DIAGRAMLINE2##", e[4].Substring(8, 8))
-                    .Replace("##DIAGRAMLINE3##", e[4].Substring(16, 8))
-                    .Replace("##DIAGRAMLINE4##", e[4].Substring(24, 8))
-                    .Replace("##DIAGRAMLINE5##", e[4].Substring(32, 8))
-                    .Replace("##DIAGRAMLINE6##", e[4].Substring(40, 8))
-                    .Replace("##DIAGRAMLINE7##", e[4].Substring(48, 8))
-                    .Replace("##DIAGRAMLINE8##", e[4].Substring(56, 8));
+                    .Replace("+*+*+*+p", e[4].Substring(0, 8))
+                    .Replace("*+*+*+*r", e[4].Substring(8, 8))
+                    .Replace("+*+*+*+n", e[4].Substring(16, 8))
+                    .Replace("*+*+*+*b", e[4].Substring(24, 8))
+                    .Replace("+*+*+*+q", e[4].Substring(32, 8))
+                    .Replace("*+*+*+*k", e[4].Substring(40, 8))
+                    .Replace("+*+*+*pp", e[4].Substring(48, 8))
+                    .Replace("*+*+*+pr", e[4].Substring(56, 8));
+                int depth = int.Parse(e[0]);
+                if (depth < 9) newSvg = DisableId(newSvg, 5391); 
+                if (depth < 8) newSvg = DisableId(newSvg, 5431); 
+                if (depth < 7) newSvg = DisableId(newSvg, 5381); 
+                if (depth < 6) newSvg = DisableId(newSvg, 5421); 
+                if (depth < 5) newSvg = DisableId(newSvg, 5371); 
+                if (depth < 4) newSvg = DisableId(newSvg, 5411); 
+                if (depth < 3) newSvg = DisableId(newSvg, 5361); 
+                if (depth < 2) newSvg = DisableId(newSvg, 5401); 
+                if(e[1] != "LEAF") newSvg = DisableId(newSvg, 8403);
 
                 File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), newSvg);
                 cardno++;
@@ -105,13 +118,13 @@ namespace ConsoleApplication1
             }
             // convert to pdf
             Process p = new Process();
-            p.StartInfo = new ProcessStartInfo("cmd.exe", @"/C ""for /r %i in (9*.svg;cardback*.svg) do C:\p\simon\tools\Inkscape-0.91-1-win64\inkscape\inkscape.exe %i -A %i.pdf""");
+            p.StartInfo = new ProcessStartInfo("cmd.exe", @"/C ""for /r %i in (9*.svg;cardback*.svg) do C:\Users\sends\Desktop\simon\toos\inkscape\inkscape.exe %i -A %i.pdf""");
             p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
             p.Start();
             p.WaitForExit();
             // make one big pdf with all backsides and frontsides
             var all = Directory.GetFiles(directoryPath, "9*.pdf").SelectMany(x => new string[] { x, Path.Combine(directoryPath, "cardback_template.svg.pdf") }).ToArray();
-            MergePDFs("Cards\\9all.pdf", all);
+            MergePDFs("Cards\\9all.pdf", all.OrderBy(x => x).ToArray());
         }
 
         public static void MergePDFs(string targetPath, params string[] pdfs)

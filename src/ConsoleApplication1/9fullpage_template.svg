@@ -158,8 +158,8 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     style="fill:none;fill-rule:evenodd;stroke:white;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
-    <rect style="fill:#000;stroke:none" x="15" y="15" width="714" height="1022"/>
+     style="fill:none;fill-rule:evenodd;stroke:black;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+    <rect style="fill:#white;stroke:none" x="15" y="15" width="714" height="1022"/>
     <path transform="translate(25,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
     <path transform="translate(260,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
     <path transform="translate(495,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
@@ -171,30 +171,30 @@
     <path transform="translate(495,705)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
   </g>
   <g transform="translate(25,25)">
-    <!-- ##CARD1## -->
+    <!-- ##CARD0## -->
   </g>
   <g transform="translate(260,25)">
-    <!-- ##CARD2## -->
+    <!-- ##CARD1## -->
   </g>
   <g transform="translate(495,25)">
-    <!-- ##CARD3## -->
+    <!-- ##CARD2## -->
   </g>
   <g transform="translate(25,365)">
-    <!-- ##CARD4## -->
+    <!-- ##CARD3## -->
   </g>
   <g transform="translate(260,365)">
-    <!-- ##CARD5## -->
-  </g>
-  <g transform="translate(495,365)">
-    <!-- ##CARD6## -->
-  </g>
-  <g transform="translate(25,705)">
     <!-- ##CARD4## -->
   </g>
-  <g transform="translate(260,705)">
+  <g transform="translate(495,365)">
     <!-- ##CARD5## -->
   </g>
-  <g transform="translate(495,705)">
+  <g transform="translate(25,705)">
     <!-- ##CARD6## -->
+  </g>
+  <g transform="translate(260,705)">
+    <!-- ##CARD7## -->
+  </g>
+  <g transform="translate(495,705)">
+    <!-- ##CARD8## -->
   </g>
 </svg>

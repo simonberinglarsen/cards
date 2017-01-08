@@ -34,7 +34,7 @@ namespace ConsoleApplication1
             }
             else if (Children.Count > 1)
             {
-                output.Append($"A;{depth};" + Text.Trim() + ";");
+                output.Append($"{depth:0000};VARIANT;" + Text.Trim() + ";");
                 string pre = "";
                 int moveno = 1 + Index / 2;
                 if (Index % 2 == 1)
@@ -43,7 +43,7 @@ namespace ConsoleApplication1
                     pre = $"{moveno}. ";
                 output.Append(pre + String.Join("/", Children.Select(x => x.MoveText)));
                 string fen = DiagramFromMoves();
-                output.AppendLine(";"+fen);
+                output.AppendLine(";" + fen);
                 Children.ForEach(v => v.PrettyPrint(depth + 1, output));
             }
             else if (Children.Count == 0)
@@ -58,7 +58,7 @@ namespace ConsoleApplication1
                 if (parent.Index % 2 == 1)
                     pre = $"{moveno}...";
                 string fen = DiagramFromMoves();
-                output.AppendLine($"B;{depth};" + parent.Text.Trim() + ";" +pre + Text.Substring(parent.Text.Length).Trim() + ";"+fen);
+                output.AppendLine($"{depth:0000};LEAF;" + parent.Text.Trim() + ";" + pre + Text.Substring(parent.Text.Length).Trim() + ";" + fen);
             }
         }
 
@@ -71,11 +71,18 @@ namespace ConsoleApplication1
                 moves = v.MoveText + " " + moves;
                 v = v.Parent;
             }
-            var allmoves = moves.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            var allmoves = moves.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             Engine e = new Engine();
             for (int i = 0; i < allmoves.Length; i++)
             {
                 string san = allmoves[i].Replace("+", "");
+                if (san.IndexOf("1/2-1/2") >= 0
+                   || san.IndexOf("1-0") >= 0
+                    || san.IndexOf("0-1") >= 0)
+                {
+                    // gameover
+                    break;
+                }
                 var genmoves = e.GenerateMoves();
                 var gensan = e.PrintAsSan(genmoves);
                 int indexofsan = gensan.ToList().IndexOf(san);
@@ -113,7 +120,7 @@ namespace ConsoleApplication1
             var temp = board.Replace("\r", "").Replace("\n", "").ToCharArray();
             for (int i = 0; i < temp.Length; i++)
             {
-                if ((i/8 + i%8)%2 == 1)
+                if ((i / 8 + i % 8) % 2 == 1)
                 {
                     temp[i] = char.ToUpper(temp[i]);
                     if (temp[i] == ' ')

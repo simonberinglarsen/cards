@@ -769,7 +769,7 @@ namespace ConsoleApplication1
         public string[] PrintAsSan(List<int[]> moveList)
         {
 
-            List<string> textMoves = new List<string>();
+            List<string> fullnotationMoves = new List<string>();
             foreach (var m in moveList)
             {
                 // move structure
@@ -785,32 +785,34 @@ namespace ConsoleApplication1
                 // m[9]: piece after
                 // m[10...]: other affected squares (en passant + castle)
                 string fulltext = PrintMove(m);
-
+                bool pawnMove = m[5] == 'p' || m[5] == 'P';
+                bool takes = m[8] != ' ' || (pawnMove && (m[7] == m[2]));
                 fulltext =
                     char.ToUpper((char)m[5])
                     + fulltext.Substring(0, 2)
-                    + (m[8] != ' ' ? "x" : " ")
+                    + (takes ? "x" : " ")
                     + fulltext.Substring(2, 2)
                     + (m[5] != m[9] ? ("=" + char.ToUpper((char)m[9])) : "");
 
-                textMoves.Add(fulltext);
+                fullnotationMoves.Add(fulltext);
             }
             // trim
-            for (int i = 0; i < textMoves.Count; i++)
+            List<string> trimmedMoves = new List<string>();
+            for (int i = 0; i < fullnotationMoves.Count; i++)
             {
-                string curmove = textMoves[i];
+                string curmove = fullnotationMoves[i];
                 if (curmove[0] != 'P')
                 {
-                    if (textMoves.Count(x => RemoveSourceRow(x) == RemoveSourceRow(curmove)) == 1)
+                    if (fullnotationMoves.Count(x => RemoveSourceRow(x) == RemoveSourceRow(curmove)) == 1)
                     {
-                        if (textMoves.Count(x => RemoveSourceColumn(RemoveSourceRow(x)) == RemoveSourceColumn(RemoveSourceRow(curmove))) == 1)
+                        if (fullnotationMoves.Count(x => RemoveSourceColumn(RemoveSourceRow(x)) == RemoveSourceColumn(RemoveSourceRow(curmove))) == 1)
                             curmove = RemoveSourceColumn(RemoveSourceRow(curmove));
                         else
                             curmove = RemoveSourceRow(curmove);
                     }
                     else
                     {
-                        if (textMoves.Count(x => RemoveSourceColumn(x) == RemoveSourceColumn(curmove)) == 1)
+                        if (fullnotationMoves.Count(x => RemoveSourceColumn(x) == RemoveSourceColumn(curmove)) == 1)
                             curmove = RemoveSourceColumn(curmove);
                     }
                 }
@@ -821,12 +823,11 @@ namespace ConsoleApplication1
                     else
                         curmove = RemoveSourceRow(RemoveSourceColumn(curmove));
                 }
-                textMoves.RemoveAt(i);
-                textMoves.Insert(i, curmove);
+                trimmedMoves.Add(curmove);
             }
-            for (int i = 0; i < textMoves.Count; i++)
+            for (int i = 0; i < trimmedMoves.Count; i++)
             {
-                var m = textMoves[i].ToCharArray();
+                var m = trimmedMoves[i].ToCharArray();
                 if (m[0] == 'P')
                     m[0] = ' ';
                 if (m[0] == 'K')
@@ -839,11 +840,11 @@ namespace ConsoleApplication1
                         m = "O-O-O".ToCharArray();
                 }
 
-                textMoves.RemoveAt(i);
-                textMoves.Insert(i, new string(m).Replace(" ", ""));
+                trimmedMoves.RemoveAt(i);
+                trimmedMoves.Insert(i, new string(m).Replace(" ", ""));
             }
 
-            return textMoves.ToArray();
+            return trimmedMoves.ToArray();
         }
 
         private string RemoveSourceRow(string s)

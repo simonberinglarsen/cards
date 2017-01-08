@@ -34,7 +34,7 @@ namespace ConsoleApplication1
             int start = 0;
             while (start >= 0)
             {
-                int temp = allPgns.IndexOf("]\n\n1. ", start);
+                int temp = allPgns.IndexOf("]\r\n\r\n1. ", start);
                 if (temp == -1) break;
                 int end = allPgns.IndexOf("[", temp);
                 string pgn;
@@ -56,7 +56,7 @@ namespace ConsoleApplication1
             b.PrettyPrint(1, output);
             string text = output.ToString();
             string[] cards = text.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            return cards;
+            return cards.OrderBy(x => x).ToArray();
         }
 
         private Variant CreateBook()
@@ -64,24 +64,27 @@ namespace ConsoleApplication1
             Variant b = new Variant() { MoveText = "ROOT", Parent = null, Index = 0 };
             foreach (var variant in _pgnList)
             {
-                string[] halfmoves = variant.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                List<string> keys = new List<string>();
-                for (int i = 0; i < halfmoves.Length; i++)
+                string[] pgnHalfMoves = variant.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                List<string> allPgnHalfMoves = new List<string>();
+                for (int i = 0; i < pgnHalfMoves.Length; i++)
                 {
                     if (i % 3 == 0)
                         continue;
-                    keys.Add(halfmoves[i]);
+                    allPgnHalfMoves.Add(pgnHalfMoves[i]);
                 }
                 var currentVar = b;
-                foreach (var key in keys.Take(20))
+                var openingHalfMoves = allPgnHalfMoves.Take(20).ToList();
+                for (int i = 0; i < openingHalfMoves.Count; i++)
                 {
-                    var x = currentVar.Children.SingleOrDefault(v => v.MoveText == key);
+                    var openingHalfMove = openingHalfMoves[i];
+                    var x = currentVar.Children.SingleOrDefault(v => v.MoveText == openingHalfMove);
                     if (x == null)
                     {
-                        x = new Variant() { MoveText = key, Parent = currentVar, Index = currentVar.Index + 1 };
+                        x = new Variant() { MoveText = openingHalfMove, Parent = currentVar, Index = currentVar.Index + 1 };
                         currentVar.Children.Add(x);
                     }
                     currentVar = x;
+
                 }
             }
             return b;
