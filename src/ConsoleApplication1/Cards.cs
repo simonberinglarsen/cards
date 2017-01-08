@@ -55,16 +55,16 @@ namespace ConsoleApplication1
                     .Replace("##DIAGRAMLINE7##", e[4].Substring(48, 8))
                     .Replace("##DIAGRAMLINE8##", e[4].Substring(56, 8));
 
-                File.WriteAllText($"Cards\\card{cardno,0:D3}.svg", newSvg);
+                File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), newSvg);
                 cardno++;
             }
             // create fullpages w. 3 cards
             string fullpage_template = File.ReadAllText("3fullpage_template.svg");
             for (int i = 0; i < cardno; i += 3)
             {
-                string cardfile1 = $"Cards\\card{i,0:D3}.svg";
-                string cardfile2 = $"Cards\\card{i + 1,0:D3}.svg";
-                string cardfile3 = $"Cards\\card{i + 2,0:D3}.svg";
+                string cardfile1 = Path.Combine(directoryPath, $"card{i,0:D3}.svg");
+                string cardfile2 = Path.Combine(directoryPath, $"card{i + 1,0:D3}.svg");
+                string cardfile3 = Path.Combine(directoryPath, $"card{i + 2,0:D3}.svg");
                 string cardbackfile = "cardback_template.svg";
                 string card1Text = File.Exists(cardfile1) ? GetCardGroup(cardfile1) : "";
                 string card2Text = File.Exists(cardfile2) ? GetCardGroup(cardfile2) : "";
@@ -76,7 +76,7 @@ namespace ConsoleApplication1
                     .Replace("<!-- ##CARD2## -->", card2Text)
                     .Replace("<!-- ##CARD3## -->", card3Text)
                     .Replace("<!-- ##CARDBACKX## -->", cardbackText);
-                File.WriteAllText($"Cards\\3fullpage_{i,0:D3}_{i + 2,0:D3}.svg", newSvg);
+                File.WriteAllText(Path.Combine(directoryPath, $"3fullpage_{i,0:D3}_{i + 2,0:D3}.svg"), newSvg);
             }
             // create fullpages w. 9 cards
             fullpage_template = File.ReadAllText("9fullpage_template.svg");
@@ -90,31 +90,27 @@ namespace ConsoleApplication1
             {
                 string newSvg = fullpage_template;
                 bool lastSheet = i == sheets - 1;
-                string outputfilename = $"Cards\\9fullpage_{i * cardsPrSheet,0:D3}_{i * cardsPrSheet + cardsPrSheet - 1,0:D3}.svg";
+                string outputfilename = Path.Combine(directoryPath, $"9fullpage_{i * cardsPrSheet,0:D3}_{i * cardsPrSheet + cardsPrSheet - 1,0:D3}.svg");
                 for (int j = 0; j < cardsPrSheet; j++)
                 {
-                    string cardfile = $"Cards\\card{i * cardsPrSheet + j,0:D3}.svg";
+                    string cardfile = Path.Combine(directoryPath, $"card{i * cardsPrSheet + j,0:D3}.svg");
                     if (lastSheet) cardfile = "cardback_template.svg";
 
                     string cardText = File.Exists(cardfile) ? GetCardGroup(cardfile) : "";
                     newSvg = newSvg.Replace($"<!-- ##CARD{j}## -->", cardText);
                 }
-                if (lastSheet) outputfilename = "cards\\cardback_template.svg";
+                if (lastSheet) outputfilename = Path.Combine(directoryPath, "cardback_template.svg");
 
                 File.WriteAllText(outputfilename, newSvg);
             }
             // convert to pdf
             Process p = new Process();
             p.StartInfo = new ProcessStartInfo("cmd.exe", @"/C ""for /r %i in (9*.svg;cardback*.svg) do C:\p\simon\tools\Inkscape-0.91-1-win64\inkscape\inkscape.exe %i -A %i.pdf""");
-            p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Cards");
+            p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
             p.Start();
             p.WaitForExit();
             // make one big pdf with all backsides and frontsides
-            var all = Directory.GetFiles("Cards", "9*.pdf").SelectMany(x => new string[]
-            {
-                x,"cards\\cardback_template.svg.pdf"
-                          
-            }).ToArray();
+            var all = Directory.GetFiles(directoryPath, "9*.pdf").SelectMany(x => new string[] { x, Path.Combine(directoryPath, "cardback_template.svg.pdf") }).ToArray();
             MergePDFs("Cards\\9all.pdf", all);
         }
 
