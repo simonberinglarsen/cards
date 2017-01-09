@@ -118,7 +118,9 @@ namespace ConsoleApplication1
             }
             // convert to pdf
             Process p = new Process();
-            p.StartInfo = new ProcessStartInfo("cmd.exe", @"/C ""for /r %i in (9*.svg;cardback*.svg) do C:\Users\sends\Desktop\simon\toos\inkscape\inkscape.exe %i -A %i.pdf""");
+            string inkscapePath = @"C:\p\simon\tools\Inkscape-0.91-1-win64\inkscape";
+            string args = $@"/C ""for /r %i in (9*.svg;cardback*.svg) do ""{inkscapePath}\inkscape.exe"" %i -A %i.pdf""";
+            p.StartInfo = new ProcessStartInfo("cmd.exe", args);
             p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
             p.Start();
             p.WaitForExit();

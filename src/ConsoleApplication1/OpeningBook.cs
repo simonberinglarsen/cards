@@ -35,7 +35,11 @@ namespace ConsoleApplication1
             while (start >= 0)
             {
                 int temp = allPgns.IndexOf("]\r\n\r\n1. ", start);
-                if (temp == -1) break;
+                if (temp == -1)
+                {
+                    temp = allPgns.IndexOf("]\n\n1. ", start);
+                    if (temp == -1) break;
+                }
                 int end = allPgns.IndexOf("[", temp);
                 string pgn;
                 if (end == -1)
