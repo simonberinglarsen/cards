@@ -10,13 +10,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 744.09448819 1052.3622047"
+   width="2.5in"
+   height="3.5in"
+   viewBox="0 0 225 315.00001"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="fullpage_template.svg">
+   sodipodi:docname="_template_card.svg">
   <defs
      id="defs4">
     <linearGradient
@@ -131,17 +131,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-89.889311"
-     inkscape:cy="254.03693"
-     inkscape:document-units="px"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="202.93308"
+     inkscape:cy="195.04664"
+     inkscape:document-units="in"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="940"
-     inkscape:window-height="435"
-     inkscape:window-x="334"
-     inkscape:window-y="487"
-     inkscape:window-maximized="0" />
+     units="in"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -158,43 +159,54 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     style="fill:none;fill-rule:evenodd;stroke:black;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
-    <rect style="fill:#white;stroke:none" x="15" y="15" width="714" height="1022"/>
-    <path transform="translate(25,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-    <path transform="translate(260,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-    <path transform="translate(495,25)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-    <path transform="translate(25,365)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-    <path transform="translate(260,365)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-    <path transform="translate(495,365)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-    <path transform="translate(25,705)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-    <path transform="translate(260,705)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-    <path transform="translate(495,705)" d="M 0,0 l 0,-10 M 0,0 l -10,0 M 225,315 l 0,10 M 225,315 l 10,0 M 0,315 l 0,10 M 0,315 l -10,0 M 225,0 l 0,-10 M 225,0 l 10,0" />
-  </g>
-  <g transform="translate(25,25)">
-    <!-- ##CARD0## -->
-  </g>
-  <g transform="translate(260,25)">
-    <!-- ##CARD1## -->
-  </g>
-  <g transform="translate(495,25)">
-    <!-- ##CARD2## -->
-  </g>
-  <g transform="translate(25,365)">
-    <!-- ##CARD3## -->
-  </g>
-  <g transform="translate(260,365)">
-    <!-- ##CARD4## -->
-  </g>
-  <g transform="translate(495,365)">
-    <!-- ##CARD5## -->
-  </g>
-  <g transform="translate(25,705)">
-    <!-- ##CARD6## -->
-  </g>
-  <g transform="translate(260,705)">
-    <!-- ##CARD7## -->
-  </g>
-  <g transform="translate(495,705)">
-    <!-- ##CARD8## -->
+     transform="translate(0,-737.36215)"
+     style="display:inline">
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.75, 3.75000000000000000;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6358"
+       width="225"
+       height="315"
+       x="-225"
+       y="-1052.3621"
+       transform="scale(-1,-1)" />
+    <rect
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.75, 3.75000000000000000;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6358-8"
+       width="202.5"
+       height="292.5"
+       x="-213.75"
+       y="-1041.1121"
+       transform="scale(-1,-1)" />
+    <g
+       id="g4265"
+       transform="matrix(-1,0,0,-1,251.0083,1786.0203)">
+      <flowRoot
+         transform="matrix(1.2189293,0,0,1.2192207,-3.0231968,658.3142)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Chess Cases';-inkscape-font-specification:'Chess Cases, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot3336"
+         xml:space="preserve"><flowRegion
+           id="flowRegion3338"><rect
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:100%;font-family:'Chess Cases';-inkscape-font-specification:'Chess Cases, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+             y="70.376274"
+             x="33.611065"
+             height="240.88208"
+             width="172.7784"
+             id="rect3340" /></flowRegion><flowPara
+           id="flowPara3346">***********</flowPara><flowPara
+           id="flowPara4171">***+***+***</flowPara><flowPara
+           id="flowPara4173">***********</flowPara><flowPara
+           id="flowPara4175">*+***+***+*</flowPara><flowPara
+           id="flowPara4177">***********</flowPara><flowPara
+           id="flowPara4179">+*+*+*+*+*+</flowPara><flowPara
+           id="flowPara4181">***********</flowPara><flowPara
+           id="flowPara4183">*+***+***+*</flowPara><flowPara
+           id="flowPara4185">+*+*+*+*+*+</flowPara><flowPara
+           id="flowPara4187">*+*+*+*+*+*</flowPara><flowPara
+           id="flowPara4189">+*+*+*+*+*+</flowPara><flowPara
+           id="flowPara4191">*+*+*+*+*+*</flowPara><flowPara
+           id="flowPara4193">+*+*+*+*+*+</flowPara><flowPara
+           id="flowPara4195">*+*+*+*+*+*</flowPara><flowPara
+           id="flowPara4197">+*+*+*+*+*+</flowPara><flowPara
+           id="flowPara4199">*+*+*+*+*+*</flowPara></flowRoot>    </g>
   </g>
 </svg>

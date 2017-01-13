@@ -7,8 +7,8 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            OpeningBook book = new OpeningBook();
-            string[] cards = book.GenerateCards();
+            OpeningBook book = new OpeningBook(@"scandinaviandefence.pgn", "Scandinavian Defence");
+            BookCard[] cards = book.GenerateCardsForBlack();
             CardPrinter c = new CardPrinter(cards);
             c.Print();
         }
