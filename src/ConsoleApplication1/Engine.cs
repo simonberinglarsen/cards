@@ -88,13 +88,12 @@ namespace ConsoleApplication1
         }
 
 
-        private int Evaluate()
+        public int Evaluate()
         {
             int eval = 0;
             int p, r, n, b, q, k, P, R, N, B, Q, K;
             p = r = n = b = q = k = P = R = N = B = Q = K = 0;
             int j = 0;
-            int blackKingIndex = 0, whiteKingIndex = 0;
             for (int i = 12 * 2; i < 12 * 10; i++)
             {
                 switch (_board[i])
@@ -104,32 +103,17 @@ namespace ConsoleApplication1
                     case 'n': eval -= 300; n++; break;
                     case 'b': eval -= 300; b++; break;
                     case 'q': eval -= 900; q++; break;
-                    case 'k': k++; blackKingIndex = j; break;
+                    case 'k': break;
                     case 'P': eval += 100; P++; break;
                     case 'R': eval += 500; R++; break;
                     case 'N': eval += 300; N++; break;
                     case 'B': eval += 300; B++; break;
                     case 'Q': eval += 900; Q++; break;
-                    case 'K': K++; whiteKingIndex = j; break;
+                    case 'K': break;
                 }
                 j++;
             }
-            bool bkOnly = p + r + n + b + q == 0;
-            bool wkOnly = P + R + N + B + Q == 0;
-            if (bkOnly)
-            {
-                int bkingdist = Math.Abs(blackKingIndex / 12) + Math.Abs(blackKingIndex % 12 - 2);
-                int wkingdist = Math.Abs(whiteKingIndex / 12 - 2) + Math.Abs(whiteKingIndex % 12 - 4);
-                eval -= bkingdist * 2;
-                eval -= wkingdist;
-            }
-            else if (wkOnly)
-            {
-                int wkingdist = Math.Abs(whiteKingIndex / 12) + Math.Abs(whiteKingIndex % 12 - 2);
-                int bkingdist = Math.Abs(blackKingIndex / 12 - 2) + Math.Abs(blackKingIndex % 12 - 4);
-                eval -= wkingdist * 2;
-                eval -= bkingdist;
-            }
+
             return ActiveColorIsWhite ? eval : -eval;
         }
 
@@ -505,15 +489,15 @@ namespace ConsoleApplication1
                 stateAfter = pawnAdvance || capture ? stateBefore | 0x10 : stateBefore;
                 if (m[4] == A1 || m[7] == A1)
                     stateAfter = stateAfter & ~0x01;
-                else if (m[4] == H1 || m[7] == H1)
+                if (m[4] == H1 || m[7] == H1)
                     stateAfter = stateAfter & ~0x02;
-                else if (m[4] == A8 || m[7] == A8)
+                if (m[4] == A8 || m[7] == A8)
                     stateAfter = stateAfter & ~0x04;
-                else if (m[4] == H8 || m[7] == H8)
+                if (m[4] == H8 || m[7] == H8)
                     stateAfter = stateAfter & ~0x08;
-                else if (m[5] == 'K')
+                if (m[5] == 'K')
                     stateAfter = stateAfter & ~0x03;
-                else if (m[5] == 'k')
+                if (m[5] == 'k')
                     stateAfter = stateAfter & ~0x0c;
                 m[1] = stateAfter | (HalfmoveClock << 8);
                 DoMove(m);

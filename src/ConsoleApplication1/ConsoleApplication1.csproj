@@ -54,20 +54,32 @@
   <ItemGroup>
     <Compile Include="Cards.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="MateCardPrinter.cs" />
+    <Compile Include="MateFinder.cs" />
     <Compile Include="OpeningBook.cs" />
     <Compile Include="PgnParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockFishProxy.cs" />
     <Compile Include="Variant.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="matepgns\20170114_mate.pgn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="scandinaviandefence.pgn">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="_pro_cardtemplate.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="stockfish\stockfish_8_x64.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="_template_cardback.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

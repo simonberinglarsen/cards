@@ -14,8 +14,35 @@ namespace ConsoleApplication1
         public string ECOName { get; set; }
         public string Result { get; set; }
         public string Year { get; set; }
-        public string WhiteLastName { get; set; }
-        public string BlackLastName { get; set; }
+
+        internal static string[] ChopIt(string allPgns)
+        {
+
+            List<string> pgns = new List<string>();
+
+            int start = 0;
+            while (start >= 0)
+            {
+                int temp = allPgns.IndexOf("]\r\n\r\n", start);
+                if (temp == -1)
+                {
+                    temp = allPgns.IndexOf("]\n\n", start);
+                    if (temp == -1) break;
+                }
+                int end = allPgns.IndexOf("[", temp);
+                string pgn;
+                if (end == -1)
+                    pgn = allPgns.Substring(start);
+                else
+                    pgn = allPgns.Substring(start, end - start);
+                pgns.Add(pgn);
+                start = end;
+            }
+
+            return pgns.ToArray();
+        }
+
+
         private string _pgnText;
         public PgnParser(string pgnText)
         {
@@ -54,21 +81,23 @@ namespace ConsoleApplication1
 
         private void PopulateHeaders(Dictionary<string, string> headers)
         {
-            WhiteLastName = headers["WHITE"].Substring(headers["WHITE"].LastIndexOf(' ')).Trim();
-            BlackLastName = headers["BLACK"].Substring(headers["BLACK"].LastIndexOf(' ')).Trim();
-            Year = headers["DATE"].Substring(0, headers["DATE"].IndexOf('.'));
+            if (headers.ContainsKey("DATE"))
+                Year = headers["DATE"].Substring(0, headers["DATE"].IndexOf('.'));
             Result = headers["RESULT"];
-            ECOCode = headers["ECO"];
-            ECOName = EcoNameFromCode(ECOCode);
+            if (headers.ContainsKey("ECO"))
+            {
+                ECOCode = headers["ECO"];
+                ECOName = EcoNameFromCode(ECOCode);
+            }
         }
 
         private string EcoNameFromCode(string ecoCode)
         {
-            int i= ecoList.IndexOf(ecoCode);
-            i = ecoList.IndexOf('\t', i)+1;
+            int i = ecoList.IndexOf(ecoCode);
+            i = ecoList.IndexOf('\t', i) + 1;
             int j = ecoList.IndexOf('\r', i);
             string name = ecoList.Substring(i, j - i);
-            return name; 
+            return name;
         }
         private string RemoveComments(string game)
         {

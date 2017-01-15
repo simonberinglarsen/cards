@@ -17,7 +17,7 @@ namespace ConsoleApplication1
             // read pgns
             string allPgns = File.ReadAllText(pgnBook);
             // chop it
-            string[] pgns = ChopIt(allPgns);
+            string[] pgns = PgnParser.ChopIt(allPgns);
             List<PgnParser> parsed = new List<PgnParser>();
             foreach (var pgn in pgns)
             {
@@ -29,31 +29,7 @@ namespace ConsoleApplication1
             _pgnList = parsed.Select(x => x.Game).ToList();
         }
 
-        private static string[] ChopIt(string allPgns)
-        {
-            List<string> pgns = new List<string>();
-
-            int start = 0;
-            while (start >= 0)
-            {
-                int temp = allPgns.IndexOf("]\r\n\r\n1. ", start);
-                if (temp == -1)
-                {
-                    temp = allPgns.IndexOf("]\n\n1. ", start);
-                    if (temp == -1) break;
-                }
-                int end = allPgns.IndexOf("[", temp);
-                string pgn;
-                if (end == -1)
-                    pgn = allPgns.Substring(start);
-                else
-                    pgn = allPgns.Substring(start, end - start);
-                pgns.Add(pgn);
-                start = end;
-            }
-
-            return pgns.ToArray();
-        }
+        
 
         public BookCard[] GenerateCardsForBlack()
         {

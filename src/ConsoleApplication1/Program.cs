@@ -7,10 +7,23 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            OpeningBook book = new OpeningBook(@"scandinaviandefence.pgn", "Scandinavian Defence");
-            BookCard[] cards = book.GenerateCardsForBlack();
-            CardPrinter c = new CardPrinter(cards);
-            c.Print();
+            string operation;
+            operation = "FindMate";
+            //operation = "OpeningBook";
+            if (operation == "FindMate")
+            {
+                MateFinder mf = new MateFinder("matepgns\\20170114_mate.pgn");
+                var mateCards = mf.FindMateIn(1);
+                MateCardPrinter mcp = new MateCardPrinter(mateCards);
+                mcp.Print();
+            }
+            else if (operation == "OpeningBook")
+            {
+                OpeningBook book = new OpeningBook(@"scandinaviandefence.pgn", "Scandinavian Defence");
+                BookCard[] cards = book.GenerateCardsForBlack();
+                CardPrinter c = new CardPrinter(cards);
+                c.Print();
+            }
         }
     }
 }
