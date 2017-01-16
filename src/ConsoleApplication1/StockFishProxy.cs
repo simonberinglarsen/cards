@@ -32,13 +32,13 @@ namespace ConsoleApplication1
             _proc.Start();
         }
 
-        public Mate FindMate(StringBuilder moveSequence, int depth)
+        public MateCard FindMate(StringBuilder moveSequence, int depth)
         {
             string beforeFen = FenAfterMoves(moveSequence.ToString());
             string moves = moveSequence.ToString();
             _proc.StandardInput.WriteLine("position startpos moves " + moves);
             _proc.StandardInput.WriteLine("go depth " + depth);
-            Mate mate = null;
+            MateCard mateCard = null;
             while (!_proc.StandardOutput.EndOfStream)
             {
                 string line = ReadLine(_proc);
@@ -52,16 +52,16 @@ namespace ConsoleApplication1
                         string mateInMoves = line.Substring(mateindex + 5, line.IndexOf(" ", mateindex + 5) - (mateindex + 5));
                         string principalVariation = line.Substring(line.IndexOf(" pv ")).Trim().Substring(3);
                         string winningMove = principalVariation.Split(new char[] { ' ' }).First();
-                        mate = new Mate();
-                        mate.HalfMoves = int.Parse(mateInMoves);
-                        mate.WinningMoveLan = winningMove;
+                        mateCard = new MateCard();
+                        mateCard.FullMoves = int.Parse(mateInMoves);
+                        mateCard.WinningMoveLan = winningMove;
                     }
                 }
                 else if (line.IndexOf("bestmove", StringComparison.Ordinal) == 0)
                 {
-                    if (mate != null && mate.HalfMoves < 0)
+                    if (mateCard != null && mateCard.FullMoves < 0)
                         return null;
-                    return mate;
+                    return mateCard;
                 }
             }
             throw new Exception("error! no bestmove found");

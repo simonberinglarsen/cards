@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -6,12 +7,11 @@ namespace ConsoleApplication1
 {
     internal class MateCardPrinter
     {
-        private readonly Mate[] _cards;
+        private readonly MateCard[] _cards;
         private const string directoryPath = "MateCards";
         private int cardno = 0;
-        string inkscapePath = @"C:\Users\sends\Desktop\simon\toos\inkscape";
 
-        public MateCardPrinter(Mate[] cards)
+        public MateCardPrinter(MateCard[] cards)
         {
             _cards = cards;
         }
@@ -41,27 +41,36 @@ namespace ConsoleApplication1
                     .Replace("*+*+*+pr", diagram.Substring(56, 8));
                 if(!card.WhiteToMove)
                 {
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara6049", "1");
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara6051", "2");
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara6053", "3");
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara6055", "4");
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara6057", "5");
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara6059", "6");
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara6061", "7");
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara6063", "8");
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara6079", "hgfedcba");
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara4300", "Black to move...");
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara4292", "Black to move...");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6049", "1");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6051", "2");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6053", "3");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6055", "4");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6057", "5");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6059", "6");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6061", "7");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6063", "8");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6079", "hgfedcba");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4300", "Black to move...");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4292", "Black to move...");
                 }
                 else
                 {
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara4300", "White to move...");
-                    newSvg = SvgManipulator.ReplaceText(newSvg, "flowPara4292", "White to move...");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4300", "White to move...");
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4292", "White to move...");
                 }
+                // insert tip
+                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4334", card.Tip.Body);
                 File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), newSvg);
                 cardno++;
             }
 
+            // convert to png
+            Process p = new Process();
+            string args = $@"/C ""for /r %i in (*.svg;) do ""{Inkscape.Path}"" %i -w 600 -h 840 -e %i.png""";
+            p.StartInfo = new ProcessStartInfo("cmd.exe", args);
+            p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
+            p.Start();
+            p.WaitForExit();
         }
 
 

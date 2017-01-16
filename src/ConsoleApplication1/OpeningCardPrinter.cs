@@ -1,67 +1,17 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
-using System.Xml;
-using System.Xml.Linq;
-using System.Collections.Generic;
-using System.Text;
-using System;
 
 namespace ConsoleApplication1
 {
-    class BookCard
+    class OpeningCardPrinter
     {
-        public string MainVariant { get; set; }
-        public string NextMoves { get; set; }
-        public string OpeningName { get; set; }
-        public string Diagram { get; set; }
-        public string Depth { get; set; }
-        public string NodeType { get; set; }
-    }
-    class SvgManipulator
-    {
-        public static string DisableId(string x, string id)
-        {
-            using (StringReader sr = new StringReader(x))
-            {
-                XDocument doc = XDocument.Load(sr);
-                XElement root = doc.Root;
-                var xmlns = "{" + root.GetDefaultNamespace().NamespaceName + "}";
-                var gElement = root.Descendants(xmlns + "g").Attributes().Where(a => a.Name == "id" && a.Value == id).Select(z => z.Parent).Single();
-                var attribute = gElement.Attributes().Where(a => a.Name == "style").SingleOrDefault();
-                if (attribute == null)
-                {
-                    attribute = new XAttribute("style", "");
-                    gElement.Add(attribute);
-                }
-                attribute.SetValue("opacity:0");
-                return doc.ToStringWithDeclaration();
-            }
-        }
-
-        internal static string ReplaceText(string x, string id, string newText)
-        {
-            using (StringReader sr = new StringReader(x))
-            {
-                XDocument doc = XDocument.Load(sr);
-                XElement root = doc.Root;
-                var xmlns = "{" + root.GetDefaultNamespace().NamespaceName + "}";
-                var gElement = root.Descendants(xmlns + "flowPara").Attributes().Where(a => a.Name == "id" && a.Value == id).Select(z => z.Parent).Single();
-                gElement.Value = newText;
-                return doc.ToStringWithDeclaration();
-            }
-        }
-    }
-    class CardPrinter
-    {
-        private readonly BookCard[] _cards;
-        private const string directoryPath = "Cards";
+        private readonly OpeningCard[] _cards;
+        private const string directoryPath = "OpeningCards";
         private int cardno = 0;
-        string inkscapePath = @"C:\Users\sends\Desktop\simon\toos\inkscape";
-        public CardPrinter(BookCard[] cards)
+        public OpeningCardPrinter(OpeningCard[] cards)
         {
             this._cards = cards;
         }
@@ -98,9 +48,9 @@ namespace ConsoleApplication1
                     .Replace("''1", $"{depth}")
                     .Replace("''2", $"{cardno + 1,0:D3}");
                 if (card.NodeType != "LEAF")
-                    newSvg = SvgManipulator.DisableId(newSvg, "g6312");
+                    newSvg = Inkscape.DisableId(newSvg, "g6312");
                 else
-                    newSvg = SvgManipulator.DisableId(newSvg, "g4637");
+                    newSvg = Inkscape.DisableId(newSvg, "g4637");
                 File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), newSvg);
                 cardno++;
             }
@@ -138,7 +88,7 @@ namespace ConsoleApplication1
             }
             // convert to pdf
             Process p = new Process();
-            string args = $@"/C ""for /r %i in (9*.svg;_template_cardback.svg) do ""{inkscapePath}\inkscape.exe"" %i -A %i.pdf""";
+            string args = $@"/C ""for /r %i in (9*.svg;_template_cardback.svg) do ""{Inkscape.Path}"" %i -A %i.pdf""";
             p.StartInfo = new ProcessStartInfo("cmd.exe", args);
             p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
             p.Start();
@@ -170,7 +120,7 @@ namespace ConsoleApplication1
 
             // convert to png
             Process p = new Process();
-            string args = $@"/C ""for /r %i in (2*.svg;) do ""{inkscapePath}\inkscape.exe"" %i -w 1800 -h 1200 -e %i.png""";
+            string args = $@"/C ""for /r %i in (2*.svg;) do ""{Inkscape.Path}"" %i -w 1800 -h 1200 -e %i.png""";
             p.StartInfo = new ProcessStartInfo("cmd.exe", args);
             p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
             p.Start();
@@ -227,38 +177,6 @@ namespace ConsoleApplication1
             s = s.Substring(s.IndexOf("<g"));
             s = s.Replace("</svg>", "");
             return s;
-        }
-    }
-
-    public static class XDocExtensions
-    {
-        public static string ToStringWithDeclaration(this XDocument doc)
-        {
-            if (doc == null)
-            {
-                throw new ArgumentNullException("doc");
-            }
-            StringBuilder builder = new StringBuilder();
-            using (TextWriter writer = new EncodingStringWriter(builder, Encoding.UTF8))
-            {
-                doc.Save(writer);
-            }
-            return builder.ToString();
-        }
-    }
-
-    public class EncodingStringWriter : StringWriter
-    {
-        private readonly Encoding _encoding;
-
-        public EncodingStringWriter(StringBuilder builder, Encoding encoding) : base(builder)
-        {
-            _encoding = encoding;
-        }
-
-        public override Encoding Encoding
-        {
-            get { return _encoding; }
         }
     }
 }

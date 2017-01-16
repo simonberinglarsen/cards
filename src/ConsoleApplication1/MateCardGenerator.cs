@@ -6,11 +6,11 @@ using System.Text;
 
 namespace ConsoleApplication1
 {
-    internal class MateFinder
+    internal class MateCardGenerator
     {
         private StockFishProxy _stockFish = new StockFishProxy();
         List<PgnParser> _pgnList = new List<PgnParser>();
-        public MateFinder(string inputfile)
+        public MateCardGenerator(string inputfile)
         {
             // read pgns
             string allPgns = File.ReadAllText(inputfile);
@@ -21,14 +21,12 @@ namespace ConsoleApplication1
                 PgnParser parser = new PgnParser(pgn);
                 parser.Parse();
                 _pgnList.Add(parser);
-
             }
-
         }
 
-        internal Mate[] FindMateIn(int movesToMateIn)
+        internal MateCard[] Generate()
         {
-            List<Mate> allMates = new List<Mate>();
+            List<MateCard> allMates = new List<MateCard>();
             foreach (var pgn in _pgnList.Skip(0))
             {
                
@@ -60,23 +58,27 @@ namespace ConsoleApplication1
                     string moveAsLan = e.PrintMove(generatedMoves[moveIndex]);
 
                     // ask stockfish if mate in X
-                    Mate mate = _stockFish.FindMate(allMovesInLan, 10);
-                    if (mate != null)
+                    MateCard mateCard = _stockFish.FindMate(allMovesInLan, 10);
+                    if (mateCard != null)
                     {
-                        // find shortnotation
-                        var generatedMovesAsLan = e.PrintMoves(generatedMoves).ToList();
-                        var winningMoveIndex = generatedMovesAsLan.ToList().IndexOf(mate.WinningMoveLan);
-                        string winningMoveSan = generatedMovesAsSan[winningMoveIndex];
-                        mate.WinningMoveSan = winningMoveSan;
-                        mate.Fen = e.PrintFen();
-                        mate.WhiteToMove = e.ActiveColorIsWhite;
                         int eval = e.Evaluate();
-                        if(Math.Abs(eval) <= 100)
-                            allMates.Add(mate);
-                        System.Diagnostics.Debug.WriteLine($"{(_pgnList.IndexOf(pgn)*100.0/ _pgnList.Count), 3:0.#}% complete, game#{_pgnList.IndexOf(pgn)}/{_pgnList.Count}, mates found: {allMates.Count} (last mate in {((allMates.Count != 0) ? allMates.Last().HalfMoves.ToString():" - ")})");
+                        // only take puzzles having close to equal material
+                        if (Math.Abs(eval) <= 100)
+                        {
+                            // find shortnotation
+                            var generatedMovesAsLan = e.PrintMoves(generatedMoves).ToList();
+                            var winningMoveIndex = generatedMovesAsLan.ToList().IndexOf(mateCard.WinningMoveLan);
+                            string winningMoveSan = generatedMovesAsSan[winningMoveIndex];
+                            mateCard.WinningMoveSan = winningMoveSan;
+                            mateCard.Fen = e.PrintFen();
+                            mateCard.WhiteToMove = e.ActiveColorIsWhite;
+                            mateCard.Tip = MateCardTips.NextSimpleTip();
+                            allMates.Add(mateCard);
+                        }
+                        System.Diagnostics.Debug.WriteLine($"{(_pgnList.IndexOf(pgn)*100.0/ _pgnList.Count), 3:0.#}% complete, game#{_pgnList.IndexOf(pgn)}/{_pgnList.Count}, mates found: {allMates.Count} (last mate in {((allMates.Count != 0) ? allMates.Last().FullMoves.ToString():" - ")})");
 
                         // hack
-                        if(allMates.Count > 0)
+                        if(allMates.Count > 10)
                         {
                             return allMates.ToArray();
                         }
@@ -98,14 +100,5 @@ namespace ConsoleApplication1
             }
             return allMates.ToArray();
         }
-    }
-
-    public class Mate
-    {
-        public int HalfMoves { get; set; }
-        public string WinningMoveLan { get; set; }
-        public string WinningMoveSan { get; internal set; }
-        public string Fen { get; set; }
-        public bool WhiteToMove { get; set; }
     }
 }

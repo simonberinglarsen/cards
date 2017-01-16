@@ -6,12 +6,12 @@ using System.Text;
 
 namespace ConsoleApplication1
 {
-    class OpeningBook
+    class OpeningCardGenerator
     {
         private readonly List<string> _pgnList;
         private string _openingName;
 
-        public OpeningBook(string pgnBook, string openingName)
+        public OpeningCardGenerator(string pgnBook, string openingName)
         {
             _openingName = openingName;
             // read pgns
@@ -31,25 +31,25 @@ namespace ConsoleApplication1
 
         
 
-        public BookCard[] GenerateCardsForBlack()
+        public OpeningCard[] GenerateForBlack()
         {
             return GenerateCards(false);
         }
 
-        public BookCard[] GenerateCardsForWhite()
+        public OpeningCard[] GenerateCardsForWhite()
         {
             return GenerateCards(true);
         }
 
-        private BookCard[] GenerateCards(bool asWhite)
+        private OpeningCard[] GenerateCards(bool asWhite)
         {
             Variant bookRoot = CreateBook();
-            List<BookCard> cards = new List<BookCard>();
+            List<OpeningCard> cards = new List<OpeningCard>();
             PrettyPrint(bookRoot, 1, cards, asWhite);
             return cards.OrderBy(x => x.MainVariant).ToArray();
         }
 
-        public void PrettyPrint(Variant current, int depth, List<BookCard> output, bool asWhite)
+        public void PrettyPrint(Variant current, int depth, List<OpeningCard> output, bool asWhite)
         {
             if (current.Children.Count == 1)
             {
@@ -64,7 +64,7 @@ namespace ConsoleApplication1
                 else
                     pre = $"{moveno}. ";
                 string fen = DiagramFromMoves(current, asWhite);
-                BookCard newcard = new BookCard()
+                OpeningCard newcard = new OpeningCard()
                 {
                     OpeningName = _openingName,
                     Depth = $"{depth:0000}",
@@ -91,7 +91,7 @@ namespace ConsoleApplication1
                     pre = $"{moveno}...";
                 string fen = DiagramFromMoves(current, asWhite);
 
-                BookCard newcard = new BookCard()
+                OpeningCard newcard = new OpeningCard()
                 {
                     OpeningName = _openingName,
                     Depth = $"{depth:0000}",

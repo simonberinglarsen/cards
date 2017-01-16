@@ -52,16 +52,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cards.cs" />
+    <Compile Include="MateCardTips.cs" />
+    <Compile Include="OpeningCard.cs" />
+    <Compile Include="OpeningCardPrinter.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="Inkscape.cs" />
+    <Compile Include="MateCard.cs" />
     <Compile Include="MateCardPrinter.cs" />
-    <Compile Include="MateFinder.cs" />
-    <Compile Include="OpeningBook.cs" />
+    <Compile Include="MateCardGenerator.cs" />
+    <Compile Include="OpeningCardGenerator.cs" />
     <Compile Include="PgnParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockFishProxy.cs" />
     <Compile Include="Variant.cs" />
+    <Compile Include="XDocExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -69,7 +74,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="scandinaviandefence.pgn">
+    <None Include="openingpgns\scandinaviandefence.pgn">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
