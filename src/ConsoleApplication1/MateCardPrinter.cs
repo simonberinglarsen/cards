@@ -40,7 +40,7 @@ namespace ConsoleApplication1
                     .Replace("*+*+*+*k", diagram.Substring(40, 8))
                     .Replace("+*+*+*pp", diagram.Substring(48, 8))
                     .Replace("*+*+*+pr", diagram.Substring(56, 8));
-                if(!card.WhiteToMove)
+                if (!card.WhiteToMove)
                 {
                     newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6049", "1");
                     newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6051", "2");
@@ -59,7 +59,29 @@ namespace ConsoleApplication1
                     newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4300", "White to move...");
                     newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4292", "White to move...");
                 }
-                
+                // Title
+                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4270", card.Title);
+                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4278", card.Title);
+
+                // Subtitle
+                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4300", card.Subtitle);
+                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4292", card.Subtitle);
+
+                // challenge
+                //flowRoot5706
+                if (card.WhiteToMove)
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara5731", "Mat i 1. Hvid trækker.");
+                else
+                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara5731", "Mat i 1. Sort trækker.");
+
+
+                // card number
+                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4792", $"{cardno + 1,04:D}");
+
+                // solution
+                //flowRoot5746
+                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara5754", card.Ability.Text);
+
                 // dump svg
                 File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), newSvg);
                 cardno++;

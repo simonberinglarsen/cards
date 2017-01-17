@@ -10,6 +10,8 @@ namespace ConsoleApplication1
         public string Fen { get; set; }
         public bool WhiteToMove { get; set; }
         public Ability Ability { get; set; }
+        public string Title { get; set; }
+        public string Subtitle { get; set; }
     }
 
     public class Ability
@@ -20,26 +22,27 @@ namespace ConsoleApplication1
 
         private static Dictionary<AbilityTypeEnum, string> texts = new Dictionary<AbilityTypeEnum, string>()
             {
-                { AbilityTypeEnum.FileAOrRank1, ""},
-                { AbilityTypeEnum.FileBOrRank2, ""},
-                { AbilityTypeEnum.FileCOrRank3, ""},
-                { AbilityTypeEnum.FileDOrRank4, ""},
-                { AbilityTypeEnum.FileEOrRank5, ""},
-                { AbilityTypeEnum.FileFOrRank6, ""},
-                { AbilityTypeEnum.FileGOrRank7, ""},
-                { AbilityTypeEnum.FileHOrRank8, ""},
-                { AbilityTypeEnum.DiagonalA1ToA8, ""},
-                { AbilityTypeEnum.DiagonalH1ToH8, ""},
-                { AbilityTypeEnum.PieceIsPawn, ""},
-                { AbilityTypeEnum.PieceIsRook, ""},
-                { AbilityTypeEnum.PieceIsKnight, ""},
-                { AbilityTypeEnum.PieceIsBishop, ""},
-                { AbilityTypeEnum.PieceIsQueen, ""}
+                { AbilityTypeEnum.FileAOrRank1, "Din modstanders udfordring løses ved at placere en brik på A-linien eller 1. række."},
+                { AbilityTypeEnum.FileBOrRank2, "Din modstanders udfordring løses ved at placere en brik på B-linien eller 2. række."},
+                { AbilityTypeEnum.FileCOrRank3, "Din modstanders udfordring løses ved at placere en brik på C-linien eller 3. række."},
+                { AbilityTypeEnum.FileDOrRank4, "Din modstanders udfordring løses ved at placere en brik på D-linien eller 4. række."},
+                { AbilityTypeEnum.FileEOrRank5, "Din modstanders udfordring løses ved at placere en brik på E-linien eller 5. række."},
+                { AbilityTypeEnum.FileFOrRank6, "Din modstanders udfordring løses ved at placere en brik på F-linien eller 6. række."},
+                { AbilityTypeEnum.FileGOrRank7, "Din modstanders udfordring løses ved at placere en brik på G-linien eller 7. række."},
+                { AbilityTypeEnum.FileHOrRank8, "Din modstanders udfordring løses ved at placere en brik på H-linien eller 8. række."},
+                { AbilityTypeEnum.DiagonalA1ToA8, "Din modstanders udfordring løses ved at placere en brik et sted på diagonalen fra A1 til H8."},
+                { AbilityTypeEnum.DiagonalH1ToH8, "Din modstanders udfordring løses ved at placere en brik et sted på diagonalen fra H1 til A8."},
+                { AbilityTypeEnum.PieceIsPawn, "Din modstanders udfordring løses ved at flytte en bonde."},
+                { AbilityTypeEnum.PieceIsRook, "Din modstanders udfordring løses ved at flytte et tårn."},
+                { AbilityTypeEnum.PieceIsKnight, "Din modstanders udfordring løses ved at flytte en springer."},
+                { AbilityTypeEnum.PieceIsBishop, "Din modstanders udfordring løses ved at flytte en løber."},
+                { AbilityTypeEnum.PieceIsQueen, "Din modstanders udfordring løses ved at flytte en dronning."},
             };
 
         public static Ability Create(AbilityTypeEnum type)
         {
             var a = new Ability();
+            a.AbilityType = type;
             a.Text = texts[type];
             return a;
         }
