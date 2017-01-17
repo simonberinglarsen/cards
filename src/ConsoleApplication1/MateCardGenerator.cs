@@ -24,12 +24,12 @@ namespace ConsoleApplication1
             }
         }
 
-        internal MateCard[] Generate()
+        internal MateCard[] GenerateMateIn(int fullMovesToMate)
         {
             List<MateCard> allMates = new List<MateCard>();
             foreach (var pgn in _pgnList.Skip(0))
             {
-               
+
                 // find if we have a mate in 1
                 string notation = pgn.Game;
                 string[] moves = notation.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -37,12 +37,12 @@ namespace ConsoleApplication1
                 StringBuilder allMovesInLan = new StringBuilder();
                 for (int i = 0; i < moves.Length; i++)
                 {
-                    if (_pgnList.IndexOf(pgn) == 19 && i==106)
+                    if (_pgnList.IndexOf(pgn) == 19 && i == 106)
                     {
                         int debugfail = 1;
                     }
                     // get move
-                    string currentMove = moves[i].Replace("+", "").Replace("#","");
+                    string currentMove = moves[i].Replace("+", "").Replace("#", "");
                     if (currentMove.IndexOf("1/2-1/2") >= 0
                         || currentMove.IndexOf("1-0") >= 0
                         || currentMove.IndexOf("0-1") >= 0)
@@ -58,8 +58,8 @@ namespace ConsoleApplication1
                     string moveAsLan = e.PrintMove(generatedMoves[moveIndex]);
 
                     // ask stockfish if mate in X
-                    MateCard mateCard = _stockFish.FindMate(allMovesInLan, 10);
-                    if (mateCard != null)
+                    MateCard mateCard = _stockFish.FindMate(allMovesInLan, 1);
+                    if (mateCard != null && mateCard.FullMoves == fullMovesToMate)
                     {
                         int eval = e.Evaluate();
                         // only take puzzles having close to equal material
@@ -74,10 +74,10 @@ namespace ConsoleApplication1
                             mateCard.WhiteToMove = e.ActiveColorIsWhite;
                             allMates.Add(mateCard);
                         }
-                        System.Diagnostics.Debug.WriteLine($"{(_pgnList.IndexOf(pgn)*100.0/ _pgnList.Count), 3:0.#}% complete, game#{_pgnList.IndexOf(pgn)}/{_pgnList.Count}, mates found: {allMates.Count} (last mate in {((allMates.Count != 0) ? allMates.Last().FullMoves.ToString():" - ")})");
+                        System.Diagnostics.Debug.WriteLine($"{(_pgnList.IndexOf(pgn) * 100.0 / _pgnList.Count),3:0.#}% complete, game#{_pgnList.IndexOf(pgn)}/{_pgnList.Count}, mates found: {allMates.Count} (last mate in {((allMates.Count != 0) ? allMates.Last().FullMoves.ToString() : " - ")})");
 
                         // hack
-                        if(allMates.Count > 4)
+                        if (allMates.Count == 54)
                         {
                             return allMates.ToArray();
                         }
@@ -90,7 +90,7 @@ namespace ConsoleApplication1
                     // validate position with stockfish
                     var fen1 = e.PrintFen();
                     var fen2 = _stockFish.FenAfterMoves(allMovesInLan.ToString());
-                    if(fen1 != fen2)
+                    if (fen1 != fen2)
                     {
                         // error
                         throw new Exception("oh no! seems to be a bug in engine!?!?");
@@ -102,7 +102,34 @@ namespace ConsoleApplication1
 
         public void PostProcess(MateCard[] mateCards)
         {
-            
+            Dictionary<AbilityTypeEnum, int> setup = new Dictionary<AbilityTypeEnum, int>()
+            {
+                { AbilityTypeEnum.FileAOrRank1, 4},
+                { AbilityTypeEnum.FileBOrRank2, 4},
+                { AbilityTypeEnum.FileCOrRank3, 4},
+                { AbilityTypeEnum.FileDOrRank4, 4},
+                { AbilityTypeEnum.FileEOrRank5, 4},
+                { AbilityTypeEnum.FileFOrRank6, 4},
+                { AbilityTypeEnum.FileGOrRank7, 4},
+                { AbilityTypeEnum.FileHOrRank8, 4},
+                { AbilityTypeEnum.DiagonalA1ToA8, 2},
+                { AbilityTypeEnum.DiagonalH1ToH8, 2},
+                { AbilityTypeEnum.PieceIsPawn, 2},
+                { AbilityTypeEnum.PieceIsRook, 4},
+                { AbilityTypeEnum.PieceIsKnight, 4},
+                { AbilityTypeEnum.PieceIsBishop, 4},
+                { AbilityTypeEnum.PieceIsQueen, 4}
+            };
+            // verify 
+            var sum = setup.Sum(s => s.Value);
+            if (sum != 54) throw new Exception("Wrong deck size!");
+            List<Ability> abilities = new List<Ability>();
+            foreach (var keyPair in setup)
+            {
+                for (int i = 0; i < keyPair.Value; i++)
+                    abilities.Add(Ability.Create(keyPair.Key));
+            }
+            abilities.ForEach(a => mateCards[abilities.IndexOf(a)].Ability = a);
         }
     }
 

@@ -13,7 +13,7 @@ namespace ConsoleApplication1
             if (operation == "FindMate")
             {
                 MateCardGenerator mateCardGenerator = new MateCardGenerator("matepgns\\20170114_mate.pgn");
-                var mateCards = mateCardGenerator.Generate();
+                var mateCards = mateCardGenerator.GenerateMateIn(1);
                 mateCardGenerator.PostProcess(mateCards);
 
                 MateCardPrinter mcp = new MateCardPrinter(mateCards);

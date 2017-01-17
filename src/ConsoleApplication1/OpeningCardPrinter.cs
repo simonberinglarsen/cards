@@ -27,6 +27,7 @@ namespace ConsoleApplication1
             var dir = new DirectoryInfo(directoryPath);
             dir.EnumerateFiles("*.svg").ToList().ForEach(x => x.Delete());
             dir.EnumerateFiles("*.pdf").ToList().ForEach(x => x.Delete());
+            dir.EnumerateFiles("*.png").ToList().ForEach(x => x.Delete());
             string template = File.ReadAllText("_template_card.svg");
             cardno = 0;
             foreach (var card in _cards)
