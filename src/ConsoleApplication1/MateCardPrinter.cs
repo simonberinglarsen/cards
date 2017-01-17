@@ -58,8 +58,8 @@ namespace ConsoleApplication1
                     newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4300", "White to move...");
                     newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4292", "White to move...");
                 }
-                // insert tip
-                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4334", card.Tip.Body);
+                
+                // dump svg
                 File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), newSvg);
                 cardno++;
             }
@@ -129,4 +129,5 @@ namespace ConsoleApplication1
             return new string(temp);
         }
     }
+
 }

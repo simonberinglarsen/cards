@@ -72,13 +72,12 @@ namespace ConsoleApplication1
                             mateCard.WinningMoveSan = winningMoveSan;
                             mateCard.Fen = e.PrintFen();
                             mateCard.WhiteToMove = e.ActiveColorIsWhite;
-                            mateCard.Tip = MateCardTips.NextSimpleTip();
                             allMates.Add(mateCard);
                         }
                         System.Diagnostics.Debug.WriteLine($"{(_pgnList.IndexOf(pgn)*100.0/ _pgnList.Count), 3:0.#}% complete, game#{_pgnList.IndexOf(pgn)}/{_pgnList.Count}, mates found: {allMates.Count} (last mate in {((allMates.Count != 0) ? allMates.Last().FullMoves.ToString():" - ")})");
 
                         // hack
-                        if(allMates.Count > 10)
+                        if(allMates.Count > 4)
                         {
                             return allMates.ToArray();
                         }
@@ -100,5 +99,11 @@ namespace ConsoleApplication1
             }
             return allMates.ToArray();
         }
+
+        public void PostProcess(MateCard[] mateCards)
+        {
+            
+        }
     }
+
 }

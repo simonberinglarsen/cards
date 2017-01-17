@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MateCardTips.cs" />
     <Compile Include="OpeningCard.cs" />
     <Compile Include="OpeningCardPrinter.cs" />
     <Compile Include="Engine.cs" />
@@ -77,6 +76,7 @@
     <None Include="openingpgns\scandinaviandefence.pgn">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="topps\cards.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="_pro_cardtemplate.svg">

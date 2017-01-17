@@ -14,6 +14,8 @@ namespace ConsoleApplication1
             {
                 MateCardGenerator mateCardGenerator = new MateCardGenerator("matepgns\\20170114_mate.pgn");
                 var mateCards = mateCardGenerator.Generate();
+                mateCardGenerator.PostProcess(mateCards);
+
                 MateCardPrinter mcp = new MateCardPrinter(mateCards);
                 mcp.Print();
             }
