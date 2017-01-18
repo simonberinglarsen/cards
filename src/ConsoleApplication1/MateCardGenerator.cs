@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace ConsoleApplication1
 {
@@ -24,8 +25,13 @@ namespace ConsoleApplication1
             }
         }
 
-        internal MateCard[] GenerateMateIn(int fullMovesToMate)
+        internal MateCard[] GenerateMateIn(bool useCached)
         {
+            string jsonFilename = "matecards.json";
+            if (useCached && File.Exists(jsonFilename))
+            {
+                return JsonConvert.DeserializeObject<MateCard[]>(File.ReadAllText(jsonFilename));
+            }
             List<MateCard> allMates = new List<MateCard>();
             foreach (var pgn in _pgnList.Skip(0))
             {
@@ -58,8 +64,8 @@ namespace ConsoleApplication1
                     string moveAsLan = e.PrintMove(generatedMoves[moveIndex]);
 
                     // ask stockfish if mate in X
-                    MateCard mateCard = _stockFish.FindMate(allMovesInLan, 1);
-                    if (mateCard != null && mateCard.FullMoves == fullMovesToMate)
+                    MateCard mateCard = _stockFish.FindMate(allMovesInLan, 3);
+                    if (mateCard != null)
                     {
                         int eval = e.Evaluate();
                         // only take puzzles having close to equal material
@@ -70,19 +76,14 @@ namespace ConsoleApplication1
                             var winningMoveIndex = generatedMovesAsLan.ToList().IndexOf(mateCard.WinningMoveLan);
                             string winningMoveSan = generatedMovesAsSan[winningMoveIndex];
                             mateCard.WinningMoveSan = winningMoveSan;
+                            mateCard.WinningPieceUpper = char.ToUpper((char)generatedMoves[moveIndex][5]);
+                            mateCard.IsCapture = winningMoveSan.Contains("x");
                             mateCard.Fen = e.PrintFen();
                             mateCard.WhiteToMove = e.ActiveColorIsWhite;
                             allMates.Add(mateCard);
                         }
 
-                        // hack
-                        if (allMates.Count == 54)
-                        {
-                            return allMates.ToArray();
-                        }
                         System.Diagnostics.Debug.WriteLine($"{(_pgnList.IndexOf(pgn) * 100.0 / _pgnList.Count),3:0.#}% complete, game#{_pgnList.IndexOf(pgn)}/{_pgnList.Count}, mates found: {allMates.Count} (last mate in {((allMates.Count != 0) ? allMates.Last().FullMoves.ToString() : " - ")})");
-                        if (allMates.Last() == mateCard)
-                            break;
                     }
 
                     // do move and continue searching for mate
@@ -99,6 +100,7 @@ namespace ConsoleApplication1
                     }
                 }
             }
+            File.WriteAllText(jsonFilename, JsonConvert.SerializeObject(allMates.ToArray()));
             return allMates.ToArray();
         }
 
@@ -140,21 +142,10 @@ namespace ConsoleApplication1
                 string[] fideInfoParts = fideInfo[i].Split(new char[] { ';' });
                 string[] nameParts = fideInfoParts[0].Split(new char[] { ',' });
                 string fullname = nameParts[1].Trim() + " " + nameParts[0].Trim();
-                mateCards[i].Title = nameParts[0] + $" [{i + 1}]";
+                mateCards[i].Title = nameParts[0] + $" ({i + 1})";
                 mateCards[i].Subtitle = $"{fullname} (Rating: {fideInfoParts[1]})";
             }
         }
-        string[] title = new string[] {
-            "Doktor",
-            "Professor",
-
-        };
-        string[] steder = new string[] {
-
-        };
-        string[] stedRang = new string[] {
-
-        };
 
         string[] fideInfo = new string[] {
             "Carlsen, Magnus;2840;1990",

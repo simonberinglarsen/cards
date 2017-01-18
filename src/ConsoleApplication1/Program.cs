@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ConsoleApplication1
 {
@@ -12,8 +13,10 @@ namespace ConsoleApplication1
             operation = "FindMate";
             if (operation == "FindMate")
             {
-                MateCardGenerator mateCardGenerator = new MateCardGenerator("matepgns\\20170114_mate.pgn");
-                var mateCards = mateCardGenerator.GenerateMateIn(1);
+                string inputfile;
+                inputfile = @"matepgns\\ficsgamesdb_search_1434325.pgn";
+                MateCardGenerator mateCardGenerator = new MateCardGenerator(inputfile);
+                var mateCards = mateCardGenerator.GenerateMateIn(true);
                 mateCardGenerator.PostProcess(mateCards);
 
                 MateCardPrinter mcp = new MateCardPrinter(mateCards);
