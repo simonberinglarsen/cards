@@ -14,10 +14,14 @@ namespace ConsoleApplication1
             if (operation == "FindMate")
             {
                 string inputfile;
-                inputfile = @"matepgns\\ficsgamesdb_search_1434325.pgn";
-                MateCardGenerator mateCardGenerator = new MateCardGenerator(inputfile);
-                var mateCards = mateCardGenerator.GenerateMateIn(true);
-                mateCardGenerator.PostProcess(mateCards);
+                MateCardGenerator mateCardGenerator;
+                MateCard[] mateCards;
+
+                inputfile = @"matepgns\\ficsgamesdb_search_1434432.pgn";
+                mateCardGenerator = new MateCardGenerator(inputfile);
+                //mateCards = mateCardGenerator.GenerateMateIn(false);
+                mateCards = mateCardGenerator.LoadCachedCards();
+                mateCards = mateCardGenerator.PostProcess(mateCards);
 
                 MateCardPrinter mcp = new MateCardPrinter(mateCards);
                 mcp.Print();

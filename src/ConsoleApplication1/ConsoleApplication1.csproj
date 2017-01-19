@@ -75,8 +75,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="matepgns\ficsgamesdb_search_1434325.pgn">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Include="matepgns\ficsgamesdb_search_1434432.pgn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="openingpgns\scandinaviandefence.pgn">

@@ -9,8 +9,10 @@ namespace ConsoleApplication1
 {
     internal class MateCardGenerator
     {
+        private string _jsonFilename = "matecards.json";
         private StockFishProxy _stockFish = new StockFishProxy();
-        List<PgnParser> _pgnList = new List<PgnParser>();
+        private List<PgnParser> _pgnList = new List<PgnParser>();
+
         public MateCardGenerator(string inputfile)
         {
             // read pgns
@@ -25,13 +27,23 @@ namespace ConsoleApplication1
             }
         }
 
-        internal MateCard[] GenerateMateIn(bool useCached)
+        public MateCard[] LoadCachedCards()
         {
-            string jsonFilename = "matecards.json";
-            if (useCached && File.Exists(jsonFilename))
+            return LoadCachedCards(_jsonFilename);
+        }
+
+        public MateCard[] LoadCachedCards(string filename)
+        {
+            if (File.Exists(filename))
             {
-                return JsonConvert.DeserializeObject<MateCard[]>(File.ReadAllText(jsonFilename));
+                return JsonConvert.DeserializeObject<MateCard[]>(File.ReadAllText(filename));
             }
+            return new MateCard[0];
+        }
+
+        internal MateCard[] GenerateMateIn(bool appendToCached)
+        {
+
             List<MateCard> allMates = new List<MateCard>();
             foreach (var pgn in _pgnList.Skip(0))
             {
@@ -81,6 +93,7 @@ namespace ConsoleApplication1
                             mateCard.Fen = e.PrintFen();
                             mateCard.WhiteToMove = e.ActiveColorIsWhite;
                             allMates.Add(mateCard);
+                            break;
                         }
 
                         System.Diagnostics.Debug.WriteLine($"{(_pgnList.IndexOf(pgn) * 100.0 / _pgnList.Count),3:0.#}% complete, game#{_pgnList.IndexOf(pgn)}/{_pgnList.Count}, mates found: {allMates.Count} (last mate in {((allMates.Count != 0) ? allMates.Last().FullMoves.ToString() : " - ")})");
@@ -99,42 +112,86 @@ namespace ConsoleApplication1
                         throw new Exception("oh no! seems to be a bug in engine!?!?");
                     }
                 }
+                int test = 0;
+                test += allMates.Count(x => x.WinningPieceUpper == 'P' && x.WhiteToMove && x.FullMoves == 1) > 5 ? 1 : 0;
+                test += allMates.Count(x => x.WinningPieceUpper == 'P' && !x.WhiteToMove && x.FullMoves == 1) > 5 ? 1 : 0;
+                test += allMates.Count(x => x.WinningPieceUpper == 'R' && x.WhiteToMove && x.FullMoves == 1) > 5 ? 1 : 0;
+                test += allMates.Count(x => x.WinningPieceUpper == 'R' && !x.WhiteToMove && x.FullMoves == 1) > 5 ? 1 : 0;
+                test += allMates.Count(x => x.WinningPieceUpper == 'N' && x.WhiteToMove && x.FullMoves == 1) > 5 ? 1 : 0;
+                test += allMates.Count(x => x.WinningPieceUpper == 'N' && !x.WhiteToMove && x.FullMoves == 1) > 5 ? 1 : 0;
+                test += allMates.Count(x => x.WinningPieceUpper == 'B' && x.WhiteToMove && x.FullMoves == 1) > 5 ? 1 : 0;
+                test += allMates.Count(x => x.WinningPieceUpper == 'B' && !x.WhiteToMove && x.FullMoves == 1) > 5 ? 1 : 0;
+                test += allMates.Count(x => x.WinningPieceUpper == 'Q' && x.WhiteToMove && x.FullMoves == 1) > 5 ? 1 : 0;
+                test += allMates.Count(x => x.WinningPieceUpper == 'Q' && !x.WhiteToMove && x.FullMoves == 1) > 5 ? 1 : 0;
+                System.Diagnostics.Debug.WriteLine($"test = {test}");
+
+                if (test==10)
+                    break;
             }
-            File.WriteAllText(jsonFilename, JsonConvert.SerializeObject(allMates.ToArray()));
+            if (appendToCached)
+            {
+                allMates.AddRange(LoadCachedCards());
+            }
+            File.WriteAllText(_jsonFilename, JsonConvert.SerializeObject(allMates.ToArray()));
             return allMates.ToArray();
         }
 
-        public void PostProcess(MateCard[] mateCards)
+        public MateCard[] PostProcess(MateCard[] mateCards)
         {
+            List<MateCard> finalDeck = new List<MateCard>();
+            List<MateCard> hugeDeck = new List<MateCard>(mateCards.Where(x => x.FullMoves == 1));
+            MateCard[] temp;
+
+            var pw = hugeDeck.Where(x => x.WinningPieceUpper == 'P' && x.WhiteToMove).Take(6).ToArray();
+            var pb = hugeDeck.Where(x => x.WinningPieceUpper == 'P' && !x.WhiteToMove).Take(5).ToArray();
+            var rw = hugeDeck.Where(x => x.WinningPieceUpper == 'R' && x.WhiteToMove).Take(6).ToArray();
+            var rb = hugeDeck.Where(x => x.WinningPieceUpper == 'R' && !x.WhiteToMove).Take(5).ToArray();
+            var nw = hugeDeck.Where(x => x.WinningPieceUpper == 'N' && x.WhiteToMove).Take(6).ToArray();
+            var nb = hugeDeck.Where(x => x.WinningPieceUpper == 'N' && !x.WhiteToMove).Take(5).ToArray();
+            var bw = hugeDeck.Where(x => x.WinningPieceUpper == 'B' && x.WhiteToMove).Take(6).ToArray();
+            var bb = hugeDeck.Where(x => x.WinningPieceUpper == 'B' && !x.WhiteToMove).Take(5).ToArray();
+            var qw = hugeDeck.Where(x => x.WinningPieceUpper == 'Q' && x.WhiteToMove).Take(5).ToArray();
+            var qb = hugeDeck.Where(x => x.WinningPieceUpper == 'Q' && !x.WhiteToMove).Take(5).ToArray();
+
+            finalDeck.AddRange(pw);
+            finalDeck.AddRange(rw);
+            finalDeck.AddRange(nw);
+            finalDeck.AddRange(bw);
+            finalDeck.AddRange(qw);
+            finalDeck.AddRange(pb);
+            finalDeck.AddRange(rb);
+            finalDeck.AddRange(nb);
+            finalDeck.AddRange(bb);
+            finalDeck.AddRange(qb);
+
+
             Dictionary<AbilityTypeEnum, int> setup = new Dictionary<AbilityTypeEnum, int>()
             {
-                { AbilityTypeEnum.FileAOrRank1, 4},
-                { AbilityTypeEnum.FileBOrRank2, 4},
-                { AbilityTypeEnum.FileCOrRank3, 4},
-                { AbilityTypeEnum.FileDOrRank4, 4},
-                { AbilityTypeEnum.FileEOrRank5, 4},
-                { AbilityTypeEnum.FileFOrRank6, 4},
-                { AbilityTypeEnum.FileGOrRank7, 4},
-                { AbilityTypeEnum.FileHOrRank8, 4},
-                { AbilityTypeEnum.DiagonalA1ToA8, 2},
-                { AbilityTypeEnum.DiagonalH1ToH8, 2},
-                { AbilityTypeEnum.PieceIsPawn, 2},
+                { AbilityTypeEnum.FileA, 4},
+                { AbilityTypeEnum.FileB, 4},
+                { AbilityTypeEnum.FileC, 4},
+                { AbilityTypeEnum.FileD, 4},
+                { AbilityTypeEnum.FileE, 4},
+                { AbilityTypeEnum.FileF, 4},
+                { AbilityTypeEnum.FileG, 4},
+                { AbilityTypeEnum.FileH, 4},
+                { AbilityTypeEnum.PieceIsPawn, 4},
                 { AbilityTypeEnum.PieceIsRook, 4},
-                { AbilityTypeEnum.PieceIsKnight, 4},
-                { AbilityTypeEnum.PieceIsBishop, 4},
+                { AbilityTypeEnum.PieceIsKnight, 5},
+                { AbilityTypeEnum.PieceIsBishop, 5},
                 { AbilityTypeEnum.PieceIsQueen, 4}
             };
             // verify 
             var sum = setup.Sum(s => s.Value);
             if (sum != 54) throw new Exception("Wrong deck size!");
-            if (mateCards.Length != 54) throw new Exception("Wrong deck size!");
+            if (finalDeck.Count != 54) throw new Exception("Wrong deck size!");
             List<Ability> abilities = new List<Ability>();
             foreach (var keyPair in setup)
             {
                 for (int i = 0; i < keyPair.Value; i++)
                     abilities.Add(Ability.Create(keyPair.Key));
             }
-            abilities.ForEach(a => mateCards[abilities.IndexOf(a)].Ability = a);
+            abilities.ForEach(a => finalDeck[abilities.IndexOf(a)].Ability = a);
 
             // add titles
             for (int i = 0; i < 54; i++)
@@ -142,9 +199,12 @@ namespace ConsoleApplication1
                 string[] fideInfoParts = fideInfo[i].Split(new char[] { ';' });
                 string[] nameParts = fideInfoParts[0].Split(new char[] { ',' });
                 string fullname = nameParts[1].Trim() + " " + nameParts[0].Trim();
-                mateCards[i].Title = nameParts[0] + $" ({i + 1})";
-                mateCards[i].Subtitle = $"{fullname} (Rating: {fideInfoParts[1]})";
+                finalDeck[i].Title = $"#{i + 1} " + nameParts[0];
+                finalDeck[i].Subtitle = $"GM {fullname}, Rating: {fideInfoParts[1]}";
             }
+            return finalDeck.ToArray();
+
+
         }
 
         string[] fideInfo = new string[] {
