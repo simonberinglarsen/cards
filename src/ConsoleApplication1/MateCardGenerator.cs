@@ -27,24 +27,24 @@ namespace ConsoleApplication1
             }
         }
 
-        public MateCard[] LoadCachedCards()
+        public TacticCard[] LoadCachedCards()
         {
             return LoadCachedCards(_jsonFilename);
         }
 
-        public MateCard[] LoadCachedCards(string filename)
+        public TacticCard[] LoadCachedCards(string filename)
         {
             if (File.Exists(filename))
             {
-                return JsonConvert.DeserializeObject<MateCard[]>(File.ReadAllText(filename));
+                return JsonConvert.DeserializeObject<TacticCard[]>(File.ReadAllText(filename));
             }
-            return new MateCard[0];
+            return new TacticCard[0];
         }
 
-        internal MateCard[] GenerateMateIn(bool appendToCached)
+        internal TacticCard[] Generate(bool appendToCached)
         {
 
-            List<MateCard> allMates = new List<MateCard>();
+            List<TacticCard> allMates = new List<TacticCard>();
             foreach (var pgn in _pgnList.Skip(0))
             {
 
@@ -76,8 +76,8 @@ namespace ConsoleApplication1
                     string moveAsLan = e.PrintMove(generatedMoves[moveIndex]);
 
                     // ask stockfish if mate in X
-                    MateCard mateCard = _stockFish.FindMate(allMovesInLan, 3);
-                    if (mateCard != null)
+                    TacticCard tacticCard = _stockFish.FindTactic(allMovesInLan);
+                    if (tacticCard != null)
                     {
                         int eval = e.Evaluate();
                         // only take puzzles having close to equal material
@@ -85,14 +85,14 @@ namespace ConsoleApplication1
                         {
                             // find shortnotation
                             var generatedMovesAsLan = e.PrintMoves(generatedMoves).ToList();
-                            var winningMoveIndex = generatedMovesAsLan.ToList().IndexOf(mateCard.WinningMoveLan);
+                            var winningMoveIndex = generatedMovesAsLan.ToList().IndexOf(tacticCard.WinningMoveLan);
                             string winningMoveSan = generatedMovesAsSan[winningMoveIndex];
-                            mateCard.WinningMoveSan = winningMoveSan;
-                            mateCard.WinningPieceUpper = char.ToUpper((char)generatedMoves[moveIndex][5]);
-                            mateCard.IsCapture = winningMoveSan.Contains("x");
-                            mateCard.Fen = e.PrintFen();
-                            mateCard.WhiteToMove = e.ActiveColorIsWhite;
-                            allMates.Add(mateCard);
+                            tacticCard.WinningMoveSan = winningMoveSan;
+                            tacticCard.WinningPieceUpper = char.ToUpper((char)generatedMoves[moveIndex][5]);
+                            tacticCard.IsCapture = winningMoveSan.Contains("x");
+                            tacticCard.Fen = e.PrintFen();
+                            tacticCard.WhiteToMove = e.ActiveColorIsWhite;
+                            allMates.Add(tacticCard);
                             break;
                         }
 
@@ -136,11 +136,11 @@ namespace ConsoleApplication1
             return allMates.ToArray();
         }
 
-        public MateCard[] PostProcess(MateCard[] mateCards)
+        public TacticCard[] PostProcess(TacticCard[] tacticCards)
         {
-            List<MateCard> finalDeck = new List<MateCard>();
-            List<MateCard> hugeDeck = new List<MateCard>(mateCards.Where(x => x.FullMoves == 1));
-            MateCard[] temp;
+            List<TacticCard> finalDeck = new List<TacticCard>();
+            List<TacticCard> hugeDeck = new List<TacticCard>(tacticCards.Where(x => x.FullMoves == 1));
+            TacticCard[] temp;
 
             var pw = hugeDeck.Where(x => x.WinningPieceUpper == 'P' && x.WhiteToMove).Take(6).ToArray();
             var pb = hugeDeck.Where(x => x.WinningPieceUpper == 'P' && !x.WhiteToMove).Take(5).ToArray();
@@ -167,19 +167,25 @@ namespace ConsoleApplication1
 
             Dictionary<AbilityTypeEnum, int> setup = new Dictionary<AbilityTypeEnum, int>()
             {
-                { AbilityTypeEnum.FileA, 4},
-                { AbilityTypeEnum.FileB, 4},
-                { AbilityTypeEnum.FileC, 4},
-                { AbilityTypeEnum.FileD, 4},
-                { AbilityTypeEnum.FileE, 4},
-                { AbilityTypeEnum.FileF, 4},
-                { AbilityTypeEnum.FileG, 4},
-                { AbilityTypeEnum.FileH, 4},
+                { AbilityTypeEnum.FileA, 3},
+                { AbilityTypeEnum.FileB, 3},
+                { AbilityTypeEnum.FileC, 3},
+                { AbilityTypeEnum.FileD, 3},
+                { AbilityTypeEnum.FileE, 3},
+                { AbilityTypeEnum.FileF, 3},
+                { AbilityTypeEnum.FileG, 3},
+                { AbilityTypeEnum.FileH, 3},
                 { AbilityTypeEnum.PieceIsPawn, 4},
                 { AbilityTypeEnum.PieceIsRook, 4},
-                { AbilityTypeEnum.PieceIsKnight, 5},
-                { AbilityTypeEnum.PieceIsBishop, 5},
-                { AbilityTypeEnum.PieceIsQueen, 4}
+                { AbilityTypeEnum.PieceIsKnight, 4},
+                { AbilityTypeEnum.PieceIsBishop, 4},
+                { AbilityTypeEnum.PieceIsQueen, 4},
+                { AbilityTypeEnum.Carlsen, 1},
+                { AbilityTypeEnum.Caruana, 1},
+                { AbilityTypeEnum.Kramnik, 1},
+                { AbilityTypeEnum.So, 1},
+                { AbilityTypeEnum.VachierLagrave, 1},
+                { AbilityTypeEnum.Anand, 1},
             };
             // verify 
             var sum = setup.Sum(s => s.Value);

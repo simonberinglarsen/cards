@@ -15,15 +15,15 @@ namespace ConsoleApplication1
             {
                 string inputfile;
                 MateCardGenerator mateCardGenerator;
-                MateCard[] mateCards;
+                TacticCard[] tacticCards;
 
                 inputfile = @"matepgns\\ficsgamesdb_search_1434432.pgn";
                 mateCardGenerator = new MateCardGenerator(inputfile);
-                //mateCards = mateCardGenerator.GenerateMateIn(false);
-                mateCards = mateCardGenerator.LoadCachedCards();
-                mateCards = mateCardGenerator.PostProcess(mateCards);
+                tacticCards = mateCardGenerator.Generate(false);
+                //mateCards = mateCardGenerator.LoadCachedCards();
+                tacticCards = mateCardGenerator.PostProcess(tacticCards);
 
-                MateCardPrinter mcp = new MateCardPrinter(mateCards);
+                MateCardPrinter mcp = new MateCardPrinter(tacticCards);
                 mcp.Print();
             }
             else if (operation == "OpeningBook")

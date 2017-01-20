@@ -10,10 +10,9 @@ namespace ConsoleApplication1
 
     public class StockFishProxy : IDisposable
     {
-        private const string SFPath = @"C:\Users\bc0618\Desktop\simon\chess\stockfish-7-win\Windows\stockfish 7 x64.exe";
-        //private const string SFPath = @"C:\Users\bc0618\Desktop\simon\chess\stockfish-7-win\Windows\Houdini_15a_x64.exe";
         private const string LogPath = @"C:\Users\bc0618\Desktop\simon\chess\stockfish-7-win\Windows\output.log";
         private readonly Process _proc;
+
         public StockFishProxy()
         {
             string path = @"stockfish\\stockfish_8_x64.exe";
@@ -32,13 +31,14 @@ namespace ConsoleApplication1
             _proc.Start();
         }
 
-        public MateCard FindMate(StringBuilder moveSequence, int depth)
+        public TacticCard FindMate(StringBuilder moveSequence, int depth)
         {
             string beforeFen = FenAfterMoves(moveSequence.ToString());
             string moves = moveSequence.ToString();
+            _proc.StandardInput.WriteLine("setoption name MultiPV value 1");
             _proc.StandardInput.WriteLine("position startpos moves " + moves);
             _proc.StandardInput.WriteLine("go depth " + depth);
-            MateCard mateCard = null;
+            TacticCard tacticCard = null;
             while (!_proc.StandardOutput.EndOfStream)
             {
                 string line = ReadLine(_proc);
@@ -49,19 +49,59 @@ namespace ConsoleApplication1
                     if (mateindex >= 0)
                     {
                         // mate found!
-                        string mateInMoves = line.Substring(mateindex + 5, line.IndexOf(" ", mateindex + 5) - (mateindex + 5));
+                        string mateInMoves = line.Substring(mateindex + 5,
+                            line.IndexOf(" ", mateindex + 5) - (mateindex + 5));
                         string principalVariation = line.Substring(line.IndexOf(" pv ")).Trim().Substring(3);
-                        string winningMove = principalVariation.Split(new char[] { ' ' }).First();
-                        mateCard = new MateCard();
-                        mateCard.FullMoves = int.Parse(mateInMoves);
-                        mateCard.WinningMoveLan = winningMove;
+                        string winningMove = principalVariation.Split(new char[] {' '}).First();
+                        tacticCard = new TacticCard();
+                        tacticCard.FullMoves = int.Parse(mateInMoves);
+                        tacticCard.WinningMoveLan = winningMove;
                     }
                 }
                 else if (line.IndexOf("bestmove", StringComparison.Ordinal) == 0)
                 {
-                    if (mateCard != null && mateCard.FullMoves < 0)
+                    if (tacticCard != null && tacticCard.FullMoves < 0)
                         return null;
-                    return mateCard;
+                    return tacticCard;
+                }
+            }
+            throw new Exception("error! no bestmove found");
+        }
+
+        public TacticCard FindTactic(StringBuilder moveSequence)
+        {
+            string beforeFen = FenAfterMoves(moveSequence.ToString());
+            string moves = moveSequence.ToString();
+
+            _proc.StandardInput.WriteLine("setoption name MultiPV value 2");
+            _proc.StandardInput.WriteLine("position startpos moves " + moves);
+            _proc.StandardInput.WriteLine("go depth 10");
+
+            TacticCard tacticCard = null;
+
+            int infoLineCounter = 0;
+            string l1, l2;
+            while (!_proc.StandardOutput.EndOfStream)
+            {
+                string line = ReadLine(_proc);
+
+                if (line.IndexOf("info depth ", StringComparison.Ordinal) == 0)
+                {
+                    infoLineCounter++;
+                    if (infoLineCounter % 2 == 0)
+                        l1 = line;
+                    else
+                        l2 = line;
+                }
+                else if (line.IndexOf("bestmove", StringComparison.Ordinal) == 0)
+                {
+                    tacticCard = new TacticCard();
+                    tacticCard.FullMoves = 0;
+
+
+                    if (tacticCard != null && tacticCard.FullMoves < 0)
+                        return null;
+                    return tacticCard;
                 }
             }
             throw new Exception("error! no bestmove found");
@@ -94,6 +134,7 @@ namespace ConsoleApplication1
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
         bool _disposed = false;
 
         protected virtual void Dispose(bool disposing)
@@ -129,5 +170,4 @@ namespace ConsoleApplication1
         }
     }
 
-  
 }

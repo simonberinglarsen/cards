@@ -7,11 +7,11 @@ namespace ConsoleApplication1
 {
     internal class MateCardPrinter
     {
-        private readonly MateCard[] _cards;
+        private readonly TacticCard[] _cards;
         private const string directoryPath = "MateCards";
         private int cardno = 0;
 
-        public MateCardPrinter(MateCard[] cards)
+        public MateCardPrinter(TacticCard[] cards)
         {
             _cards = cards;
         }
