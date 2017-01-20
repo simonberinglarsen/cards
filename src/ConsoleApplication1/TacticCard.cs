@@ -14,6 +14,8 @@ namespace ConsoleApplication1
         public string Subtitle { get; set; }
         public char WinningPieceUpper { get; set; }
         public bool IsCapture { get; set; }
+        public int ScoreCP { get; internal set; }
+        public int ImprovementCP { get; internal set; }
     }
 
     public class Ability

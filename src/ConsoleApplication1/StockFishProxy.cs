@@ -80,7 +80,7 @@ namespace ConsoleApplication1
             TacticCard tacticCard = null;
 
             int infoLineCounter = 0;
-            string l1, l2;
+            string l1 = null, l2 = null;
             while (!_proc.StandardOutput.EndOfStream)
             {
                 string line = ReadLine(_proc);
@@ -95,9 +95,21 @@ namespace ConsoleApplication1
                 }
                 else if (line.IndexOf("bestmove", StringComparison.Ordinal) == 0)
                 {
+                    Score bestmove = DeconstructScore(l1);
+                    Score secondMove;
+                    if (bestmove.Bestmove)
+                        secondMove = DeconstructScore(l2);
+                    else
+                    {
+                        secondMove = bestmove;
+                        bestmove = DeconstructScore(l2);
+                    }
+                    int delta = bestmove.CPScore - secondMove.CPScore;
                     tacticCard = new TacticCard();
                     tacticCard.FullMoves = 0;
-
+                    tacticCard.ScoreCP = bestmove.CPScore;
+                    tacticCard.ImprovementCP = delta;
+                    
 
                     if (tacticCard != null && tacticCard.FullMoves < 0)
                         return null;
@@ -105,6 +117,19 @@ namespace ConsoleApplication1
                 }
             }
             throw new Exception("error! no bestmove found");
+        }
+
+        private Score DeconstructScore(string l1)
+        {
+            Score s = new Score();
+            List<string> parts = l1.Split(new char[] {' '}).ToList();
+            int scoreIndex = parts.IndexOf("score");
+            if (scoreIndex < 0) throw new Exception("Wierd score from engine");
+            if(parts[scoreIndex+1]!="cp") throw new Exception("Wierd score-unit form engine");
+            s.CPScore = int.Parse(parts[scoreIndex + 2]);
+            s.PrincipalVariation = l1.Substring(l1.IndexOf(" pv ")+4);
+            s.Bestmove = l1.IndexOf("multipv 1") >= 0;
+            return s;
         }
 
         private string ReadLine(Process _proc)
@@ -170,4 +195,10 @@ namespace ConsoleApplication1
         }
     }
 
+    public class Score
+    {
+        public int CPScore { get; set; }
+        public string PrincipalVariation { get; internal set; }
+        public bool Bestmove { get; set; }
+    }
 }

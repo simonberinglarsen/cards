@@ -77,25 +77,8 @@ namespace ConsoleApplication1
 
                     // ask stockfish if mate in X
                     TacticCard tacticCard = _stockFish.FindTactic(allMovesInLan);
-                    if (tacticCard != null)
+                    if (tacticCard != null )
                     {
-                        int eval = e.Evaluate();
-                        // only take puzzles having close to equal material
-                        if (Math.Abs(eval) <= 100)
-                        {
-                            // find shortnotation
-                            var generatedMovesAsLan = e.PrintMoves(generatedMoves).ToList();
-                            var winningMoveIndex = generatedMovesAsLan.ToList().IndexOf(tacticCard.WinningMoveLan);
-                            string winningMoveSan = generatedMovesAsSan[winningMoveIndex];
-                            tacticCard.WinningMoveSan = winningMoveSan;
-                            tacticCard.WinningPieceUpper = char.ToUpper((char)generatedMoves[moveIndex][5]);
-                            tacticCard.IsCapture = winningMoveSan.Contains("x");
-                            tacticCard.Fen = e.PrintFen();
-                            tacticCard.WhiteToMove = e.ActiveColorIsWhite;
-                            allMates.Add(tacticCard);
-                            break;
-                        }
-
                         System.Diagnostics.Debug.WriteLine($"{(_pgnList.IndexOf(pgn) * 100.0 / _pgnList.Count),3:0.#}% complete, game#{_pgnList.IndexOf(pgn)}/{_pgnList.Count}, mates found: {allMates.Count} (last mate in {((allMates.Count != 0) ? allMates.Last().FullMoves.ToString() : " - ")})");
                     }
 
