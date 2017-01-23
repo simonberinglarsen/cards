@@ -8,7 +8,7 @@ namespace ConsoleApplication1
     class Inkscape
     {
         public static string Path = @"C:\Users\sends\Desktop\simon\toos\inkscape";
-
+        private XDocument _doc;
         static Inkscape()
         {
             if (!Directory.Exists(Path))
@@ -17,40 +17,36 @@ namespace ConsoleApplication1
             }
             Path = System.IO.Path.Combine(Path, "inkscape.exe");
         }
-
-        public static string DisableId(string x, string id)
+        public Inkscape(string x)
         {
-            using (StringReader sr = new StringReader(x))
-            {
-                XDocument doc = XDocument.Load(sr);
-                XElement root = doc.Root;
-                var xmlns = "{" + root.GetDefaultNamespace().NamespaceName + "}";
-                var gElement = root.Descendants(xmlns + "g").Attributes().Where(a => a.Name == "id" && a.Value == id).Select(z => z.Parent).Single();
-                var attribute = gElement.Attributes().Where(a => a.Name == "style").SingleOrDefault();
-                if (attribute == null)
-                {
-                    attribute = new XAttribute("style", "");
-                    gElement.Add(attribute);
-                }
-                attribute.SetValue("opacity:0");
-                return doc.ToStringWithDeclaration();
-            }
+            StringReader sr = new StringReader(x);
+            _doc = XDocument.Load(sr);
         }
 
-        internal static string ReplaceTextInFlowPara(string x, string id, string newText)
+        public string GetSvg()
         {
-            using (StringReader sr = new StringReader(x))
+            return _doc.ToStringWithDeclaration();
+        }
+        public void DisableId(string id)
+        {
+            XElement root = _doc.Root;
+            var xmlns = "{" + root.GetDefaultNamespace().NamespaceName + "}";
+            var gElement = root.Descendants(xmlns + "g").Attributes().Where(a => a.Name == "id" && a.Value == id).Select(z => z.Parent).Single();
+            var attribute = gElement.Attributes().SingleOrDefault(a => a.Name == "style");
+            if (attribute == null)
             {
-                XDocument doc = XDocument.Load(sr);
-                XElement root = doc.Root;
-                var xmlns = "{" + root.GetDefaultNamespace().NamespaceName + "}";
-                var gElement = root.Descendants(xmlns + "flowPara").Attributes().Where(a => a.Name == "id" && a.Value == id).Select(z => z.Parent).Single();
-                gElement.Value = newText;
-                return doc.ToStringWithDeclaration();
+                attribute = new XAttribute("style", "");
+                gElement.Add(attribute);
             }
+            attribute.SetValue("opacity:0");
         }
 
-      
-       
-    }
+        public void ReplaceTextInFlowPara(string id, string newText)
+        {
+            XElement root = _doc.Root;
+            var xmlns = "{" + root.GetDefaultNamespace().NamespaceName + "}";
+            var gElement = root.Descendants(xmlns + "flowPara").Attributes().Where(a => a.Name == "id" && a.Value == id).Select(z => z.Parent).Single();
+            gElement.Value = newText;
+        }
+   }
 }

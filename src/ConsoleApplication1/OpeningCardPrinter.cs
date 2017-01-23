@@ -48,11 +48,12 @@ namespace ConsoleApplication1
                 newSvg = newSvg
                     .Replace("''1", $"{depth}")
                     .Replace("''2", $"{cardno + 1,0:D3}");
+                Inkscape inkscape = new Inkscape(newSvg);
                 if (card.NodeType != "LEAF")
-                    newSvg = Inkscape.DisableId(newSvg, "g6312");
+                    inkscape.DisableId("g6312");
                 else
-                    newSvg = Inkscape.DisableId(newSvg, "g4637");
-                File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), newSvg);
+                    inkscape.DisableId("g4637");
+                File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), inkscape.GetSvg());
                 cardno++;
             }
             Print3CardsWithBacksideOnA4();

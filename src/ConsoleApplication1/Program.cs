@@ -13,17 +13,18 @@ namespace ConsoleApplication1
             operation = "FindMate";
             if (operation == "FindMate")
             {
-                string inputfile;
-                MateCardGenerator mateCardGenerator;
-                TacticCard[] tacticCards;
+                // generate cards
+                bool loadFromCache = true;
+                string inputfile = @"matepgns\\ficsgamesdb_search_1434432.pgn";
+                var mateCardGenerator = new MateCardGenerator(inputfile);
+                var tacticCards = loadFromCache ? mateCardGenerator.LoadCachedCards() : mateCardGenerator.Generate(false);
 
-                inputfile = @"matepgns\\ficsgamesdb_search_1434432.pgn";
-                mateCardGenerator = new MateCardGenerator(inputfile);
-                tacticCards = mateCardGenerator.Generate(false);
-                //mateCards = mateCardGenerator.LoadCachedCards();
-                tacticCards = mateCardGenerator.PostProcess(tacticCards);
+                // collect cards into deck and postprocess (update card data)
+                Deck deck = new Deck(tacticCards);
+                deck.PostProcess();
 
-                MateCardPrinter mcp = new MateCardPrinter(tacticCards);
+                // print cards (update svg / card layout)
+                MateCardPrinter mcp = new MateCardPrinter(deck.Cards);
                 mcp.Print();
             }
             else if (operation == "OpeningBook")

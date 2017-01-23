@@ -54,13 +54,13 @@ namespace ConsoleApplication1
                         string principalVariation = line.Substring(line.IndexOf(" pv ")).Trim().Substring(3);
                         string winningMove = principalVariation.Split(new char[] {' '}).First();
                         tacticCard = new TacticCard();
-                        tacticCard.FullMoves = int.Parse(mateInMoves);
-                        tacticCard.WinningMoveLan = winningMove;
+                        tacticCard.Data.FullMovesToMate = int.Parse(mateInMoves);
+                        tacticCard.Data.WinningMoveLan = winningMove;
                     }
                 }
                 else if (line.IndexOf("bestmove", StringComparison.Ordinal) == 0)
                 {
-                    if (tacticCard != null && tacticCard.FullMoves < 0)
+                    if (tacticCard != null && tacticCard.Data.FullMovesToMate < 0)
                         return null;
                     return tacticCard;
                 }
@@ -75,7 +75,7 @@ namespace ConsoleApplication1
 
             _proc.StandardInput.WriteLine("setoption name MultiPV value 2");
             _proc.StandardInput.WriteLine("position startpos moves " + moves);
-            _proc.StandardInput.WriteLine("go depth 10");
+            _proc.StandardInput.WriteLine("go depth 1");
 
             TacticCard tacticCard = null;
 
@@ -95,8 +95,11 @@ namespace ConsoleApplication1
                 }
                 else if (line.IndexOf("bestmove", StringComparison.Ordinal) == 0)
                 {
-                    Score bestmove = DeconstructScore(l1);
+                    Score bestmove;
                     Score secondMove;
+                    if (l1 == null) l1 = l2;
+                    if (l2 == null) l2 = l1;
+                    bestmove = DeconstructScore(l1);
                     if (bestmove.Bestmove)
                         secondMove = DeconstructScore(l2);
                     else
@@ -105,14 +108,23 @@ namespace ConsoleApplication1
                         bestmove = DeconstructScore(l2);
                     }
                     int delta = bestmove.CPScore - secondMove.CPScore;
-                    tacticCard = new TacticCard();
-                    tacticCard.FullMoves = 0;
-                    tacticCard.ScoreCP = bestmove.CPScore;
-                    tacticCard.ImprovementCP = delta;
-                    
 
-                    if (tacticCard != null && tacticCard.FullMoves < 0)
-                        return null;
+                    tacticCard = new TacticCard() {Data = new CardData()};
+
+                    if (bestmove.ScoreType == ScoreType.Mate)
+                    {
+                        tacticCard.Data.FullMovesToMate = bestmove.CPScore;
+                        tacticCard.Data.MultipleSolutions = secondMove.ScoreType == ScoreType.Mate;
+                    }
+                    else
+                    {
+                        
+                    }
+                    tacticCard.Data.ScoreCP = bestmove.CPScore;
+                    tacticCard.Data.ScoreType = bestmove.ScoreType;
+                    tacticCard.Data.ImprovementCP = delta;
+                    tacticCard.Data.WinningMoveLan = bestmove.PrincipalVariation.Split(new char[] {' '})[0];
+
                     return tacticCard;
                 }
             }
@@ -125,7 +137,13 @@ namespace ConsoleApplication1
             List<string> parts = l1.Split(new char[] {' '}).ToList();
             int scoreIndex = parts.IndexOf("score");
             if (scoreIndex < 0) throw new Exception("Wierd score from engine");
-            if(parts[scoreIndex+1]!="cp") throw new Exception("Wierd score-unit form engine");
+            if (parts[scoreIndex + 1] == "cp")
+                s.ScoreType = ScoreType.Tactic;
+            else if (parts[scoreIndex + 1] == "mate")
+                s.ScoreType = ScoreType.Mate;
+            else
+                throw new Exception("Wierd score-unit form engine");
+            
             s.CPScore = int.Parse(parts[scoreIndex + 2]);
             s.PrincipalVariation = l1.Substring(l1.IndexOf(" pv ")+4);
             s.Bestmove = l1.IndexOf("multipv 1") >= 0;
@@ -200,5 +218,12 @@ namespace ConsoleApplication1
         public int CPScore { get; set; }
         public string PrincipalVariation { get; internal set; }
         public bool Bestmove { get; set; }
+        public ScoreType ScoreType { get; set; }
+    }
+
+    public enum ScoreType
+    {
+        Tactic,
+        Mate
     }
 }

@@ -30,7 +30,7 @@ namespace ConsoleApplication1
             cardno = 0;
             foreach (var card in _cards)
             {
-                var diagram = DiagramFromMoves(card.Fen);
+                var diagram = DiagramFromMoves(card.Data.Fen);
                 string newSvg = template
                     .Replace("+*+*+*+p", diagram.Substring(0, 8))
                     .Replace("*+*+*+*r", diagram.Substring(8, 8))
@@ -40,56 +40,57 @@ namespace ConsoleApplication1
                     .Replace("*+*+*+*k", diagram.Substring(40, 8))
                     .Replace("+*+*+*pp", diagram.Substring(48, 8))
                     .Replace("*+*+*+pr", diagram.Substring(56, 8));
-                if (!card.WhiteToMove)
+                Inkscape inkscape = new Inkscape(newSvg);
+                if (!card.Data.WhiteToMove)
                 {
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6049", "1");
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6051", "2");
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6053", "3");
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6055", "4");
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6057", "5");
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6059", "6");
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6061", "7");
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6063", "8");
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara6079", "hgfedcba");
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4300", "Black to move...");
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4292", "Black to move...");
+                    inkscape.ReplaceTextInFlowPara("flowPara6049", "1");
+                    inkscape.ReplaceTextInFlowPara("flowPara6051", "2");
+                    inkscape.ReplaceTextInFlowPara("flowPara6053", "3");
+                    inkscape.ReplaceTextInFlowPara("flowPara6055", "4");
+                    inkscape.ReplaceTextInFlowPara("flowPara6057", "5");
+                    inkscape.ReplaceTextInFlowPara("flowPara6059", "6");
+                    inkscape.ReplaceTextInFlowPara("flowPara6061", "7");
+                    inkscape.ReplaceTextInFlowPara("flowPara6063", "8");
+                    inkscape.ReplaceTextInFlowPara("flowPara6079", "hgfedcba");
+                    inkscape.ReplaceTextInFlowPara("flowPara4300", "Black to move...");
+                    inkscape.ReplaceTextInFlowPara("flowPara4292", "Black to move...");
                 }
                 else
                 {
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4300", "White to move...");
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4292", "White to move...");
+                    inkscape.ReplaceTextInFlowPara("flowPara4300", "White to move...");
+                    inkscape.ReplaceTextInFlowPara("flowPara4292", "White to move...");
                 }
                 // Title
-                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4270", card.Title);
-                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4278", card.Title);
+                inkscape.ReplaceTextInFlowPara("flowPara4270", card.Title);
+                inkscape.ReplaceTextInFlowPara("flowPara4278", card.Title);
 
                 // Subtitle
-                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4300", card.Subtitle);
-                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4292", card.Subtitle);
+                inkscape.ReplaceTextInFlowPara("flowPara4300", card.Subtitle);
+                inkscape.ReplaceTextInFlowPara("flowPara4292", card.Subtitle);
 
                 // challenge
                 //flowRoot5706
-                if (card.WhiteToMove)
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara5731", "Mat i 1. Hvid trækker.");
+                if (card.Data.WhiteToMove)
+                    inkscape.ReplaceTextInFlowPara("flowPara5731", "Mat i 1. Hvid trækker.");
                 else
-                    newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara5731", "Mat i 1. Sort trækker.");
+                    inkscape.ReplaceTextInFlowPara("flowPara5731", "Mat i 1. Sort trækker.");
 
 
                 // card number
-                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara4792", $"{cardno + 1,04:D}");
+                inkscape.ReplaceTextInFlowPara("flowPara4792", $"{cardno + 1,04:D}");
 
                 // solution
                 //flowRoot5746
-                newSvg = Inkscape.ReplaceTextInFlowPara(newSvg, "flowPara5754", card.Ability.Text);
+                inkscape.ReplaceTextInFlowPara("flowPara5754", card.SolutionText);
 
                 // dump svg
-                File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), newSvg);
+                File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), inkscape.GetSvg());
                 cardno++;
             }
 
             // convert to png
             Process p = new Process();
-            string args = $@"/C ""for /r %i in (*.svg;) do ""{Inkscape.Path}"" %i -w 600 -h 840 -e %i.png""";
+            string args = $@"/C ""for /r %i in (*.svg;) do ""{Inkscape.Path}"" %i -w 250 -h 350 -e %i.png""";
             p.StartInfo = new ProcessStartInfo("cmd.exe", args);
             p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
             p.Start();
