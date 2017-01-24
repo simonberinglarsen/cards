@@ -63,26 +63,21 @@ namespace ConsoleApplication1
                 // Title
                 inkscape.ReplaceTextInFlowPara("flowPara4270", card.Title);
                 inkscape.ReplaceTextInFlowPara("flowPara4278", card.Title);
-
                 // Subtitle
                 inkscape.ReplaceTextInFlowPara("flowPara4300", card.Subtitle);
                 inkscape.ReplaceTextInFlowPara("flowPara4292", card.Subtitle);
-
                 // challenge
-                //flowRoot5706
                 if (card.Data.WhiteToMove)
                     inkscape.ReplaceTextInFlowPara("flowPara5731", "Mat i 1. Hvid trækker.");
                 else
                     inkscape.ReplaceTextInFlowPara("flowPara5731", "Mat i 1. Sort trækker.");
-
-
                 // card number
                 inkscape.ReplaceTextInFlowPara("flowPara4792", $"{cardno + 1,04:D}");
-
                 // solution
-                //flowRoot5746
                 inkscape.ReplaceTextInFlowPara("flowPara5754", card.SolutionText);
-
+                // corner text
+                inkscape.ReplaceTextInFlowPara("flowPara4924", card.CornerText);
+                inkscape.ReplaceTextInFlowPara("flowPara4932", card.CornerText);
                 // dump svg
                 File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), inkscape.GetSvg());
                 cardno++;

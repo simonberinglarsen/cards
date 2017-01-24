@@ -10,23 +10,28 @@ namespace ConsoleApplication1
 
         private static readonly Dictionary<SolutionType, string> SolutionTypeTexts = new Dictionary<SolutionType, string>()
         {
-            { SolutionType.FileA, "Flyt til A-linien." },
-            { SolutionType.FileB, "Flyt til B-linien." },
-            { SolutionType.FileC, "Flyt til C-linien." },
-            { SolutionType.FileD, "Flyt til D-linien." },
-            { SolutionType.FileE, "Flyt til E-linien." },
-            { SolutionType.FileF, "Flyt til F-linien." },
-            { SolutionType.FileG, "Flyt til G-linien." },
-            { SolutionType.FileH, "Flyt til H-linien." },
-            { SolutionType.Rank1234, "Flyt til række 1, 2, 3 eller 4." },
-            { SolutionType.Rank5678, "Flyt til række 5, 6, 7 eller 8." },
-            { SolutionType.FileAbcd, "Flyt til A-, B-, C- eller D-linien." },
-            { SolutionType.FileEfgh, "Flyt til E-, F-, G- eller H-linien." },
+            { SolutionType.FileAbef, "Flyt til A-, B-, E- eller F-linien." },
+            { SolutionType.FileCdgh, "Flyt til C-, D-, G- eller H-linien." },
+            { SolutionType.FileAbgh, "Flyt til A-, B-, G- eller H-linien." },
+            { SolutionType.FileCdef, "Flyt til C-, D-, E- eller F-linien." },
             { SolutionType.PieceIsPawn, "Flyt en bonde." },
             { SolutionType.PieceIsRook, "Flyt et tårn." },
             { SolutionType.PieceIsKnight, "Flyt en springer." },
             { SolutionType.PieceIsBishop, "Flyt en løber." },
             { SolutionType.PieceIsQueen, "Flyt en dronning." },
+        };
+
+        private static readonly Dictionary<SolutionType, string> CornerTexts = new Dictionary<SolutionType, string>()
+        {
+            { SolutionType.FileAbef, "ABEF" },
+            { SolutionType.FileCdgh, "CDGH" },
+            { SolutionType.FileAbgh, "ABGH" },
+            { SolutionType.FileCdef, "CDEF" },
+            { SolutionType.PieceIsPawn, "P" },
+            { SolutionType.PieceIsRook, "R" },
+            { SolutionType.PieceIsKnight, "N" },
+            { SolutionType.PieceIsBishop, "B" },
+            { SolutionType.PieceIsQueen, "Q" },
         };
 
         private static readonly string[] FideInfo = new string[] {
@@ -140,12 +145,21 @@ namespace ConsoleApplication1
 
         public static string TitleFromCardno(int i)
         {
-            
+
             string[] parts = FideInfo[i].Split(new char[] { ';' });
-            string[] nameParts = parts[0].Split(new char[] {','});
+            string[] nameParts = parts[0].Split(new char[] { ',' });
             string title = $"#{i + 1} " + nameParts[0];
             return title;
 
+        }
+
+        public static string NameFromCardno(int i)
+        {
+
+            string[] parts = FideInfo[i].Split(new char[] {';'});
+            string[] nameParts = parts[0].Split(new char[] {','});
+            string title = $"{nameParts[1]} {nameParts[0]}";
+            return title;
         }
 
         public static string SubtitleFromCardno(int i)
@@ -155,22 +169,19 @@ namespace ConsoleApplication1
             string fullname = $"{nameParts[1]} {nameParts[0]}";
             return $"GM {fullname}, Rating: {parts[1]}";
         }
+
+        public static string SolutionTypeToCornerText(SolutionType solutionType)
+        {
+            return CornerTexts[solutionType];
+        }
     }
 
     public enum SolutionType
     {
-        FileA,
-        FileB,
-        FileC,
-        FileD,
-        FileE,
-        FileF,
-        FileG,
-        FileH,
-        FileAbcd,
-        FileEfgh,
-        Rank1234,
-        Rank5678,
+        FileAbef,
+        FileCdgh,
+        FileAbgh,
+        FileCdef,
         PieceIsPawn,
         PieceIsRook,
         PieceIsKnight,

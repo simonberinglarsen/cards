@@ -51,18 +51,10 @@ namespace ConsoleApplication1
 
             Dictionary<SolutionType, int> setup = new Dictionary<SolutionType, int>()
             {
-                {SolutionType.FileA, 1},
-                {SolutionType.FileB, 1},
-                {SolutionType.FileC, 1},
-                {SolutionType.FileD, 1},
-                {SolutionType.FileE, 1},
-                {SolutionType.FileF, 1},
-                {SolutionType.FileG, 1},
-                {SolutionType.FileH, 1},
-                {SolutionType.Rank1234, 8},
-                {SolutionType.Rank5678, 8},
-                {SolutionType.FileAbcd, 8},
-                {SolutionType.FileEfgh, 8},
+                {SolutionType.FileAbef, 10},
+                {SolutionType.FileAbgh, 10},
+                {SolutionType.FileCdef, 10},
+                {SolutionType.FileCdgh, 10},
                 {SolutionType.PieceIsPawn, 2},
                 {SolutionType.PieceIsRook, 2},
                 {SolutionType.PieceIsKnight, 2},
@@ -87,6 +79,7 @@ namespace ConsoleApplication1
             {
                 finalDeck[i].Data.Solution = solutionTypes[i];
                 finalDeck[i].SolutionText = Translator.SolutionTypeToText(solutionTypes[i]);
+                finalDeck[i].CornerText = Translator.SolutionTypeToCornerText(solutionTypes[i]);
                 finalDeck[i].Title = Translator.TitleFromCardno(i);
                 finalDeck[i].Subtitle = Translator.SubtitleFromCardno(i);
             }
