@@ -14,9 +14,9 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             string operation;
-            operation = "OpeningBook";
+            //operation = "OpeningBook";
             operation = "FindMate";
-            operation = "SimulateDeck";
+            //operation = "SimulateDeck";
             if (operation == "FindMate")
             {
                 // generate cards
@@ -52,15 +52,13 @@ namespace ConsoleApplication1
         {
             Dictionary<string, int> deckconfig = new Dictionary<string, int>()
             {
-                { "ABEF", 10 },
-                { "CDGH", 10 },
-                { "ABGH", 10 },
-                { "CDEF", 10 },
-                { "pawn", 2 },
-                { "rook", 2 },
-                { "knight", 2 },
-                { "bishop", 2 },
-                { "queen", 2 }
+                { "ABCD", 8 },
+                { "ABEF", 8 },
+                { "ABGH", 8 },
+                { "CDEF", 8 },
+                { "CDGH", 8 },
+                { "EFGH", 8 },
+                { "****", 2 },
             };
             List<string> carddeck = new List<string>();
             foreach (var config in deckconfig)
@@ -80,7 +78,6 @@ namespace ConsoleApplication1
                 List<string> testdeck = new List<string>(carddeck);
                 // challenge
                 string file = "" + (char)(rnd.Next(8) + 'A');
-                string piece = "" + new string[] { "pawn", "rook", "knight", "bishop", "queen" }[rnd.Next(5)];
                 //draw 5 cards from deck
                 List<string> hand = new List<string>();
 
@@ -91,7 +88,7 @@ namespace ConsoleApplication1
                     testdeck.RemoveAt(indexToDraw);
 
                     // check if its a win
-                    if (hand.Last().Contains(file) || piece == hand.Last())
+                    if (hand.Last() == "****" ||  hand.Last().Contains(file))
                     {
                         win = true;
                         cardswin++;

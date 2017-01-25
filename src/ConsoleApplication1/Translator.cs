@@ -10,28 +10,24 @@ namespace ConsoleApplication1
 
         private static readonly Dictionary<SolutionType, string> SolutionTypeTexts = new Dictionary<SolutionType, string>()
         {
-            { SolutionType.FileAbef, "Flyt til A-, B-, E- eller F-linien." },
-            { SolutionType.FileCdgh, "Flyt til C-, D-, G- eller H-linien." },
-            { SolutionType.FileAbgh, "Flyt til A-, B-, G- eller H-linien." },
-            { SolutionType.FileCdef, "Flyt til C-, D-, E- eller F-linien." },
-            { SolutionType.PieceIsPawn, "Flyt en bonde." },
-            { SolutionType.PieceIsRook, "Flyt et tårn." },
-            { SolutionType.PieceIsKnight, "Flyt en springer." },
-            { SolutionType.PieceIsBishop, "Flyt en løber." },
-            { SolutionType.PieceIsQueen, "Flyt en dronning." },
+            { SolutionType.FileABCD, "Flyt til A-, B-, C- eller D-linien." },
+            { SolutionType.FileABEF, "Flyt til A-, B-, E- eller F-linien." },
+            { SolutionType.FileABGH, "Flyt til A-, B-, G- eller H-linien." },
+            { SolutionType.FileCDEF, "Flyt til C-, D-, E- eller F-linien." },
+            { SolutionType.FileCDGH, "Flyt til C-, D-, G- eller H-linien." },
+            { SolutionType.FileEFGH, "Flyt til E-, F-, G- eller H-linien." },
+            { SolutionType.FileAll,  "Kortet løser ALLE udfordringer!" },
         };
 
         private static readonly Dictionary<SolutionType, string> CornerTexts = new Dictionary<SolutionType, string>()
         {
-            { SolutionType.FileAbef, "ABEF" },
-            { SolutionType.FileCdgh, "CDGH" },
-            { SolutionType.FileAbgh, "ABGH" },
-            { SolutionType.FileCdef, "CDEF" },
-            { SolutionType.PieceIsPawn, "P" },
-            { SolutionType.PieceIsRook, "R" },
-            { SolutionType.PieceIsKnight, "N" },
-            { SolutionType.PieceIsBishop, "B" },
-            { SolutionType.PieceIsQueen, "Q" },
+            { SolutionType.FileABCD, "ABCD" },
+            { SolutionType.FileABEF, "ABEF" },
+            { SolutionType.FileABGH, "ABGH" },
+            { SolutionType.FileCDEF, "CDEF" },
+            { SolutionType.FileCDGH, "CDGH" },
+            { SolutionType.FileEFGH, "EFGH" },
+            { SolutionType.FileAll, "****" },
         };
 
         private static readonly string[] FideInfo = new string[] {
@@ -178,14 +174,12 @@ namespace ConsoleApplication1
 
     public enum SolutionType
     {
-        FileAbef,
-        FileCdgh,
-        FileAbgh,
-        FileCdef,
-        PieceIsPawn,
-        PieceIsRook,
-        PieceIsKnight,
-        PieceIsBishop,
-        PieceIsQueen,
+        FileABCD,
+        FileABEF,
+        FileABGH,
+        FileCDEF,
+        FileCDGH,
+        FileEFGH,
+        FileAll,
     };
 }

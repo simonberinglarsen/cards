@@ -69,7 +69,7 @@
     <Compile Include="PgnParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Solution.cs" />
+    <Compile Include="Translator.cs" />
     <Compile Include="StockFishProxy.cs" />
     <Compile Include="TacticCard.cs" />
     <Compile Include="Variant.cs" />
@@ -87,6 +87,9 @@
     <None Include="topps\cards.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="_pro_backside.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="_pro_cardtemplate.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

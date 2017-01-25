@@ -51,15 +51,13 @@ namespace ConsoleApplication1
 
             Dictionary<SolutionType, int> setup = new Dictionary<SolutionType, int>()
             {
-                {SolutionType.FileAbef, 10},
-                {SolutionType.FileAbgh, 10},
-                {SolutionType.FileCdef, 10},
-                {SolutionType.FileCdgh, 10},
-                {SolutionType.PieceIsPawn, 2},
-                {SolutionType.PieceIsRook, 2},
-                {SolutionType.PieceIsKnight, 2},
-                {SolutionType.PieceIsBishop, 2},
-                {SolutionType.PieceIsQueen, 2},
+                {SolutionType.FileAll, 2},
+                {SolutionType.FileABCD, 8},
+                {SolutionType.FileABEF, 8},
+                {SolutionType.FileABGH, 8},
+                {SolutionType.FileCDEF, 8},
+                {SolutionType.FileCDGH, 8},
+                {SolutionType.FileEFGH, 8},
             };
             // verify 
             var sum = setup.Sum(s => s.Value);

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 
@@ -28,7 +30,7 @@ namespace ConsoleApplication1
             dir.EnumerateFiles("*.png").ToList().ForEach(x => x.Delete());
             string template = File.ReadAllText("_pro_cardtemplate.svg");
             cardno = 0;
-            foreach (var card in _cards)
+            foreach (var card in _cards.Skip(42))
             {
                 var diagram = DiagramFromMoves(card.Data.Fen);
                 string newSvg = template
@@ -76,22 +78,87 @@ namespace ConsoleApplication1
                 // solution
                 inkscape.ReplaceTextInFlowPara("flowPara5754", card.SolutionText);
                 // corner text
-                inkscape.ReplaceTextInFlowPara("flowPara4924", card.CornerText);
-                inkscape.ReplaceTextInFlowPara("flowPara4932", card.CornerText);
+                inkscape.ReplaceTextInFlowPara("flowPara4438", card.CornerText.Substring(0, 2));
+                inkscape.ReplaceTextInFlowPara("flowPara4440", card.CornerText.Substring(2, 2));
+                inkscape.ReplaceTextInFlowPara("flowPara4541", card.CornerText.Substring(0, 2));
+                inkscape.ReplaceTextInFlowPara("flowPara4543", card.CornerText.Substring(2, 2));
                 // dump svg
                 File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), inkscape.GetSvg());
                 cardno++;
             }
-
-            // convert to png
+            File.Copy("_pro_backside.svg", Path.Combine(directoryPath, "_pro_backside.svg"));
             Process p = new Process();
-            string args = $@"/C ""for /r %i in (*.svg;) do ""{Inkscape.Path}"" %i -w 250 -h 350 -e %i.png""";
+            string args = $@"/C ""for /r %i in (card*.svg;_pro_backside.svg) do ""{Inkscape.Path}"" %i -w 1650 -h 2250 -e %i.png""";
             p.StartInfo = new ProcessStartInfo("cmd.exe", args);
             p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
             p.Start();
             p.WaitForExit();
+
+            MakePrintPages();
         }
 
+        private void MakePrintPages()
+        {
+            int cardIndexOnPage = 0;
+            int page = 0;
+            Graphics g = null;
+            Bitmap newBmp = null;
+            float dpi = 600;
+            float pxLeftMargin = 0.0f * dpi;
+            float pxTopMargin = 0.2f * dpi;
+            float pxAlignMargin = 0.05f * dpi;
+            float pxA4Height = 11.7f * dpi;
+            float pxA4Width = 8.3f * dpi;
+            var allFiles = Directory.GetFiles(directoryPath, "card*.png").OrderBy(x => x).ToList();
+            int carsOnLastPage = allFiles.Count % 9;
+            int fillLastPage = carsOnLastPage == 0 ? 0 : 9 - carsOnLastPage;
+            for (int i = 0; i < 9 + fillLastPage; i++)
+            {
+                allFiles.Add($"{directoryPath}\\_pro_backside.svg.png");
+            }
+
+            foreach (var file in allFiles)
+            {
+                bool firstCardOnPage = cardIndexOnPage == 0;
+                if (firstCardOnPage)
+                {
+                    // new page
+                    newBmp = new Bitmap((int)pxA4Width, (int)pxA4Height);
+                    newBmp.SetResolution(dpi, dpi);
+                    g = Graphics.FromImage(newBmp);
+                    g.FillRectangle(Brushes.White, 0, 0, pxA4Width, pxA4Height);
+
+                    g.DrawLine(Pens.Black, 0, pxAlignMargin, pxA4Width, pxAlignMargin);
+                    g.DrawLine(Pens.Black, pxAlignMargin, 0, pxAlignMargin, pxA4Height);
+                    g.DrawLine(Pens.Black, 0, pxA4Height - pxAlignMargin, pxA4Width, pxA4Height - pxAlignMargin);
+                    g.DrawLine(Pens.Black, pxA4Width - pxAlignMargin, 0, pxA4Width - pxAlignMargin, pxA4Height);
+                }
+                int row = cardIndexOnPage / 3;
+                int col = cardIndexOnPage % 3;
+
+                Bitmap bmp = new Bitmap(file);
+                bmp.SetResolution(dpi, dpi);
+                float cardWidth = bmp.Width;
+                float cardHeight = bmp.Height;
+                PointF cardpos = new PointF(pxLeftMargin + col * cardWidth, pxTopMargin + row * cardHeight);
+                g.DrawImage(bmp, cardpos);
+
+                bool lastCardOnPage = cardIndexOnPage % 9 == 8;
+                if(lastCardOnPage)
+                {
+                    page++;
+                    if (g != null)
+                    {
+                        // flush bitmap
+                        newBmp.Save($"{directoryPath}\\page{page}.png", ImageFormat.Png);
+                        g.Dispose();
+                        newBmp.Dispose();
+                    }
+                }
+
+                cardIndexOnPage = (cardIndexOnPage + 1) % 9;
+            }
+        }
 
         private string DiagramFromMoves(string fen)
         {
