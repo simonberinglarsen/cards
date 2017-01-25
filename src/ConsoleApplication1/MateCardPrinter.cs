@@ -30,7 +30,7 @@ namespace ConsoleApplication1
             dir.EnumerateFiles("*.png").ToList().ForEach(x => x.Delete());
             string template = File.ReadAllText("_pro_cardtemplate.svg");
             cardno = 0;
-            foreach (var card in _cards.Skip(42))
+            foreach (var card in _cards.Skip(0))
             {
                 var diagram = DiagramFromMoves(card.Data.Fen);
                 string newSvg = template
@@ -144,15 +144,33 @@ namespace ConsoleApplication1
                 g.DrawImage(bmp, cardpos);
 
                 bool lastCardOnPage = cardIndexOnPage % 9 == 8;
-                if(lastCardOnPage)
+                if (lastCardOnPage)
                 {
                     page++;
-                    if (g != null)
+                    if (g != null && newBmp != null)
                     {
-                        // flush bitmap
-                        newBmp.Save($"{directoryPath}\\page{page}.png", ImageFormat.Png);
+                        // add "borderless" printing border flush bitmap and 
+                        float pxXMargin = newBmp.Width / 60f;
+                        float pxYMargin = newBmp.Height / 60f;
+                        Bitmap borderlessBitmap = new Bitmap((int)(newBmp.Width + pxXMargin),
+                            (int)(newBmp.Height + pxYMargin));
+
+                        borderlessBitmap.SetResolution(dpi, dpi);
+                        Graphics g2 = Graphics.FromImage(borderlessBitmap);
+
+                        g2.FillRectangle(Brushes.Red, 0, 0, borderlessBitmap.Width, borderlessBitmap.Height);
+                        g2.DrawImage(newBmp, new PointF(pxXMargin / 2f, pxXMargin / 2f));
+                        borderlessBitmap.Save($"{directoryPath}\\page{page}.png", ImageFormat.Png);
+                        g2.Dispose();
+                        borderlessBitmap.Dispose();
                         g.Dispose();
                         newBmp.Dispose();
+                        // loose reference and collect
+                        g2 = null;
+                        borderlessBitmap = null;
+                        g = null;
+                        newBmp = null;
+                        GC.Collect();
                     }
                 }
 
