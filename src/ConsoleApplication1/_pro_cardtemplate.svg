@@ -16,7 +16,7 @@
    viewBox="0 0 247.5 337.50001"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.0 r15299"
    sodipodi:docname="_pro_cardtemplate.svg"
    style="enable-background:new">
   <defs
@@ -405,11 +405,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.25"
-     inkscape:cx="-139.31529"
-     inkscape:cy="179.101"
+     inkscape:zoom="2.5"
+     inkscape:cx="153.89328"
+     inkscape:cy="135.93103"
      inkscape:document-units="in"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="g5189"
      showgrid="false"
      units="in"
      inkscape:window-width="1920"
@@ -425,7 +425,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -476,29 +476,7 @@
      inkscape:label="text"
      style="display:inline"
      transform="translate(0,22.5)">
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot6025"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:'Chess Cases';-inkscape-font-specification:'Chess Cases, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><flowRegion
-         id="flowRegion6027"><rect
-           id="rect6029"
-           width="23.214285"
-           height="143.57143"
-           x="16.071428"
-           y="45.714287"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:'Chess Cases';-inkscape-font-specification:'Chess Cases, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none" /></flowRegion><flowPara
-         id="flowPara6033">123</flowPara></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot6065"
-       style="font-style:normal;font-weight:normal;font-size:25px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><flowRegion
-         id="flowRegion6067"><rect
-           id="rect6069"
-           width="85"
-           height="55.5"
-           x="-94.25"
-           y="104"
-           style="stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none" /></flowRegion><flowPara
-         id="flowPara6071" /></flowRoot>    <flowRoot
+     <flowRoot
        transform="translate(-81.33934,4.6890874)"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="flowRoot4399"
@@ -761,44 +739,44 @@
              id="flowPara3362">/(((((((()</flowPara></flowRoot>      </g>
       <flowRoot
          transform="translate(152.16185,-34.660364)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:170.00000477%;font-family:'Enchanted Land';-inkscape-font-specification:'Enchanted Land, Normal';text-align:end;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:end;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="flowRoot6035"
          xml:space="preserve"><flowRegion
            id="flowRegion6037"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:170.00000477%;font-family:'Enchanted Land';-inkscape-font-specification:'Enchanted Land, Normal';text-align:end;writing-mode:lr-tb;text-anchor:end;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:end;writing-mode:lr-tb;text-anchor:end;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
              y="77.836388"
              x="-133.60783"
              height="139.71933"
              width="21.107126"
              id="rect6039" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One'"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal'"
            id="flowPara6049">8</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One'"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal'"
            id="flowPara6051">7</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One'"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal'"
            id="flowPara6053">6</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One'"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal'"
            id="flowPara6055">5</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One'"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal'"
            id="flowPara6057">4</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One'"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal'"
            id="flowPara6059">3</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One'"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal'"
            id="flowPara6061">2</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One'"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:170.00000477%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal'"
            id="flowPara6063">1</flowPara></flowRoot>      <flowRoot
          transform="translate(152.53284,81.040198)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:'Old English Text MT';-inkscape-font-specification:'Old English Text MT, Normal';text-align:start;letter-spacing:15.11999989px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:start;letter-spacing:15.11999989px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="flowRoot6073"
          xml:space="preserve"><flowRegion
            id="flowRegion6075"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:'Old English Text MT';-inkscape-font-specification:'Old English Text MT, Normal';text-align:start;letter-spacing:15.11999989px;writing-mode:lr-tb;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:start;letter-spacing:15.11999989px;writing-mode:lr-tb;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
              y="101.25"
              x="-101.75"
              height="24"
              width="138.25"
              id="rect6077" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One';text-align:start;letter-spacing:12.60000038px;writing-mode:lr-tb;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:start;letter-spacing:12.60000038px;writing-mode:lr-tb;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara6079">abcdefgh</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot4272"
@@ -848,7 +826,7 @@
              width="204"
              id="rect4284" /></flowRegion><flowPara
            id="flowPara4292">more playerinfo here..</flowPara></flowRoot>      <flowRoot
-         transform="translate(-1.079394,7.9065817)"
+         transform="translate(-1.079394,9.5004399)"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:125%;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="flowRoot4302"
          xml:space="preserve"><flowRegion
@@ -861,23 +839,24 @@
              id="rect4306" /></flowRegion><flowPara
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:150%;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi Bold';text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara4334">Opgave:</flowPara></flowRoot>      <flowRoot
-         transform="translate(109.03427,21.84099)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         transform="translate(109.03427,25.21599)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:end;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="flowRoot4786"
          xml:space="preserve"><flowRegion
-           id="flowRegion4788"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-             y="270.25"
-             x="82"
-             height="51.75"
-             width="132.75"
+           id="flowRegion4788"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:end;text-anchor:end"><rect
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:end;writing-mode:lr-tb;text-anchor:end;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+             y="265.75"
+             x="73"
+             height="15.75"
+             width="26.625"
              id="rect4790" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';text-align:end;writing-mode:lr-tb;text-anchor:end;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara4792">0001</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot4378"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         transform="translate(78.63427,21.64099)"><flowRegion
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         transform="translate(78.63427,17.89099)"><flowRegion
            id="flowRegion4380"><rect
              ry="0"
              id="rect4382"
@@ -885,9 +864,9 @@
              height="19.309027"
              x="-79"
              y="274.04999"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;writing-mode:lr-tb;text-anchor:middle;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none" /></flowRegion><flowPara
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;writing-mode:lr-tb;text-anchor:middle;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none" /></flowRegion><flowPara
            id="flowPara4384"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;writing-mode:lr-tb;text-anchor:middle;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none">©2017 ChessCards With Rice </flowPara></flowRoot>      <g
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;writing-mode:lr-tb;text-anchor:middle;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none">©2017 ChessCards With Rice </flowPara></flowRoot>      <g
          transform="translate(0,5.4484644)"
          id="g4635">
         <circle
@@ -1015,7 +994,7 @@
          xml:space="preserve"
          id="flowRoot5706"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         transform="translate(47.993102,13.113625)"><flowRegion
+         transform="translate(47.993102,12.043625)"><flowRegion
            id="flowRegion5708"><rect
              id="rect5710"
              width="127.88049"
@@ -1025,7 +1004,7 @@
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none" /></flowRegion><flowPara
            id="flowPara5731"
            style="font-weight:normal;font-size:10px;line-height:125%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none">Mat i 1. Sort trækker.</flowPara></flowRoot>      <flowRoot
-         transform="translate(-1.0830561,41.450093)"
+         transform="translate(-1.0830561,43.043951)"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="flowRoot5756"
          xml:space="preserve"><flowRegion
@@ -1038,7 +1017,7 @@
              id="rect5760" /></flowRegion><flowPara
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:150%;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi Bold';text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara5762">Løsning:</flowPara></flowRoot>      <flowRoot
-         transform="translate(47.993102,40.407136)"
+         transform="translate(47.993102,39.119851)"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="flowRoot5746"
          xml:space="preserve"><flowRegion
@@ -1046,8 +1025,8 @@
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
              y="219.63138"
              x="49.375439"
-             height="22.582422"
-             width="115.09055"
+             height="24.94558"
+             width="118.8041"
              id="rect5750" /></flowRegion><flowPara
            style="font-weight:normal;font-size:10px;line-height:125%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara5754">Flyt til A-, B-, C- eller D-linien.</flowPara></flowRoot>      <g
@@ -1223,21 +1202,22 @@
            inkscape:connector-curvature="0"
            sodipodi:nodetypes="ssscccss" />
         <flowRoot
-           transform="translate(-94.893953,9.4785707)"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           transform="translate(-94.893953,7.9200138)"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:50%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;letter-spacing:1.00312495px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="flowRoot4432"
            xml:space="preserve"><flowRegion
-             id="flowRegion4434"><rect
-               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+             id="flowRegion4434"
+             style="line-height:50%;letter-spacing:1.00312495px"><rect
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:50%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;letter-spacing:1.00312495px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
                y="4.28931"
                x="102.10033"
                height="44.236454"
                width="29.372997"
                id="rect4436" /></flowRegion><flowPara
              id="flowPara4438"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:80.00000119%;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi Bold';letter-spacing:1px;fill:#000000;fill-opacity:1;stroke:none">AB</flowPara><flowPara
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:50%;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi Bold';letter-spacing:1.00312495px;fill:#000000;fill-opacity:1;stroke:none">AB</flowPara><flowPara
              id="flowPara4440"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:80.00000119%;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi Bold';letter-spacing:1px;fill:#000000;fill-opacity:1;stroke:none">CD</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:50%;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi Bold';letter-spacing:1.00312495px;fill:#000000;fill-opacity:1;stroke:none">CD</flowPara></flowRoot>      </g>
       <g
          id="g4663">
         <path
@@ -1249,18 +1229,19 @@
         <flowRoot
            xml:space="preserve"
            id="flowRoot4535"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           transform="translate(86.363592,9.4785707)"><flowRegion
-             id="flowRegion4537"><rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:50%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;letter-spacing:1.00312495px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           transform="translate(86.363592,7.9200138)"><flowRegion
+             id="flowRegion4537"
+             style="line-height:50%;letter-spacing:1.00312495px"><rect
                id="rect4539"
                width="29.372997"
                height="44.236454"
                x="102.10033"
                y="4.28931"
-               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none" /></flowRegion><flowPara
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:80.00000119%;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi Bold';letter-spacing:1px;fill:#000000;fill-opacity:1;stroke:none"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:50%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;letter-spacing:1.00312495px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none" /></flowRegion><flowPara
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:50%;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi Bold';letter-spacing:1.00312495px;fill:#000000;fill-opacity:1;stroke:none"
              id="flowPara4541">AB</flowPara><flowPara
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:80.00000119%;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi Bold';letter-spacing:1px;fill:#000000;fill-opacity:1;stroke:none"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:50%;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi Bold';letter-spacing:1.00312495px;fill:#000000;fill-opacity:1;stroke:none"
              id="flowPara4543">CD</flowPara></flowRoot>      </g>
     </g>
   </g>
