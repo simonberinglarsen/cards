@@ -31,7 +31,7 @@ namespace ConsoleApplication1
 
                 // print cards (update svg / card layout)
                 MateCardPrinter mcp = new MateCardPrinter(deck.Cards);
-                mcp.Print();
+                mcp.Print(MateCardPrinter.PrintOutput.Pdf);
             }
             else if (operation == "OpeningBook")
             {

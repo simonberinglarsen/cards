@@ -12,13 +12,20 @@ namespace ConsoleApplication1
         private readonly TacticCard[] _cards;
         private const string directoryPath = "MateCards";
         private int cardno = 0;
+        [Flags]
+        public enum PrintOutput 
+        {
+            
+            Png = 0x01,
+            Pdf = 0x02
+        }
 
         public MateCardPrinter(TacticCard[] cards)
         {
             _cards = cards;
         }
 
-        public void Print()
+        public void Print(PrintOutput printOutput)
         {
             if (!Directory.Exists(directoryPath))
             {
@@ -87,14 +94,27 @@ namespace ConsoleApplication1
                 cardno++;
             }
             File.Copy("_pro_backside.svg", Path.Combine(directoryPath, "_pro_backside.svg"));
-            Process p = new Process();
-            string args = $@"/C ""for /r %i in (card*.svg;_pro_backside.svg) do ""{Inkscape.Path}"" %i -w 1650 -h 2250 -e %i.png""";
-            p.StartInfo = new ProcessStartInfo("cmd.exe", args);
-            p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
-            p.Start();
-            p.WaitForExit();
 
-            MakePrintPages();
+            Process p = new Process();
+            if ((printOutput & PrintOutput.Png) == PrintOutput.Png)
+            {
+                string args =
+                    $@"/C ""for /r %i in (card*.svg;_pro_backside.svg) do ""{Inkscape.Path}"" %i -w 1650 -h 2250 -e %i.png""";
+                p.StartInfo = new ProcessStartInfo("cmd.exe", args);
+                p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
+                p.Start();
+                p.WaitForExit();
+                MakePrintPages();
+            }
+            if ((printOutput & PrintOutput.Pdf) == PrintOutput.Pdf)
+            {
+                string args =
+                    $@"/C ""for /r %i in (card*.svg;_pro_backside.svg) do ""{Inkscape.Path}"" %i -A %i.pdf""";
+                p.StartInfo = new ProcessStartInfo("cmd.exe", args);
+                p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
+                p.Start();
+                p.WaitForExit();
+            }
         }
 
         private void MakePrintPages()
