@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -99,7 +101,7 @@ namespace ConsoleApplication1
             if ((printOutput & PrintOutput.Png) == PrintOutput.Png)
             {
                 string args =
-                    $@"/C ""for /r %i in (card*.svg;_pro_backside.svg) do ""{Inkscape.Path}"" %i -w 1650 -h 2250 -e %i.png""";
+                    $@"/C ""for /r %i in (card*.svg;_pro_backside.svg) do ""{Inkscape.Path}"" %i -w 825 -h 1125 -e %i.png""";
                 p.StartInfo = new ProcessStartInfo("cmd.exe", args);
                 p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
                 p.Start();
@@ -114,8 +116,31 @@ namespace ConsoleApplication1
                 p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
                 p.Start();
                 p.WaitForExit();
+
+                // make one big pdf with all backsides and frontsides
+                var all = Directory.GetFiles(directoryPath, "card*.pdf").SelectMany(x => new string[] { x, Path.Combine(directoryPath, "_pro_backside.svg.pdf") }).ToArray();
+                MergePDFs("Cards\\all.pdf", all.OrderBy(x => x).ToArray());
             }
         }
+
+        public static void MergePDFs(string targetPath, params string[] pdfs)
+        {
+            using (PdfDocument targetDoc = new PdfDocument())
+            {
+                foreach (string pdf in pdfs)
+                {
+                    using (PdfDocument pdfDoc = PdfReader.Open(pdf, PdfDocumentOpenMode.Import))
+                    {
+                        for (int i = 0; i < pdfDoc.PageCount; i++)
+                        {
+                            targetDoc.AddPage(pdfDoc.Pages[i]);
+                        }
+                    }
+                }
+                targetDoc.Save(targetPath);
+            }
+        }
+
 
         private void MakePrintPages()
         {

@@ -7,14 +7,25 @@ namespace ConsoleApplication1
 {
     class Inkscape
     {
-        public static string Path = @"C:\Users\sends\Desktop\simon\toos\inkscape";
+        public static string Path;
         private XDocument _doc;
         static Inkscape()
         {
-            if (!Directory.Exists(Path))
+            string[] possiblePaths = new string[] {
+                @"C:\p\simon\tools\Inkscape-0.91-1-win64\inkscape",
+                @"C:\Program Files\Inkscape",
+                @"C:\Users\sends\Desktop\simon\toos\inkscape",
+                null
+            };
+            foreach (var path in possiblePaths)
             {
-                Path = @"C:\p\simon\tools\Inkscape-0.91-1-win64\inkscape";
+                Path = path;
+                if (Directory.Exists(Path))
+                    break;
             }
+            if (Path == null)
+                throw new Exception("Inkscape not found!!");
+            
             Path = System.IO.Path.Combine(Path, "inkscape.exe");
         }
         public Inkscape(string x)
@@ -48,5 +59,5 @@ namespace ConsoleApplication1
             var gElement = root.Descendants(xmlns + "flowPara").Attributes().Where(a => a.Name == "id" && a.Value == id).Select(z => z.Parent).Single();
             gElement.Value = newText;
         }
-   }
+    }
 }
