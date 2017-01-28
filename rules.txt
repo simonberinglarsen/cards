@@ -1,33 +1,28 @@
 SPILLET
 Du har et spil kort med nogle skak opgaver.
-Du kæmper nu mod din modstander om at løse opgaverne hurtigst - een runde af gangen.
-Når du vinder en runde får du kort-puljen som du gemmer i præmieskabet.
-Spillet slutter når alle kort er brugt og begge spilleres præmieskab er fyldt.
-Vinderen er den der har flest kort i præmieskabet!
+Du kæmper nu - et antal runder - mod din modstander om at løse opgaverne hurtigst.
+Når du vinder en runde får du alle kort på bordet - hvert kort tæller for eet point.
+Spillet slutter når alle kort er brugt - vinderen er den med flest point-kort.
 
 
 KORT FORKLARET
 Løs skak opgaverne!
 Vær hurtigere end din modstander!
-Vind flest præmiekort!
+Vind flest kort!
 
  
 REGLER
-1. Spil Start - bland alle kort og placer bunken med bagsiden op.
+1. Bland alle kort og placer bunken med bagsiden op.
 
-2. Oprustning - hver spiller tager kort op, til der er 6 kort på hånden.
-3. Udfordring - Spillerne vælger et kort fra hånden, og giver det til modstanderen. Kortet skal ligge på borden med bagsiden op.
-4. Runde Start - Tæl ned fra 3: "3, 2, 1" og vend kortet. Læs kortets udfordring og løs opgaven.
-5. Runde Slut - Vælg alle kort fra hånden der løser opgaven og læg dem ned på diagrammet og råb "MAT!"
-6. Runde Vinder - Den der først råber "Mat!" har vundet runden.
-7. Runde Straf - Hvis der lægges kort ned hvis løsning ikke passer til problemet vinder modstanderen!
-8. Runde Præmie - Vinderen af runden modtager alle kort fra bordet. Kortene er ude af spillet og tæller som point.
-9. Ny Runde - Start en ny runde med oprustning og gentag til der ikke er flere kort.
+2. Tag 6 kort op på hånden.
+3. Vælg et kort fra hånden. Placer opgaven foran din modstander med bagsiden op.
+4. Begge spillere vender nu deres opgaver samtidig ved fælles nedtælling: "3, 2, 1".
+5. Løs opgaven og læg de kort der passer til svaret ned. Slut med at råbe "MAT!"
+7. Passer kortene til opgavens løsning vinder du, ellers har du tabt runden.
+8. Kortene fra bordet ryger ud af spillet, og tælles som point hos vinderen af runden. 
+9. Start en ny runde ved at supplere op til 6 kort og fortsæt til alle kort er brugt.
 
-10. Vinder - Når alle kort er brugt afsluttes spillet. Den spiller der har flest præmiekort vinder spillet.
-
-
-EKSEMPEL
+10. Vinderen er den der samlet har vundet flest kort
 
 
 
