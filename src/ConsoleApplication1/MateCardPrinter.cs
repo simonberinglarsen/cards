@@ -118,8 +118,8 @@ namespace ConsoleApplication1
                 p.WaitForExit();
 
                 // make one big pdf with all backsides and frontsides
-                var all = Directory.GetFiles(directoryPath, "card*.pdf").SelectMany(x => new string[] { x, Path.Combine(directoryPath, "_pro_backside.svg.pdf") }).ToArray();
-                MergePDFs(Path.Combine(directoryPath, "all.pdf"), all.OrderBy(x => x).ToArray());
+                var all = Directory.GetFiles(directoryPath, "card*.pdf").SelectMany(x => new string[] { Path.Combine(directoryPath, "_pro_backside.svg.pdf"), x }).ToArray();
+                MergePDFs(Path.Combine(directoryPath, "all.pdf"), all.ToArray());
             }
         }
 
