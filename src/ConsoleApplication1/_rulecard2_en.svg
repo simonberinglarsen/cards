@@ -391,8 +391,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.5"
-     inkscape:cx="164.27603"
-     inkscape:cy="201.29623"
+     inkscape:cx="99.27603"
+     inkscape:cy="185.29623"
      inkscape:document-units="in"
      inkscape:current-layer="layer9"
      showgrid="false"
@@ -411,7 +411,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -614,37 +614,37 @@
    style="font-weight:bold"
    id="flowSpan6270">1.</flowSpan> Shuffle the cards and place the pile on the table face down. Both players draw 6 cards.</flowPara><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara5554"></flowPara><flowPara
+           id="flowPara5554" /><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara5556"><flowSpan
    style="font-weight:bold"
    id="flowSpan6272">2.</flowSpan> Both players choose a card and place it face down in front of the opponent.</flowPara><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara5558"></flowPara><flowPara
+           id="flowPara5558" /><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara5560"><flowSpan
    style="font-weight:bold"
-   id="flowSpan6274">3.</flowSpan> Both players are now turning their new cards face up simultaneously: &quot;3, 2, 1, NOW!&quot;. Solve the puzzle!</flowPara><flowPara
+   id="flowSpan6274">3.</flowSpan> Both players are now turning their new cards face up simultaneously: &quot;3, 2, 1, GO!&quot;. Solve the puzzle!</flowPara><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara5562"></flowPara><flowPara
+           id="flowPara5562" /><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara5564"><flowSpan
    style="font-weight:bold"
    id="flowSpan6276">4.</flowSpan> Play all cards from your hand with the correct solution and shout: &quot;Mate!&quot;. You have now claimed the right to win the round – but remember &quot;Round goes to your opponent if you place cards with a wrong solution!&quot;</flowPara><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara5566"></flowPara><flowPara
+           id="flowPara5566" /><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara5568"><flowSpan
    style="font-weight:bold"
-   id="flowSpan6278">5.</flowSpan> Discard all cards from the table. The winner receives +1 point for each discarded card.</flowPara><flowPara
+   id="flowSpan6278">5.</flowSpan> Discard all cards from the table. The winner receives 1 point for each discarded card.</flowPara><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara5570"></flowPara><flowPara
+           id="flowPara5570" /><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara5572"><flowSpan
    style="font-weight:bold"
    id="flowSpan6280">6.</flowSpan> Each player draw cards until both have 6 cards and a new round begins. The game ends when all cards are discarded.</flowPara><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara5574"> </flowPara><flowPara
+           id="flowPara5574" /><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara5576"><flowSpan
    style="font-weight:bold"
