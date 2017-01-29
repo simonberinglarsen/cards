@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ConsoleApplication1
@@ -10,13 +11,13 @@ namespace ConsoleApplication1
 
         private static readonly Dictionary<SolutionType, string> SolutionTypeTexts = new Dictionary<SolutionType, string>()
         {
-            { SolutionType.FileABCD, "Flyt til A-, B-, C- eller D-linien." },
-            { SolutionType.FileABEF, "Flyt til A-, B-, E- eller F-linien." },
-            { SolutionType.FileABGH, "Flyt til A-, B-, G- eller H-linien." },
-            { SolutionType.FileCDEF, "Flyt til C-, D-, E- eller F-linien." },
-            { SolutionType.FileCDGH, "Flyt til C-, D-, G- eller H-linien." },
-            { SolutionType.FileEFGH, "Flyt til E-, F-, G- eller H-linien." },
-            { SolutionType.FileAll,  "Kortet løser ALLE udfordringer!" },
+            { SolutionType.FileABCD, "SOLUTION_ABCD" },
+            { SolutionType.FileABEF, "SOLUTION_ABEF" },
+            { SolutionType.FileABGH, "SOLUTION_ABGH" },
+            { SolutionType.FileCDEF, "SOLUTION_CDEF" },
+            { SolutionType.FileCDGH, "SOLUTION_CDGH" },
+            { SolutionType.FileEFGH, "SOLUTION_EFGH" },
+            { SolutionType.FileAll, "SOLUTION_ALL" },
         };
 
         private static readonly Dictionary<SolutionType, string> CornerTexts = new Dictionary<SolutionType, string>()
@@ -134,6 +135,14 @@ namespace ConsoleApplication1
             "Artemiev, Vladislav;2655;1998",
             };
 
+        internal static string PuzzleTextFromWhiteToMove(bool whiteToMove)
+        {
+            if (whiteToMove)
+                return "MATE_1_WHITE";
+            else
+                return "MATE_1_BLACK";
+        }
+
         public static string SolutionTypeToText(SolutionType type)
         {
             return SolutionTypeTexts[type];
@@ -152,8 +161,8 @@ namespace ConsoleApplication1
         public static string NameFromCardno(int i)
         {
 
-            string[] parts = FideInfo[i].Split(new char[] {';'});
-            string[] nameParts = parts[0].Split(new char[] {','});
+            string[] parts = FideInfo[i].Split(new char[] { ';' });
+            string[] nameParts = parts[0].Split(new char[] { ',' });
             string title = $"{nameParts[1]} {nameParts[0]}";
             return title;
         }
@@ -182,4 +191,60 @@ namespace ConsoleApplication1
         FileEFGH,
         FileAll,
     };
+
+    public static class StringContainer
+    {
+        public enum LanguageEnum
+        {
+            DK,
+            EN
+        };
+
+        public static LanguageEnum Language { get; set; }
+
+        public static Dictionary<string, string> CurrentLanguage
+        {
+            get
+            {
+                return Texts[Language];
+            }
+        }
+
+        private static Dictionary<LanguageEnum, Dictionary<string, string>> Texts = new Dictionary<LanguageEnum, Dictionary<string, string>>()
+        {
+            {
+                LanguageEnum.EN,
+                    new Dictionary<string, string>() {
+                        { "MATE_1_WHITE", "Mate in 1. White to move."},
+                        { "MATE_1_BLACK", "Mate in 1. Black to move."},
+                        { "SOLUTION_ABCD", "Move to the A-, B-, C- or D-file."},
+                        { "SOLUTION_ABEF", "Move to the A-, B-, E- or F-file."},
+                        { "SOLUTION_ABGH", "Move to the A-, B-, G- or H-file."},
+                        { "SOLUTION_CDEF", "Move to the C-, D-, E- or F-file."},
+                        { "SOLUTION_CDGH", "Move to the C-, D-, G- or H-file."},
+                        { "SOLUTION_EFGH", "Move to the E-, F-, G- or H-file."},
+                        { "SOLUTION_ALL", "This card solves ALL puzzles!" },
+                        { "SOLUTION_LABEL", "Solution:" },
+                        { "PUZZLE_LABEL", "Puzzle:"}
+                    }
+            },
+            {
+                LanguageEnum.DK,
+                    new Dictionary<string, string>() {
+                        { "MATE_1_WHITE", "Mat i 1. Hvid trækker."},
+                        { "MATE_1_BLACK", "Mat i 1. Sort trækker."},
+                        { "SOLUTION_ABCD", "Flyt til A-, B-, C- eller D-linien."},
+                        { "SOLUTION_ABEF", "Flyt til A-, B-, E- eller F-linien."},
+                        { "SOLUTION_ABGH", "Flyt til A-, B-, G- eller H-linien."},
+                        { "SOLUTION_CDEF", "Flyt til C-, D-, E- eller F-linien."},
+                        { "SOLUTION_CDGH", "Flyt til C-, D-, G- eller H-linien."},
+                        { "SOLUTION_EFGH", "Flyt til E-, F-, G- eller H-linien."},
+                        { "SOLUTION_ALL", "Kortet løser ALLE udfordringer!" },
+                        { "SOLUTION_LABEL", "Løsning:" },
+                        { "PUZZLE_LABEL", "Opgave:"}
+                    }
+            }
+
+        };
+    }
 }

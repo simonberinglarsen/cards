@@ -5,6 +5,7 @@ namespace ConsoleApplication1
         public string Title { get; set; }
         public string Subtitle { get; set; }
         public string SolutionText { get; set; }
+        public string PuzzleText { get; set; }
         public CardData Data { get; set; }
         public string CornerText { get; set; }
     }

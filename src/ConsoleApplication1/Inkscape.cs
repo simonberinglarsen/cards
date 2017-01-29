@@ -59,5 +59,7 @@ namespace ConsoleApplication1
             var gElement = root.Descendants(xmlns + "flowPara").Attributes().Where(a => a.Name == "id" && a.Value == id).Select(z => z.Parent).Single();
             gElement.Value = newText;
         }
+
+    
     }
 }

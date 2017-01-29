@@ -1,11 +1,13 @@
 ﻿using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using static ConsoleApplication1.StringContainer;
 
 namespace ConsoleApplication1
 {
@@ -15,9 +17,9 @@ namespace ConsoleApplication1
         private const string directoryPath = "MateCards";
         private int cardno = 0;
         [Flags]
-        public enum PrintOutput 
+        public enum PrintOutput
         {
-            
+
             Png = 0x01,
             Pdf = 0x02
         }
@@ -38,88 +40,106 @@ namespace ConsoleApplication1
             dir.EnumerateFiles("*.pdf").ToList().ForEach(x => x.Delete());
             dir.EnumerateFiles("*.png").ToList().ForEach(x => x.Delete());
             string template = File.ReadAllText("_pro_cardtemplate.svg");
-            cardno = 0;
-            foreach (var card in _cards.Skip(0))
+            
+            foreach (var lang in new LanguageEnum[] { LanguageEnum.DK, LanguageEnum.EN })
             {
-                var diagram = DiagramFromMoves(card.Data.Fen);
-                string newSvg = template
-                    .Replace("+*+*+*+p", diagram.Substring(0, 8))
-                    .Replace("*+*+*+*r", diagram.Substring(8, 8))
-                    .Replace("+*+*+*+n", diagram.Substring(16, 8))
-                    .Replace("*+*+*+*b", diagram.Substring(24, 8))
-                    .Replace("+*+*+*+q", diagram.Substring(32, 8))
-                    .Replace("*+*+*+*k", diagram.Substring(40, 8))
-                    .Replace("+*+*+*pp", diagram.Substring(48, 8))
-                    .Replace("*+*+*+pr", diagram.Substring(56, 8));
-                Inkscape inkscape = new Inkscape(newSvg);
-                if (!card.Data.WhiteToMove)
+                cardno = 0;
+                StringContainer.Language = lang;
+                foreach (var card in _cards.Skip(0))
                 {
-                    inkscape.ReplaceTextInFlowPara("flowPara6049", "1");
-                    inkscape.ReplaceTextInFlowPara("flowPara6051", "2");
-                    inkscape.ReplaceTextInFlowPara("flowPara6053", "3");
-                    inkscape.ReplaceTextInFlowPara("flowPara6055", "4");
-                    inkscape.ReplaceTextInFlowPara("flowPara6057", "5");
-                    inkscape.ReplaceTextInFlowPara("flowPara6059", "6");
-                    inkscape.ReplaceTextInFlowPara("flowPara6061", "7");
-                    inkscape.ReplaceTextInFlowPara("flowPara6063", "8");
-                    inkscape.ReplaceTextInFlowPara("flowPara6079", "hgfedcba");
-                    inkscape.ReplaceTextInFlowPara("flowPara4300", "Black to move...");
-                    inkscape.ReplaceTextInFlowPara("flowPara4292", "Black to move...");
+
+                    var diagram = DiagramFromMoves(card.Data.Fen);
+                    string newSvg = template
+                        .Replace("+*+*+*+p", diagram.Substring(0, 8))
+                        .Replace("*+*+*+*r", diagram.Substring(8, 8))
+                        .Replace("+*+*+*+n", diagram.Substring(16, 8))
+                        .Replace("*+*+*+*b", diagram.Substring(24, 8))
+                        .Replace("+*+*+*+q", diagram.Substring(32, 8))
+                        .Replace("*+*+*+*k", diagram.Substring(40, 8))
+                        .Replace("+*+*+*pp", diagram.Substring(48, 8))
+                        .Replace("*+*+*+pr", diagram.Substring(56, 8));
+                    Inkscape inkscape = new Inkscape(newSvg);
+                    if (!card.Data.WhiteToMove)
+                    {
+                        inkscape.ReplaceTextInFlowPara("flowPara6049", "1");
+                        inkscape.ReplaceTextInFlowPara("flowPara6051", "2");
+                        inkscape.ReplaceTextInFlowPara("flowPara6053", "3");
+                        inkscape.ReplaceTextInFlowPara("flowPara6055", "4");
+                        inkscape.ReplaceTextInFlowPara("flowPara6057", "5");
+                        inkscape.ReplaceTextInFlowPara("flowPara6059", "6");
+                        inkscape.ReplaceTextInFlowPara("flowPara6061", "7");
+                        inkscape.ReplaceTextInFlowPara("flowPara6063", "8");
+                        inkscape.ReplaceTextInFlowPara("flowPara6079", "hgfedcba");
+                    }
+
+                    // Title
+                    inkscape.ReplaceTextInFlowPara("flowPara4270", card.Title);
+                    inkscape.ReplaceTextInFlowPara("flowPara4278", card.Title);
+                    // Subtitle
+                    inkscape.ReplaceTextInFlowPara("flowPara4300", card.Subtitle);
+                    inkscape.ReplaceTextInFlowPara("flowPara4292", card.Subtitle);
+                    // challenge
+                    inkscape.ReplaceTextInFlowPara("flowPara5731", StringContainer.CurrentLanguage[card.PuzzleText]);
+                    // card number
+                    inkscape.ReplaceTextInFlowPara("flowPara4792", $"{cardno + 1,04:D}");
+                    // solution
+                    inkscape.ReplaceTextInFlowPara("flowPara5754", StringContainer.CurrentLanguage[card.SolutionText]);
+                    // corner text
+                    inkscape.ReplaceTextInFlowPara("flowPara4438", card.CornerText.Substring(0, 2));
+                    inkscape.ReplaceTextInFlowPara("flowPara4440", card.CornerText.Substring(2, 2));
+                    inkscape.ReplaceTextInFlowPara("flowPara4541", card.CornerText.Substring(0, 2));
+                    inkscape.ReplaceTextInFlowPara("flowPara4543", card.CornerText.Substring(2, 2));
+                    // static texts
+                    inkscape.ReplaceTextInFlowPara("flowPara5762", StringContainer.CurrentLanguage["SOLUTION_LABEL"]);
+                    inkscape.ReplaceTextInFlowPara("flowPara4334", StringContainer.CurrentLanguage["PUZZLE_LABEL"]);
+
+                    // dump svg
+                    File.WriteAllText(Path.Combine(directoryPath, $"{lang.ToString()}_card{cardno,0:D3}.svg"), inkscape.GetSvg());
+                    cardno++;
                 }
-                else
+            }
+            File.Copy("_pro_backside.svg", Path.Combine(directoryPath, "DK_pro_backside.svg"));
+            File.Copy("_rulecard.svg", Path.Combine(directoryPath, "DK_rulecard.svg"));
+            File.Copy("_rulecard2.svg", Path.Combine(directoryPath, "DK_rulecard2.svg"));
+            File.Copy("_pro_backside.svg", Path.Combine(directoryPath, "EN_pro_backside.svg"));
+            File.Copy("_rulecard_en.svg", Path.Combine(directoryPath, "EN_rulecard.svg"));
+            File.Copy("_rulecard2_en.svg", Path.Combine(directoryPath, "EN_rulecard2.svg"));
+
+            foreach (var lang in new LanguageEnum[] { LanguageEnum.DK, LanguageEnum.EN })
+            {
+                StringContainer.Language = lang;
+
+                string cardfilter = $"{lang.ToString()}*.svg";
+                Process p = new Process();
+                if ((printOutput & PrintOutput.Png) == PrintOutput.Png)
                 {
-                    inkscape.ReplaceTextInFlowPara("flowPara4300", "White to move...");
-                    inkscape.ReplaceTextInFlowPara("flowPara4292", "White to move...");
+                    string args =
+                        $@"/C ""for /r %i in ({cardfilter}) do ""{Inkscape.Path}"" %i -w 825 -h 1125 -e %i.png""";
+                    p.StartInfo = new ProcessStartInfo("cmd.exe", args);
+                    p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
+                    p.Start();
+                    p.WaitForExit();
+                    MakePrintPages();
                 }
-                // Title
-                inkscape.ReplaceTextInFlowPara("flowPara4270", card.Title);
-                inkscape.ReplaceTextInFlowPara("flowPara4278", card.Title);
-                // Subtitle
-                inkscape.ReplaceTextInFlowPara("flowPara4300", card.Subtitle);
-                inkscape.ReplaceTextInFlowPara("flowPara4292", card.Subtitle);
-                // challenge
-                if (card.Data.WhiteToMove)
-                    inkscape.ReplaceTextInFlowPara("flowPara5731", "Mat i 1. Hvid trækker.");
-                else
-                    inkscape.ReplaceTextInFlowPara("flowPara5731", "Mat i 1. Sort trækker.");
-                // card number
-                inkscape.ReplaceTextInFlowPara("flowPara4792", $"{cardno + 1,04:D}");
-                // solution
-                inkscape.ReplaceTextInFlowPara("flowPara5754", card.SolutionText);
-                // corner text
-                inkscape.ReplaceTextInFlowPara("flowPara4438", card.CornerText.Substring(0, 2));
-                inkscape.ReplaceTextInFlowPara("flowPara4440", card.CornerText.Substring(2, 2));
-                inkscape.ReplaceTextInFlowPara("flowPara4541", card.CornerText.Substring(0, 2));
-                inkscape.ReplaceTextInFlowPara("flowPara4543", card.CornerText.Substring(2, 2));
-                // dump svg
-                File.WriteAllText(Path.Combine(directoryPath, $"card{cardno,0:D3}.svg"), inkscape.GetSvg());
-                cardno++;
-            }
-            File.Copy("_pro_backside.svg", Path.Combine(directoryPath, "_pro_backside.svg"));
+                if ((printOutput & PrintOutput.Pdf) == PrintOutput.Pdf)
+                {
+                    string args =
+                        $@"/C ""for /r %i in ({cardfilter}) do ""{Inkscape.Path}"" %i -A %i.pdf""";
+                    p.StartInfo = new ProcessStartInfo("cmd.exe", args);
+                    p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
+                    p.Start();
+                    p.WaitForExit();
 
-            Process p = new Process();
-            if ((printOutput & PrintOutput.Png) == PrintOutput.Png)
-            {
-                string args =
-                    $@"/C ""for /r %i in (card*.svg;_pro_backside.svg) do ""{Inkscape.Path}"" %i -w 825 -h 1125 -e %i.png""";
-                p.StartInfo = new ProcessStartInfo("cmd.exe", args);
-                p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
-                p.Start();
-                p.WaitForExit();
-                MakePrintPages();
-            }
-            if ((printOutput & PrintOutput.Pdf) == PrintOutput.Pdf)
-            {
-                string args =
-                    $@"/C ""for /r %i in (card*.svg;_pro_backside.svg) do ""{Inkscape.Path}"" %i -A %i.pdf""";
-                p.StartInfo = new ProcessStartInfo("cmd.exe", args);
-                p.StartInfo.WorkingDirectory = Path.Combine(Directory.GetCurrentDirectory(), directoryPath);
-                p.Start();
-                p.WaitForExit();
+                    // make one big pdf with all backsides and frontsides
+                    List<string> all = new List<string>();
+                    all.AddRange(new string[] {
+                        Path.Combine(directoryPath, $"{lang.ToString()}_rulecard2.svg.pdf"),
+                        Path.Combine(directoryPath, $"{lang.ToString()}_rulecard.svg.pdf")
+                    });
+                    all.AddRange(Directory.GetFiles(directoryPath, $"{lang.ToString()}_card*.pdf").SelectMany(x => new string[] { Path.Combine(directoryPath, $"{lang.ToString()}_pro_backside.svg.pdf"), x }));
 
-                // make one big pdf with all backsides and frontsides
-                var all = Directory.GetFiles(directoryPath, "card*.pdf").SelectMany(x => new string[] { Path.Combine(directoryPath, "_pro_backside.svg.pdf"), x }).ToArray();
-                MergePDFs(Path.Combine(directoryPath, "all.pdf"), all.ToArray());
+                    MergePDFs(Path.Combine(directoryPath, $"{lang.ToString()}_all.pdf"), all.ToArray());
+                }
             }
         }
 

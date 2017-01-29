@@ -80,6 +80,7 @@ namespace ConsoleApplication1
                 finalDeck[i].CornerText = Translator.SolutionTypeToCornerText(solutionTypes[i]);
                 finalDeck[i].Title = Translator.TitleFromCardno(i);
                 finalDeck[i].Subtitle = Translator.SubtitleFromCardno(i);
+                finalDeck[i].PuzzleText = Translator.PuzzleTextFromWhiteToMove(finalDeck[i].Data.WhiteToMove);
             }
             _cardsInDeck = finalDeck.ToArray();
         }
