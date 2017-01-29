@@ -17,7 +17,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.92.0 r15299"
-   sodipodi:docname="_rulecard2.svg"
+   sodipodi:docname="_rulecard2_en.svg"
    style="enable-background:new">
   <defs
      id="defs4">
@@ -391,10 +391,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.5"
-     inkscape:cx="-3.2531587"
-     inkscape:cy="241.8917"
+     inkscape:cx="164.27603"
+     inkscape:cy="201.29623"
      inkscape:document-units="in"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="layer9"
      showgrid="false"
      units="in"
      inkscape:window-width="1920"
@@ -411,7 +411,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -563,17 +563,16 @@
       <flowRoot
          xml:space="preserve"
          id="flowRoot4272"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:18.75px;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.70000005;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.70000005;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          transform="translate(1.0606602,3.82167)"><flowRegion
-           id="flowRegion4274"
-           style="line-height:18.75px;"><rect
+           id="flowRegion4274"><rect
              id="rect4276"
              width="205.06096"
              height="23.334513"
              x="9.8994932"
              y="7.0549951"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:18.75px;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:#000000;stroke-width:2.70000005;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;" /></flowRegion><flowPara
-           id="flowPara4278">Skak kort - &quot;Mat i 1&quot;</flowPara></flowRoot>      <flowRoot
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke:#000000;stroke-width:2.70000005;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></flowRegion><flowPara
+           id="flowPara4278">Chess Cards - &quot;Mate in 1&quot;</flowPara></flowRoot>      <flowRoot
          transform="translate(1.0606602,3.82167)"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Germania One';-inkscape-font-specification:'Germania One, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="flowRoot4262"
@@ -585,7 +584,7 @@
              height="23.334513"
              width="205.06096"
              id="rect4266" /></flowRegion><flowPara
-           id="flowPara4270">Skak kort - &quot;Mat i 1&quot;</flowPara></flowRoot>      <flowRoot
+           id="flowPara4270">Chess Cards - &quot;Mate in 1&quot;</flowPara></flowRoot>      <flowRoot
          transform="translate(-31.074219,-173.54339)"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:125%;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="flowRoot4302"
@@ -598,7 +597,7 @@
              width="76.809288"
              id="rect4306" /></flowRegion><flowPara
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;line-height:150%;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi Bold';text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara4334">REGLER</flowPara></flowRoot>      <flowRoot
+           id="flowPara4334">RULES</flowPara></flowRoot>      <flowRoot
          xml:space="preserve"
          id="flowRoot5706"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -611,65 +610,45 @@
              y="219.63138"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none" /></flowRegion><flowPara
            style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara5457"><flowSpan
-   style="font-weight:bold;font-size:10px;line-height:10.00000015%"
-   id="flowSpan5455">1.</flowSpan> Bland kortene og placer bunken på bordet med bagsiden op. Begge spillere tager <flowSpan
-   style="font-weight:bold"
-   id="flowSpan6411">6 kort</flowSpan> op <flowSpan
-   style="font-weight:bold"
-   id="flowSpan6417">på hånden</flowSpan>.</flowPara><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara6379" /><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara5459"><flowSpan
-   style="font-weight:bold;font-size:10px;line-height:10.00000015%"
-   id="flowSpan5451">2.</flowSpan> Begge spillere vælger <flowSpan
-   style="font-weight:bold"
-   id="flowSpan6413">et kort</flowSpan> fra hånden, og placerer det <flowSpan
-   style="font-weight:bold"
-   id="flowSpan6415">foran </flowSpan><flowSpan
-   style="font-weight:bold"
-   id="flowSpan6409">modstanderen</flowSpan> med bagsiden op.</flowPara><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara6381" /><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara5461"><flowSpan
-   style="font-weight:bold;font-size:10px;line-height:10.00000015%"
-   id="flowSpan5449">3. </flowSpan>Begge spillere vender nu deres nye kort samtidigt: <flowSpan
-   style="font-weight:bold"
-   id="flowSpan6427">&quot;3, 2, 1, NU!&quot;</flowSpan>. Løs opgaven.</flowPara><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara6383" /><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara6387"><flowSpan
-   style="font-weight:bold;font-size:10px;line-height:10.00000015%"
-   id="flowSpan5447">4.</flowSpan> Smid alle dine kort med korrekt løsning og råb: &quot;MAT!&quot;. Herefter må der ikke smides kort, og du muligheden for at vinde runden - men husk: <flowSpan
-   style="font-style:italic"
-   id="flowSpan6456">&quot;Runden går til din modstander, hvis du har lagt kort ned med forkert løsning!&quot;</flowSpan></flowPara><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara6444" /><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara5467"><flowSpan
-   style="font-weight:bold;font-size:10px;line-height:10.00000015%"
-   id="flowSpan5443">5. <flowSpan
-   style="font-weight:normal"
-   id="flowSpan6452">Alle </flowSpan><flowSpan
-   style="font-weight:normal"
-   id="flowSpan6450">rundens kort </flowSpan></flowSpan>går ud af spillet, og <flowSpan
-   style="font-weight:bold"
-   id="flowSpan6454">vinderen får 1 point pr. kort! </flowSpan></flowPara><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara6389" /><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara5435"><flowSpan
-   style="font-weight:bold;font-size:10px;line-height:10.00000015%"
-   id="flowSpan5441">6. </flowSpan>Start en ny runde ved at supplere op til 6 kort og fortsæt til alle kort er ude af spillet.</flowPara><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
-           id="flowPara6391" /><flowPara
-           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
            id="flowPara5427"><flowSpan
-   style="font-weight:bold;font-size:10px;line-height:10.00000015%"
-   id="flowSpan5439">7. </flowSpan>Vinderen er den der har samlet flest point.</flowPara></flowRoot>    </g>
+   style="font-weight:bold"
+   id="flowSpan6270">1.</flowSpan> Shuffle the cards and place the pile on the table face down. Both players draw 6 cards.</flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5554"></flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5556"><flowSpan
+   style="font-weight:bold"
+   id="flowSpan6272">2.</flowSpan> Both players choose a card and place it face down in front of the opponent.</flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5558"></flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5560"><flowSpan
+   style="font-weight:bold"
+   id="flowSpan6274">3.</flowSpan> Both players are now turning their new cards face up simultaneously: &quot;3, 2, 1, NOW!&quot;. Solve the puzzle!</flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5562"></flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5564"><flowSpan
+   style="font-weight:bold"
+   id="flowSpan6276">4.</flowSpan> Play all cards from your hand with the correct solution and shout: &quot;Mate!&quot;. You have now claimed the right to win the round – but remember &quot;Round goes to your opponent if you place cards with a wrong solution!&quot;</flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5566"></flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5568"><flowSpan
+   style="font-weight:bold"
+   id="flowSpan6278">5.</flowSpan> Discard all cards from the table. The winner receives +1 point for each discarded card.</flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5570"></flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5572"><flowSpan
+   style="font-weight:bold"
+   id="flowSpan6280">6.</flowSpan> Each player draw cards until both have 6 cards and a new round begins. The game ends when all cards are discarded.</flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5574"> </flowPara><flowPara
+           style="font-weight:normal;font-size:10px;line-height:10.00000015%;text-align:start;text-anchor:start;stroke-width:0.17716534;stroke-miterlimit:4;stroke-dasharray:none"
+           id="flowPara5576"><flowSpan
+   style="font-weight:bold"
+   id="flowSpan6282">7.</flowSpan> The winner is the one who has collected the most points.</flowPara></flowRoot>    </g>
   </g>
   <g
      inkscape:groupmode="layer"
