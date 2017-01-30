@@ -14,7 +14,7 @@ namespace ConsoleApplication1
     {
         public int FullMovesToMate { get; set; }
         public string WinningMoveLan { get; set; }
-        public string WinningMoveSan { get; internal set; }
+        public string WinningMoveSan { get; set; }
         public string Fen { get; set; }
         public bool WhiteToMove { get; set; }
         public SolutionType Solution { get; set; }

@@ -78,7 +78,6 @@ namespace ConsoleApplication1
                     // ask stockfish if mate in X
                     TacticCard tacticCard = _stockFish.FindTactic(allMovesInLan);
                     if (tacticCard?.Data.ScoreType == ScoreType.Mate
-                        && tacticCard.Data.FullMovesToMate == 1
                         && tacticCard.Data.MultipleSolutions == false
                         && Math.Abs(e.Evaluate()) < 500)
                     {
@@ -120,8 +119,8 @@ namespace ConsoleApplication1
                 test += allMates.Count(x => x.Data.WinningPieceUpper == 'Q' && !x.Data.WhiteToMove && x.Data.FullMovesToMate == 1) > 5 ? 1 : 0;
 
 
-                if (test == 10)
-                    break;
+                //if (test == 10)
+                //    break;
             }
             if (appendToCached)
             {

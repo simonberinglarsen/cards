@@ -26,27 +26,32 @@ namespace ConsoleApplication1
             List<TacticCard> finalDeck = new List<TacticCard>();
             List<TacticCard> hugeDeck = new List<TacticCard>(_cardsInDeck.Where(x => x.Data.FullMovesToMate == 1));
 
-            var pw = hugeDeck.Where(x => x.Data.WinningPieceUpper == 'P' && x.Data.WhiteToMove).Take(5).ToArray();
-            var pb = hugeDeck.Where(x => x.Data.WinningPieceUpper == 'P' && !x.Data.WhiteToMove).Take(5).ToArray();
-            var rw = hugeDeck.Where(x => x.Data.WinningPieceUpper == 'R' && x.Data.WhiteToMove).Take(5).ToArray();
-            var rb = hugeDeck.Where(x => x.Data.WinningPieceUpper == 'R' && !x.Data.WhiteToMove).Take(5).ToArray();
-            var nw = hugeDeck.Where(x => x.Data.WinningPieceUpper == 'N' && x.Data.WhiteToMove).Take(5).ToArray();
-            var nb = hugeDeck.Where(x => x.Data.WinningPieceUpper == 'N' && !x.Data.WhiteToMove).Take(5).ToArray();
-            var bw = hugeDeck.Where(x => x.Data.WinningPieceUpper == 'B' && x.Data.WhiteToMove).Take(5).ToArray();
-            var bb = hugeDeck.Where(x => x.Data.WinningPieceUpper == 'B' && !x.Data.WhiteToMove).Take(5).ToArray();
-            var qw = hugeDeck.Where(x => x.Data.WinningPieceUpper == 'Q' && x.Data.WhiteToMove).Take(5).ToArray();
-            var qb = hugeDeck.Where(x => x.Data.WinningPieceUpper == 'Q' && !x.Data.WhiteToMove).Take(5).ToArray();
+            hugeDeck.Where(x => x.Data.WinningPieceUpper == 'P' && x.Data.WinningMoveSan != null && x.Data.WinningMoveSan.Contains("=")).Take(1).ToList().ForEach(
+                x =>
+                {
+                    hugeDeck.Remove(x);
+                    finalDeck.Add(x);
+                });
+            int added;
+            foreach (var file in "abcdefgh".ToCharArray())
+            {
+                added = finalDeck.Count;
+                TransferToFinalDeck(file, 'Q', finalDeck, hugeDeck);
+                TransferToFinalDeck(file, 'P', finalDeck, hugeDeck);
+                TransferToFinalDeck(file, 'R', finalDeck, hugeDeck);
+                TransferToFinalDeck(file, 'N', finalDeck, hugeDeck);
+                TransferToFinalDeck(file, 'B', finalDeck, hugeDeck);
+                added = finalDeck.Count - added;
+                TransferAnyToFinalDeck(file, 6-added, finalDeck, hugeDeck);
+            }
 
-            finalDeck.AddRange(pw);
-            finalDeck.AddRange(rw);
-            finalDeck.AddRange(nw);
-            finalDeck.AddRange(bw);
-            finalDeck.AddRange(qw);
-            finalDeck.AddRange(pb);
-            finalDeck.AddRange(rb);
-            finalDeck.AddRange(nb);
-            finalDeck.AddRange(bb);
-            finalDeck.AddRange(qb);
+            hugeDeck.Where(x => x.Data.WinningPieceUpper == 'N').Take(50 - finalDeck.Count).ToList().ForEach(
+                x =>
+                {
+                    hugeDeck.Remove(x);
+                    finalDeck.Add(x);
+                });
+
 
 
             Dictionary<SolutionType, int> setup = new Dictionary<SolutionType, int>()
@@ -83,6 +88,26 @@ namespace ConsoleApplication1
                 finalDeck[i].PuzzleText = Translator.PuzzleTextFromWhiteToMove(finalDeck[i].Data.WhiteToMove);
             }
             _cardsInDeck = finalDeck.ToArray();
+        }
+
+        private void TransferToFinalDeck(char file, char piece, List<TacticCard> finalDeck, List<TacticCard> hugeDeck)
+        {
+            hugeDeck.Where(x => x.Data.WinningMoveLan[2] == file && x.Data.WinningPieceUpper == piece).Take(1).ToList().ForEach(
+              x =>
+              {
+                  hugeDeck.Remove(x);
+                  finalDeck.Add(x);
+              });
+        }
+
+        private void TransferAnyToFinalDeck(char file, int count, List<TacticCard> finalDeck, List<TacticCard> hugeDeck)
+        {
+            hugeDeck.Where(x => x.Data.WinningMoveLan[2] == file).Take(count).ToList().ForEach(
+               x =>
+               {
+                   hugeDeck.Remove(x);
+                   finalDeck.Add(x);
+               });
         }
     }
 }
