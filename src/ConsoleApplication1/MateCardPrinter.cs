@@ -99,9 +99,13 @@ namespace ConsoleApplication1
                 }
             }
             File.Copy("_pro_backside.svg", Path.Combine(directoryPath, "DK_pro_backside.svg"));
+            File.Copy("_pro_frontcard.svg", Path.Combine(directoryPath, "DK_pro_frontcard.svg"));
+            File.Copy("_pro_frontcard_back.svg", Path.Combine(directoryPath, "DK_pro_frontcard_back.svg"));
             File.Copy("_rulecard.svg", Path.Combine(directoryPath, "DK_rulecard.svg"));
             File.Copy("_rulecard2.svg", Path.Combine(directoryPath, "DK_rulecard2.svg"));
             File.Copy("_pro_backside.svg", Path.Combine(directoryPath, "EN_pro_backside.svg"));
+            File.Copy("_pro_frontcard.svg", Path.Combine(directoryPath, "EN_pro_frontcard.svg"));
+            File.Copy("_pro_frontcard_back.svg", Path.Combine(directoryPath, "EN_pro_frontcard_back.svg"));
             File.Copy("_rulecard_en.svg", Path.Combine(directoryPath, "EN_rulecard.svg"));
             File.Copy("_rulecard2_en.svg", Path.Combine(directoryPath, "EN_rulecard2.svg"));
 
@@ -133,8 +137,10 @@ namespace ConsoleApplication1
                     // make one big pdf with all backsides and frontsides
                     List<string> all = new List<string>();
                     all.AddRange(new string[] {
+                        Path.Combine(directoryPath, $"{lang.ToString()}_pro_frontcard_back.svg.pdf"),
+                        Path.Combine(directoryPath, $"{lang.ToString()}_pro_frontcard.svg.pdf"),
                         Path.Combine(directoryPath, $"{lang.ToString()}_rulecard2.svg.pdf"),
-                        Path.Combine(directoryPath, $"{lang.ToString()}_rulecard.svg.pdf")
+                        Path.Combine(directoryPath, $"{lang.ToString()}_rulecard.svg.pdf"),
                     });
                     all.AddRange(Directory.GetFiles(directoryPath, $"{lang.ToString()}_card*.pdf").SelectMany(x => new string[] { Path.Combine(directoryPath, $"{lang.ToString()}_pro_backside.svg.pdf"), x }));
 
