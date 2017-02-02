@@ -225,7 +225,10 @@ namespace ConsoleApplication1
                         { "SOLUTION_EFGH", "Move to the E-, F-, G- or H-file."},
                         { "SOLUTION_ALL", "This card solves ALL puzzles!" },
                         { "SOLUTION_LABEL", "Solution:" },
-                        { "PUZZLE_LABEL", "Puzzle:"}
+                        { "PUZZLE_LABEL", "Puzzle:"},
+                        { "FRONTCARD.SOLUTIONS", "Solutions"},
+                        { "FRONTCARD.CHESSNOTATION", "how to read chess notation..."},
+
                     }
             },
             {
@@ -241,7 +244,10 @@ namespace ConsoleApplication1
                         { "SOLUTION_EFGH", "Flyt til E-, F-, G- eller H-linien."},
                         { "SOLUTION_ALL", "Kortet løser ALLE udfordringer!" },
                         { "SOLUTION_LABEL", "Løsning:" },
-                        { "PUZZLE_LABEL", "Opgave:"}
+                        { "PUZZLE_LABEL", "Opgave:"},
+                        { "FRONTCARD.SOLUTIONS", "Løsninger"},
+                        { "FRONTCARD.CHESSNOTATION", "sådan læses skak-notation..."},
+
                     }
             }
 

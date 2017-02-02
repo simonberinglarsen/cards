@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text;
 using static ConsoleApplication1.StringContainer;
 
 namespace ConsoleApplication1
@@ -40,7 +41,7 @@ namespace ConsoleApplication1
             dir.EnumerateFiles("*.pdf").ToList().ForEach(x => x.Delete());
             dir.EnumerateFiles("*.png").ToList().ForEach(x => x.Delete());
             string template = File.ReadAllText("_pro_cardtemplate.svg");
-            
+
             foreach (var lang in new LanguageEnum[] { LanguageEnum.DK, LanguageEnum.EN })
             {
                 cardno = 0;
@@ -98,14 +99,36 @@ namespace ConsoleApplication1
                     cardno++;
                 }
             }
+
+            // translate solutions
+            string svg = File.ReadAllText("_pro_frontcard_back.svg");
+            foreach (var lang in new LanguageEnum[] { LanguageEnum.DK, LanguageEnum.EN })
+            {
+                StringContainer.Language = lang; Inkscape inkscape = new Inkscape(svg);
+                inkscape.ReplaceTextInFlowPara("flowPara6282", StringContainer.CurrentLanguage["FRONTCARD.SOLUTIONS"]);
+                inkscape.ReplaceTextInFlowPara("flowPara6292", StringContainer.CurrentLanguage["FRONTCARD.CHESSNOTATION"]);
+
+                string allSolutionsText = string.Join(", ", _cards.Select(c => (_cards.ToList().IndexOf(c)+1)+ "." + c.Data.WinningMoveSan));
+                if (lang == LanguageEnum.DK)
+                {
+                    allSolutionsText = allSolutionsText
+                      .Replace("R", "T")
+                      .Replace("N", "S")
+                      .Replace("B", "L")
+                      .Replace("Q", "D");
+                }
+                inkscape.ReplaceTextInFlowPara("flowPara6374", allSolutionsText);
+                File.WriteAllText(Path.Combine(directoryPath, $"{lang.ToString()}_pro_frontcard_back.svg"), inkscape.GetSvg());
+
+            }
+
+
             File.Copy("_pro_backside.svg", Path.Combine(directoryPath, "DK_pro_backside.svg"));
             File.Copy("_pro_frontcard.svg", Path.Combine(directoryPath, "DK_pro_frontcard.svg"));
-            File.Copy("_pro_frontcard_back.svg", Path.Combine(directoryPath, "DK_pro_frontcard_back.svg"));
             File.Copy("_rulecard.svg", Path.Combine(directoryPath, "DK_rulecard.svg"));
             File.Copy("_rulecard2.svg", Path.Combine(directoryPath, "DK_rulecard2.svg"));
             File.Copy("_pro_backside.svg", Path.Combine(directoryPath, "EN_pro_backside.svg"));
             File.Copy("_pro_frontcard.svg", Path.Combine(directoryPath, "EN_pro_frontcard.svg"));
-            File.Copy("_pro_frontcard_back.svg", Path.Combine(directoryPath, "EN_pro_frontcard_back.svg"));
             File.Copy("_rulecard_en.svg", Path.Combine(directoryPath, "EN_rulecard.svg"));
             File.Copy("_rulecard2_en.svg", Path.Combine(directoryPath, "EN_rulecard2.svg"));
 
@@ -141,6 +164,7 @@ namespace ConsoleApplication1
                         Path.Combine(directoryPath, $"{lang.ToString()}_pro_frontcard.svg.pdf"),
                         Path.Combine(directoryPath, $"{lang.ToString()}_rulecard2.svg.pdf"),
                         Path.Combine(directoryPath, $"{lang.ToString()}_rulecard.svg.pdf"),
+                        
                     });
                     all.AddRange(Directory.GetFiles(directoryPath, $"{lang.ToString()}_card*.pdf").SelectMany(x => new string[] { Path.Combine(directoryPath, $"{lang.ToString()}_pro_backside.svg.pdf"), x }));
 
